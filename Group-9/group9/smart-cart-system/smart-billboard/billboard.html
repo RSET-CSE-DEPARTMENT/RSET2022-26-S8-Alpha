@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Billboard — Zone Display</title>
+  <meta name="description"
+    content="Smart Billboard aisle display for the Smart Cart IoT System. Activates dynamically when a cart enters its assigned zone." />
+
+  <!-- ─── Supabase JS SDK v2 ─── -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- ─── Google Font ─── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Reset & Base ────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #000;
+    }
+
+    /* ─── Sleep Mode ─────────────────────────────────────── */
+    #sleep-mode {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000000;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #sleep-mode.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Subtle breathing dot so you know it's alive */
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #1a1a1a;
+      animation: breathe 4s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+
+      0%,
+      100% {
+        opacity: 0.15;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(1.6);
+      }
+    }
+
+    /* ─── Ad Mode ────────────────────────────────────────── */
+    #ad-mode {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 5;
+      display: none;
+      /* hidden until triggered */
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0b0b1a 0%, #111132 40%, #0d0d24 100%);
+      overflow: hidden;
+    }
+
+    #ad-mode.active {
+      display: flex;
+    }
+
+    /* Animated gradient orbs (background décor) */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.35;
+      animation: float 8s ease-in-out infinite alternate;
+    }
+
+    .orb-1 {
+      width: 500px;
+      height: 500px;
+      background: #6c3bff;
+      top: -10%;
+      left: -8%;
+      animation-delay: 0s;
+    }
+
+    .orb-2 {
+      width: 400px;
+      height: 400px;
+      background: #00c2ff;
+      bottom: -12%;
+      right: -6%;
+      animation-delay: 2s;
+    }
+
+    .orb-3 {
+      width: 300px;
+      height: 300px;
+      background: #ff3cac;
+      top: 40%;
+      right: 20%;
+      animation-delay: 4s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(30px, -20px) scale(1.12);
+      }
+    }
+
+    /* ─── Ad Content Card ────────────────────────────────── */
+    .ad-card {
+      position: relative;
+      z-index: 2;
+      max-width: 88vw;
+      text-align: center;
+      animation: fadeSlideUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .ad-card img {
+      width: min(80vw, 900px);
+      border-radius: 18px;
+      box-shadow: 0 30px 80px rgba(108, 59, 255, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
+      margin-bottom: 2rem;
+    }
+
+    .ad-headline {
+      font-size: clamp(2rem, 5vw, 4.2rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      background: linear-gradient(90deg, #fff 0%, #a78bfa 50%, #60a5fa 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.15;
+      margin-bottom: 0.6rem;
+    }
+
+    .ad-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.6rem);
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.55);
+      letter-spacing: 0.02em;
+    }
+
+    .ad-price {
+      display: inline-block;
+      margin-top: 1.4rem;
+      padding: 0.6rem 2.2rem;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, #6c3bff, #00c2ff);
+      border-radius: 999px;
+      box-shadow: 0 0 30px rgba(108, 59, 255, 0.45);
+      animation: pulseShadow 3s ease-in-out infinite;
+    }
+
+    @keyframes pulseShadow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 30px rgba(108, 59, 255, 0.45);
+      }
+
+      50% {
+        box-shadow: 0 0 50px rgba(108, 59, 255, 0.7), 0 0 80px rgba(0, 194, 255, 0.25);
+      }
+    }
+
+    /* ─── Zone Badge ─────────────────────────────────────── */
+    .zone-badge {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.8rem;
+      z-index: 20;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ─── Status HUD (bottom-left debug) ─────────────────── */
+    #status-hud {
+      position: fixed;
+      bottom: 1rem;
+      left: 1.5rem;
+      z-index: 20;
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    #status-hud .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ef4444;
+      transition: background 0.3s;
+    }
+
+    #status-hud .dot.connected {
+      background: #22c55e;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SLEEP MODE  — pure black "screen off" state
+       ═══════════════════════════════════════════════════════ -->
+  <div id="sleep-mode">
+    <div class="pulse-dot"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       AD MODE  — wakes up when a cart enters this zone
+       ═══════════════════════════════════════════════════════ -->
+  <div id="ad-mode">
+    <!-- Background orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="ad-card">
+      <img id="ad-image" src="billboard_ad.png" alt="Galaxy Pro X1 Laptop Advertisement" />
+      <h1 class="ad-headline">Galaxy Pro X1</h1>
+      <p class="ad-subtitle">Ultra-Thin &bull; Ultra-Powerful &bull; Infinite Possibilities</p>
+      <div class="ad-price">₹1,29,999</div>
+    </div>
+
+    <div class="zone-badge" id="zone-label">Zone: Electronics</div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       STATUS HUD  — tiny connection indicator
+       ═══════════════════════════════════════════════════════ -->
+  <div id="status-hud">
+    <span class="dot" id="conn-dot"></span>
+    <span id="conn-text">Connecting…</span>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       JAVASCRIPT  — Supabase Realtime logic
+       ═══════════════════════════════════════════════════════ -->
+  <script>
+    // ──────────────────────────────────────────────────────
+    //  CONFIGURATION  — Set these for your deployment
+    // ──────────────────────────────────────────────────────
+    const SUPABASE_URL = 'https://yhpzwaljmkcidmltiome.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlocHp3YWxqbWtjaWRtbHRpb21lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIyODEzNDIsImV4cCI6MjA4Nzg1NzM0Mn0.wbesdM6URBJ6jPTH1zZkilRoNxT0mhb2KLpDiWRasvY';
+
+    // Which zone does this physical billboard monitor?
+    const MY_ZONE_ID = 'Stationary';
+
+    // How many seconds of inactivity (no cart in this zone)
+    // before the billboard goes back to sleep.
+    const SLEEP_TIMEOUT_MS = 5000;
+
+    // ──────────────────────────────────────────────────────
+    //  DOM REFERENCES
+    // ──────────────────────────────────────────────────────
+    const sleepEl = document.getElementById('sleep-mode');
+    const adEl = document.getElementById('ad-mode');
+    const zoneLabel = document.getElementById('zone-label');
+    const connDot = document.getElementById('conn-dot');
+    const connText = document.getElementById('conn-text');
+
+    // ──────────────────────────────────────────────────────
+    //  STATE
+    // ──────────────────────────────────────────────────────
+    let isAwake = false;
+    let sleepTimer = null;
+    // Set of session_ids currently active in our zone
+    const activeInZone = new Set();
+
+    // ──────────────────────────────────────────────────────
+    //  DISPLAY TOGGLE
+    // ──────────────────────────────────────────────────────
+    function toggleDisplay(shouldWake) {
+      if (shouldWake === isAwake) return;       // no-op
+      isAwake = shouldWake;
+
+      if (shouldWake) {
+        // ── WAKE UP ──
+        adEl.classList.add('active');
+        sleepEl.classList.add('hidden');
+        console.log(`[Billboard] 🟢 Woke up — cart detected in zone "${MY_ZONE_ID}"`);
+      } else {
+        // ── SLEEP ──
+        sleepEl.classList.remove('hidden');
+        // Wait for the CSS fade-out to finish before hiding the ad
+        setTimeout(() => adEl.classList.remove('active'), 850);
+        console.log(`[Billboard] 🔴 Returning to sleep — no carts in zone "${MY_ZONE_ID}"`);
+      }
+    }
+
+    // ──────────────────────────────────────────────────────
+    //  EVENT HANDLER  (with integrated sleep-timer logic)
+    // ──────────────────────────────────────────────────────
+
+    /**
+     * Handles a Realtime payload from the `active_cart_sessions` table.
+     *
+     * Timer behaviour:
+     *  - Cart IN zone   → wake screen, clear timer, start 5 s countdown
+     *  - Cart LEFT zone → sleep immediately, clear timer
+     *  - DELETE         → sleep immediately, clear timer
+     */
+    function handleRealtimeEvent(payload) {
+      const { eventType, new: newRow, old: oldRow } = payload;
+
+      console.log(`[Billboard] Realtime event: ${eventType}`, payload);
+
+      // ── INSERT or UPDATE ──
+      if (eventType === 'INSERT' || eventType === 'UPDATE') {
+        const zone = newRow?.current_zone;
+        const sessionId = newRow?.session_id;
+
+        if (zone === MY_ZONE_ID) {
+          // Cart is in our zone — wake up
+          activeInZone.add(sessionId);
+          toggleDisplay(true);
+
+          // Reset the inactivity countdown
+          clearTimeout(sleepTimer);
+          sleepTimer = setTimeout(() => {
+            toggleDisplay(false);
+          }, SLEEP_TIMEOUT_MS);
+        } else {
+          // Cart moved to a different zone — sleep immediately
+          activeInZone.delete(sessionId);
+          if (activeInZone.size === 0) {
+            toggleDisplay(false);
+            clearTimeout(sleepTimer);
+          }
+        }
+        return;
+      }
+
+      // ── DELETE  (session ended / user logged out) ──
+      if (eventType === 'DELETE') {
+        const sessionId = oldRow?.session_id;
+        activeInZone.delete(sessionId);
+        if (activeInZone.size === 0) {
+          toggleDisplay(false);
+          clearTimeout(sleepTimer);
+        }
+      }
+    }
+
+    // ──────────────────────────────────────────────────────
+    //  SUPABASE INIT & REALTIME SUBSCRIPTION
+    // ──────────────────────────────────────────────────────
+    function initBillboard() {
+      // Update zone label
+      zoneLabel.textContent = `Zone: ${MY_ZONE_ID}`;
+
+      // Create client
+      const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      // Subscribe to Realtime changes on the active_cart_sessions table
+      const channel = supabase
+        .channel('billboard-zone-watcher')
+        .on(
+          'postgres_changes',
+          {
+            event: 'INSERT',
+            schema: 'public',
+            table: 'active_cart_sessions',
+          },
+          (payload) => handleRealtimeEvent(payload)
+        )
+        .on(
+          'postgres_changes',
+          {
+            event: 'UPDATE',
+            schema: 'public',
+            table: 'active_cart_sessions',
+          },
+          (payload) => handleRealtimeEvent(payload)
+        )
+        .on(
+          'postgres_changes',
+          {
+            event: 'DELETE',
+            schema: 'public',
+            table: 'active_cart_sessions',
+          },
+          (payload) => handleRealtimeEvent(payload)
+        )
+        .subscribe((status, err) => {
+          console.log(`[Billboard] Realtime status: ${status}`, err || '');
+
+          if (status === 'SUBSCRIBED') {
+            connDot.classList.add('connected');
+            connText.textContent = 'Realtime connected';
+          } else if (status === 'CLOSED' || status === 'CHANNEL_ERROR') {
+            connDot.classList.remove('connected');
+            connText.textContent = `Disconnected (${status})`;
+          } else {
+            connText.textContent = status;
+          }
+        });
+
+      // ── Initial fetch: check if any cart is ALREADY in our zone ──
+      (async () => {
+        try {
+          const { data, error } = await supabase
+            .from('active_cart_sessions')
+            .select('session_id, current_zone')
+            .eq('current_zone', MY_ZONE_ID);
+
+          if (error) {
+            console.warn('[Billboard] Initial query failed:', error.message);
+            return;
+          }
+
+          if (data && data.length > 0) {
+            data.forEach(row => activeInZone.add(row.session_id));
+            toggleDisplay(true);
+            clearTimeout(sleepTimer);
+            sleepTimer = setTimeout(() => { toggleDisplay(false); }, SLEEP_TIMEOUT_MS);
+            console.log(`[Billboard] Found ${data.length} cart(s) already in zone "${MY_ZONE_ID}"`);
+          }
+        } catch (e) {
+          console.warn('[Billboard] Initial fetch error:', e);
+        }
+      })();
+
+      console.log(`[Billboard] Initialized — monitoring zone "${MY_ZONE_ID}"`);
+    }
+
+    // ──────────────────────────────────────────────────────
+    //  BOOT
+    // ──────────────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', initBillboard);
+  </script>
+</body>
+
+</html>

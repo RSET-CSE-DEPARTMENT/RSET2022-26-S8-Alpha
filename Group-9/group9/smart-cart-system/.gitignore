@@ -1,0 +1,21 @@
+# Django / Python
+venv/
+__pycache__/
+*.sqlite3
+*.pyc
+.env
+
+# Flutter / Dart
+.dart_tool/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# ESP32 / C++
+*.elf
+*.bin
+*.hex
+
+# OS Files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,21 @@
+/* SigninLink.css - Sign in link styles */
+
+.signin-text {
+  text-align: center;
+  color: #808080;
+  font-size: 14px;
+  margin-top: 24px;
+  margin-bottom: 0;
+}
+
+.signin-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.signin-link:hover {
+  color: #e0e0e0;
+  text-decoration: underline;
+}

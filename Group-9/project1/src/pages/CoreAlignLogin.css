@@ -1,0 +1,216 @@
+/* CoreAlignLogin.css - Styles for the login page */
+
+/* Main container - Full screen black background */
+.login-container {
+  min-height: 100vh;
+  background-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Login card - Dark gray centered card */
+.login-card {
+  background-color: #1a1a1a;
+  border-radius: 16px;
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* Header section */
+.login-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+/* Logo icon */
+.login-logo {
+  width: 64px;
+  height: 64px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  font-size: 32px;
+}
+
+/* Main title */
+.login-title {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+/* Subtitle */
+.login-subtitle {
+  color: #a0a0a0;
+  font-size: 18px;
+  margin: 0 0 8px 0;
+}
+
+/* Description text */
+.login-description {
+  color: #808080;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Form field container */
+.form-field {
+  margin-bottom: 20px;
+}
+
+/* Label styling */
+.form-label {
+  color: #ffffff;
+  margin-bottom: 8px;
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Input field styling */
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #2a2a2a;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.form-input::placeholder {
+  color: #666666;
+}
+
+.form-input:focus {
+  outline: none;
+  background-color: #333333;
+}
+
+/* Password field container */
+.password-container {
+  position: relative;
+}
+
+.form-input.password-input {
+  padding-right: 48px;
+}
+
+/* Show/Hide password button */
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #808080;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+}
+
+.password-toggle:hover {
+  color: #a0a0a0;
+}
+
+/* Remember me and Forgot password row */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+/* Remember me checkbox label */
+.remember-label {
+  display: flex;
+  align-items: center;
+  color: #a0a0a0;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.remember-checkbox {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+/* Forgot password link */
+.forgot-link {
+  color: #ffffff;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+/* Sign In button */
+.signin-button {
+  width: 100%;
+  padding: 14px;
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.signin-button:hover {
+  background-color: #f0f0f0;
+}
+
+.signin-button:active {
+  transform: scale(0.98);
+}
+
+/* Sign up text */
+.signup-text {
+  text-align: center;
+  color: #808080;
+  font-size: 14px;
+  margin: 24px 0 0 0;
+}
+
+/* Sign up link */
+.signup-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 32px 24px;
+  }
+  
+  .login-title {
+    font-size: 24px;
+  }
+  
+  .login-subtitle {
+    font-size: 16px;
+  }
+}

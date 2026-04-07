@@ -1,0 +1,21 @@
+/* SignupPage.css - Signup page specific styles */
+
+.signup-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0 16px 0;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: #333333;
+}
+
+.divider-text {
+  color: #666666;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}

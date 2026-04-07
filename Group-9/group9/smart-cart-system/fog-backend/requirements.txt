@@ -1,0 +1,9 @@
+django
+djangorestframework
+psycopg2-binary
+pandas
+django-cors-headers
+dj-database-url
+djangorestframework-simplejwt
+networkx
+scipy
