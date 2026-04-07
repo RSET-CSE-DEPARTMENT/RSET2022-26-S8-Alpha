@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GPS Tracker</title>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDvQn1XUafNwy6a2QB7DxEQCnM5wGZApLU",
+      authDomain: "alzheimers-alert.firebaseapp.com",
+      projectId: "alzheimers-alert",
+      storageBucket: "alzheimers-alert.firebasestorage.app",
+      messagingSenderId: "462181521002"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const deviceId = "test-device";
+    const locationDocId = "test-doc";
+
+    let latestLat = null;
+    let latestLon = null;
+
+    async function updateLocation(lat, lon) {
+      const now = new Date();
+      try {
+        await setDoc(
+          doc(db, "devices", deviceId, "location", locationDocId),
+          {
+            latitude: lat,
+            longitude: lon,
+            timestamp: serverTimestamp(),
+            clientTimeIso: now.toISOString()
+          }
+        );
+        document.getElementById("status").textContent = "Location updated to Firestore";
+        document.getElementById("time").textContent = "Last update: " + now.toLocaleTimeString();
+      } catch (err) {
+        document.getElementById("status").textContent = "Failed to update Firestore: " + err.message;
+      }
+    }
+
+    function startTracking() {
+      const status = document.getElementById("status");
+      const coords = document.getElementById("coords");
+
+      if (!navigator.geolocation) {
+        status.textContent = "Geolocation not supported by this browser.";
+        return;
+      }
+
+      navigator.geolocation.watchPosition(
+        (pos) => {
+          latestLat = pos.coords.latitude;
+          latestLon = pos.coords.longitude;
+          coords.textContent = `Lat: ${latestLat.toFixed(6)}, Lon: ${latestLon.toFixed(6)}`;
+        },
+        (err) => {
+          status.textContent = "GPS error: " + err.message;
+        },
+        { enableHighAccuracy: true, maximumAge: 0, timeout: 10000 }
+      );
+
+      setInterval(() => {
+        if (latestLat !== null && latestLon !== null) {
+          updateLocation(latestLat, latestLon);
+        }
+      }, 5000);
+    }
+
+    window.onload = () => {
+      document.getElementById("status").textContent = "Requesting GPS access...";
+      startTracking();
+    };
+  </script>
+</head>
+<body style="font-family: sans-serif; padding: 20px;">
+  <h2>GPS Tracker Active</h2>
+  <p id="status">Initializing...</p>
+  <p id="coords">Waiting for GPS...</p>
+  <p id="time">Waiting for first update...</p>
+</body>
+</html>
