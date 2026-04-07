@@ -1,0 +1,83 @@
+# --------------------------
+# Python
+# --------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*$py.class
+
+# Bytecode
+*.py[cod]
+
+# Virtual Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# --------------------------
+# OS & Editor Trash
+# --------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --------------------------
+# Logs (Prevent Huge Files)
+# --------------------------
+*.log
+log.txt
+log-large.txt
+log-multipledr.txt
+logs/
+
+# --------------------------
+# Dataset & Simulation Outputs
+# --------------------------
+datasets/
+scheme/outputs/
+outputs/
+results/
+*.csv
+*.json
+
+# --------------------------
+# Build / Packaging
+# --------------------------
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+wheels/
+
+# --------------------------
+# Streamlit
+# --------------------------
+.streamlit/
+
+# --------------------------
+# Jupyter Notebooks
+# --------------------------
+.ipynb_checkpoints/
+
+# --------------------------
+# MkDocs
+# --------------------------
+site/
+
+# --------------------------
+# PyInstaller
+# --------------------------
+*.spec
+
+# --------------------------
+# EdgeSimPy Developer Files
+# --------------------------
+edge_sim_py/__main__.py
