@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "805243122386",
+    "project_id": "ai-mainp",
+    "storage_bucket": "ai-mainp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805243122386:android:3ebb977f8a5bba44b9f30b",
+        "android_client_info": {
+          "package_name": "com.sigmacoders.aichildmonitor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805243122386-fq7rkbusclatdpsgk4n47btcqhkv7rvc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBQX9XPybhfHjMGgd_zmCRNsxAfoFP_VY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805243122386-fq7rkbusclatdpsgk4n47btcqhkv7rvc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
