@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mini Games - Action & Fun</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        #game-container {
+            margin: 30px auto;
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+        
+        .top-button {
+            margin-bottom: 2rem;
+        }
+        
+        .game-header {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+        
+        h2 {
+            margin: 0 0 1rem 0;
+            color: #667eea;
+            font-weight: 700;
+        }
+        
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .game-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            cursor: pointer;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            text-decoration: none;
+        }
+        
+        .game-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .game-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .game-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+            color: white;
+        }
+        
+        #racing-game, #maze-game, #endless-runner {
+            display: none;
+        }
+        
+        #game-canvas {
+            border: 3px solid #667eea;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            background: #fff;
+            max-width: 100%;
+        }
+        
+        .score-display {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin: 1rem 0;
+        }
+        
+        .game-over {
+            font-size: 2rem;
+            color: #f5576c;
+            font-weight: 700;
+            animation: pulse 0.5s ease-in-out;
+        }
+        
+        #board {
+            background: #eee;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            margin: 1rem auto;
+            display: none; /* Snake game removed */
+        }
+        
+        .back-button {
+            margin-top: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .game-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            #meditation-visual {
+                width: 150px !important;
+                height: 150px !important;
+            }
+            
+            #body-outline {
+                font-size: 8rem !important;
+            }
+            
+            .game-header {
+                padding: 1.5rem;
+            }
+            
+            #game-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="game-container">
+    <!-- Main Menu -->
+    <div id="game-menu">        <a href="{% url 'dashboard' %}" class="btn btn-secondary top-button">Back to Dashboard</a>        <div class="game-header">
+            <h2>🎮 Mini Games - Action & Fun 🎮</h2>
+            <p style="color: #666;">Choose a game to challenge yourself and have fun!</p>
+        </div>
+        
+        <div class="game-grid">
+            <a href="{% url 'breathing_exercise' %}" class="game-card">
+                <div class="game-icon">🧘</div>
+                <div class="game-title">Breathing Exercise</div>
+                <p class="game-description">Guided breathing for relaxation and calm</p>
+            </a>
+            
+            <a href="#" class="game-card" onclick="showGame('racing-game'); return false;">
+                <div class="game-icon">🏎️</div>
+                <div class="game-title">Speed Racer</div>
+                <p class="game-description">Dodge obstacles at high speed!</p>
+            </a>
+            
+            <a href="#" class="game-card" onclick="showGame('maze-game'); return false;">
+                <div class="game-icon">🧩</div>
+                <div class="game-title">Maze Runner</div>
+                <p class="game-description">Find your way through the maze</p>
+            </a>
+            
+            <a href="#" class="game-card" onclick="showGame('endless-runner'); return false;">
+                <div class="game-icon">🏃</div>
+                <div class="game-title">Endless Runner</div>
+                <p class="game-description">Jump and slide to survive!</p>
+            </a>
+            
+            <a href="{% url 'memory_game' %}" class="game-card">
+                <div class="game-icon">🧠</div>
+                <div class="game-title">Memory Match</div>
+                <p class="game-description">Test your memory with card matching</p>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Racing Game -->
+    <div id="racing-game">
+        <div class="game-header">
+            <h2>🏎️ Speed Racer</h2>
+            <p style="color: #555; margin-bottom: 1rem;">Use arrow keys to move left and right. Avoid the obstacles!</p>
+            <div class="score-display">Score: <span id="racing-score">0</span></div>
+            <canvas id="racing-canvas" width="400" height="600" style="display: block; margin: 0 auto;"></canvas>
+            <button onclick="startRacingGame()" class="btn btn-secondary" style="margin-top: 1rem;">Start Game</button>
+            <button onclick="showMenu()" class="btn btn-secondary back-button">Back to Games Menu</button>
+        </div>
+    </div>
+    
+    <!-- Maze Game -->
+    <div id="maze-game">
+        <div class="game-header">
+            <h2>🧩 Maze Runner</h2>
+            <p style="color: #555; margin-bottom: 1rem;">Use arrow keys to navigate. Find the exit! 🚩</p>
+            <div class="score-display">Time: <span id="maze-time">0</span>s | Moves: <span id="maze-moves">0</span></div>
+            <canvas id="maze-canvas" width="500" height="500" style="display: block; margin: 0 auto;"></canvas>
+            <button onclick="startMazeGame()" class="btn btn-secondary" style="margin-top: 1rem;">New Maze</button>
+            <button onclick="showMenu()" class="btn btn-secondary back-button">Back to Games Menu</button>
+        </div>
+    </div>
+    
+    <!-- Endless Runner -->
+    <div id="endless-runner">
+        <div class="game-header">
+            <h2>🏃 Endless Runner</h2>
+            <p style="color: #555; margin-bottom: 1rem;">Press SPACE to jump, DOWN arrow to slide. Don't hit obstacles!</p>
+            <div class="score-display">Distance: <span id="runner-score">0</span>m</div>
+            <canvas id="runner-canvas" width="600" height="400" style="display: block; margin: 0 auto;"></canvas>
+            <button onclick="startRunnerGame()" class="btn btn-secondary" style="margin-top: 1rem;">Start Game</button>
+            <button onclick="showMenu()" class="btn btn-secondary back-button">Back to Games Menu</button>
+        </div>
+    </div>
+</div>
+<script>
+// Global game variables
+let racingGame = null;
+let runnerGame = null;
+
+function showMenu() {
+    document.getElementById('game-menu').style.display = 'block';
+    document.getElementById('racing-game').style.display = 'none';
+    document.getElementById('maze-game').style.display = 'none';
+    document.getElementById('endless-runner').style.display = 'none';
+    stopAllGames();
+}
+
+function stopAllGames() {
+    if (racingGame) cancelAnimationFrame(racingGame);
+    if (runnerGame) cancelAnimationFrame(runnerGame);
+}
+
+function showGame(gameName) {
+    document.getElementById('game-menu').style.display = 'none';
+    
+    if (gameName === 'racing-game') {
+        document.getElementById('racing-game').style.display = 'block';
+    } else if (gameName === 'maze-game') {
+        document.getElementById('maze-game').style.display = 'block';
+        startMazeGame();
+    } else if (gameName === 'endless-runner') {
+        document.getElementById('endless-runner').style.display = 'block';
+    }
+}
+
+// RACING GAME
+function startRacingGame() {
+    const canvas = document.getElementById('racing-canvas');
+    const ctx = canvas.getContext('2d');
+    const scoreEl = document.getElementById('racing-score');
+    
+    let car = { x: 175, y: 500, width: 50, height: 80, speed: 5 };
+    let obstacles = [];
+    let score = 0;
+    let gameOver = false;
+    let keys = {};
+    
+    document.onkeydown = (e) => keys[e.key] = true;
+    document.onkeyup = (e) => keys[e.key] = false;
+    
+    function createObstacle() {
+        const lanes = [50, 175, 300];
+        return {
+            x: lanes[Math.floor(Math.random() * lanes.length)],
+            y: -80,
+            width: 50,
+            height: 80,
+            speed: 3 + score / 100
+        };
+    }
+    
+    obstacles.push(createObstacle());
+    
+    function gameLoop() {
+        if (gameOver) {
+            ctx.fillStyle = 'rgba(0,0,0,0.7)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 30px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('GAME OVER!', canvas.width/2, canvas.height/2 - 20);
+            ctx.font = '20px Arial';
+            ctx.fillText('Score: ' + score, canvas.width/2, canvas.height/2 + 20);
+            return;
+        }
+        
+        // Clear canvas
+        ctx.fillStyle = '#333';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw road
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 5;
+        ctx.setLineDash([20, 15]);
+        ctx.beginPath();
+        ctx.moveTo(135, 0);
+        ctx.lineTo(135, canvas.height);
+        ctx.moveTo(265, 0);
+        ctx.lineTo(265, canvas.height);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        
+        // Move car
+        if (keys['ArrowLeft'] && car.x > 50) car.x -= car.speed;
+        if (keys['ArrowRight'] && car.x < 300) car.x += car.speed;
+        
+        // Draw car
+        ctx.fillStyle = '#e74c3c';
+        ctx.fillRect(car.x, car.y, car.width, car.height);
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(car.x + 10, car.y + 20, 10, 15);
+        ctx.fillRect(car.x + 30, car.y + 20, 10, 15);
+        
+        // Update obstacles
+        obstacles.forEach((obs, i) => {
+            obs.y += obs.speed;
+            
+            // Draw obstacle
+            ctx.fillStyle = '#3498db';
+            ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+            
+            // Check collision
+            if (car.x < obs.x + obs.width &&
+                car.x + car.width > obs.x &&
+                car.y < obs.y + obs.height &&
+                car.y + car.height > obs.y) {
+                gameOver = true;
+            }
+            
+            // Remove off-screen obstacles
+            if (obs.y > canvas.height) {
+                obstacles.splice(i, 1);
+                score += 10;
+                scoreEl.textContent = score;
+            }
+        });
+        
+        // Add new obstacles
+        if (obstacles.length < 3 && Math.random() < 0.02) {
+            obstacles.push(createObstacle());
+        }
+        
+        if (!gameOver) {
+            racingGame = requestAnimationFrame(gameLoop);
+        }
+    }
+    
+    if (racingGame) cancelAnimationFrame(racingGame);
+    score = 0;
+    scoreEl.textContent = '0';
+    gameOver = false;
+    obstacles = [createObstacle()];
+    gameLoop();
+}
+
+// MAZE GAME
+function startMazeGame() {
+    const canvas = document.getElementById('maze-canvas');
+    const ctx = canvas.getContext('2d');
+    const timeEl = document.getElementById('maze-time');
+    const movesEl = document.getElementById('maze-moves');
+    
+    const cellSize = 25;
+    const cols = 20;
+    const rows = 20;
+    let maze = [];
+    let player = { x: 0, y: 0 };
+    let exit = { x: cols - 1, y: rows - 1 };
+    let moves = 0;
+    let startTime = Date.now();
+    let gameWon = false;
+    let keys = {};
+    
+    document.onkeydown = (e) => {
+        if (!gameWon && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+            keys[e.key] = true;
+            e.preventDefault();
+        }
+    };
+    
+    // Generate maze using recursive backtracking
+    function generateMaze() {
+        // Initialize maze with walls
+        for (let y = 0; y < rows; y++) {
+            maze[y] = [];
+            for (let x = 0; x < cols; x++) {
+                maze[y][x] = { top: true, right: true, bottom: true, left: true, visited: false };
+            }
+        }
+        
+        const stack = [];
+        let current = { x: 0, y: 0 };
+        maze[0][0].visited = true;
+        
+        while (true) {
+            const neighbors = [];
+            const { x, y } = current;
+            
+            if (y > 0 && !maze[y-1][x].visited) neighbors.push({ x, y: y-1, dir: 'top' });
+            if (x < cols-1 && !maze[y][x+1].visited) neighbors.push({ x: x+1, y, dir: 'right' });
+            if (y < rows-1 && !maze[y+1][x].visited) neighbors.push({ x, y: y+1, dir: 'bottom' });
+            if (x > 0 && !maze[y][x-1].visited) neighbors.push({ x: x-1, y, dir: 'left' });
+            
+            if (neighbors.length > 0) {
+                const next = neighbors[Math.floor(Math.random() * neighbors.length)];
+                
+                // Remove walls
+                if (next.dir === 'top') {
+                    maze[y][x].top = false;
+                    maze[next.y][next.x].bottom = false;
+                } else if (next.dir === 'right') {
+                    maze[y][x].right = false;
+                    maze[next.y][next.x].left = false;
+                } else if (next.dir === 'bottom') {
+                    maze[y][x].bottom = false;
+                    maze[next.y][next.x].top = false;
+                } else {
+                    maze[y][x].left = false;
+                    maze[next.y][next.x].right = false;
+                }
+                
+                maze[next.y][next.x].visited = true;
+                stack.push(current);
+                current = next;
+            } else if (stack.length > 0) {
+                current = stack.pop();
+            } else {
+                break;
+            }
+        }
+    }
+    
+    function drawMaze() {
+        ctx.fillStyle = '#f0f0f0';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.strokeStyle = '#333';
+        ctx.lineWidth = 2;
+        
+        for (let y = 0; y < rows; y++) {
+            for (let x = 0; x < cols; x++) {
+                const cell = maze[y][x];
+                const px = x * cellSize;
+                const py = y * cellSize;
+                
+                if (cell.top) {
+                    ctx.beginPath();
+                    ctx.moveTo(px, py);
+                    ctx.lineTo(px + cellSize, py);
+                    ctx.stroke();
+                }
+                if (cell.right) {
+                    ctx.beginPath();
+                    ctx.moveTo(px + cellSize, py);
+                    ctx.lineTo(px + cellSize, py + cellSize);
+                    ctx.stroke();
+                }
+                if (cell.bottom) {
+                    ctx.beginPath();
+                    ctx.moveTo(px, py + cellSize);
+                    ctx.lineTo(px + cellSize, py + cellSize);
+                    ctx.stroke();
+                }
+                if (cell.left) {
+                    ctx.beginPath();
+                    ctx.moveTo(px, py);
+                    ctx.lineTo(px, py + cellSize);
+                    ctx.stroke();
+                }
+            }
+        }
+        
+        // Draw exit
+        ctx.fillStyle = '#f39c12';
+        ctx.fillRect(exit.x * cellSize + 5, exit.y * cellSize + 5, cellSize - 10, cellSize - 10);
+        ctx.fillStyle = '#000';
+        ctx.font = '16px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('🚩', exit.x * cellSize + cellSize/2, exit.y * cellSize + cellSize/2 + 5);
+        
+        // Draw player
+        ctx.fillStyle = '#e74c3c';
+        ctx.beginPath();
+        ctx.arc(player.x * cellSize + cellSize/2, player.y * cellSize + cellSize/2, cellSize/3, 0, Math.PI * 2);
+        ctx.fill();
+        
+        if (gameWon) {
+            ctx.fillStyle = 'rgba(0,200,0,0.8)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 30px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('YOU WIN! 🎉', canvas.width/2, canvas.height/2);
+        }
+    }
+    
+    function update() {
+        if (keys['ArrowUp'] && player.y > 0 && !maze[player.y][player.x].top) {
+            player.y--;
+            moves++;
+        }
+        if (keys['ArrowDown'] && player.y < rows-1 && !maze[player.y][player.x].bottom) {
+            player.y++;
+            moves++;
+        }
+        if (keys['ArrowLeft'] && player.x > 0 && !maze[player.y][player.x].left) {
+            player.x--;
+            moves++;
+        }
+        if (keys['ArrowRight'] && player.x < cols-1 && !maze[player.y][player.x].right) {
+            player.x++;
+            moves++;
+        }
+        
+        keys = {};
+        
+        if (player.x === exit.x && player.y === exit.y) {
+            gameWon = true;
+        }
+        
+        movesEl.textContent = moves;
+        timeEl.textContent = Math.floor((Date.now() - startTime) / 1000);
+        
+        drawMaze();
+        
+        if (!gameWon) {
+            requestAnimationFrame(update);
+        }
+    }
+    
+    maze = [];
+    player = { x: 0, y: 0 };
+    moves = 0;
+    startTime = Date.now();
+    gameWon = false;
+    generateMaze();
+    update();
+}
+
+// ENDLESS RUNNER GAME
+function startRunnerGame() {
+    const canvas = document.getElementById('runner-canvas');
+    const ctx = canvas.getContext('2d');
+    const scoreEl = document.getElementById('runner-score');
+    
+    let player = { x: 50, y: 300, width: 40, height: 60, velocityY: 0, jumping: false, sliding: false };
+    let obstacles = [];
+    let score = 0;
+    let gameOver = false;
+    const gravity = 0.8;
+    const jumpForce = -15;
+    const groundY = 300;
+    
+    document.onkeydown = (e) => {
+        if (e.key === ' ' && !player.jumping && !player.sliding) {
+            player.velocityY = jumpForce;
+            player.jumping = true;
+            e.preventDefault();
+        }
+        if (e.key === 'ArrowDown' && !player.jumping) {
+            player.sliding = true;
+            setTimeout(() => player.sliding = false, 500);
+            e.preventDefault();
+        }
+    };
+    
+    function createObstacle() {
+        const type = Math.random() < 0.5 ? 'low' : 'high';
+        return {
+            x: canvas.width,
+            y: type === 'low' ? groundY : groundY - 60,
+            width: 30,
+            height: type === 'low' ? 60 : 30,
+            speed: 5 + score / 500,
+            type: type
+        };
+    }
+    
+    obstacles.push(createObstacle());
+    
+    function gameLoop() {
+        if (gameOver) {
+            ctx.fillStyle = 'rgba(0,0,0,0.7)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 30px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('GAME OVER!', canvas.width/2, canvas.height/2 - 20);
+            ctx.font = '20px Arial';
+            ctx.fillText('Distance: ' + score + 'm', canvas.width/2, canvas.height/2 + 20);
+            return;
+        }
+        
+        // Clear canvas with gradient
+        const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        gradient.addColorStop(0, '#87CEEB');
+        gradient.addColorStop(1, '#90EE90');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw ground
+        ctx.fillStyle = '#8B4513';
+        ctx.fillRect(0, groundY + 60, canvas.width, canvas.height - groundY - 60);
+        ctx.fillStyle = '#228B22';
+        ctx.fillRect(0, groundY + 60, canvas.width, 5);
+        
+        // Update player physics
+        player.velocityY += gravity;
+        player.y += player.velocityY;
+        
+        if (player.y >= groundY) {
+            player.y = groundY;
+            player.velocityY = 0;
+            player.jumping = false;
+        }
+        
+        // Draw player
+        const playerHeight = player.sliding ? 30 : 60;
+        const playerY = player.sliding ? groundY + 30 : player.y;
+        
+        ctx.fillStyle = '#e74c3c';
+        ctx.fillRect(player.x, playerY, player.width, playerHeight);
+        ctx.fillStyle = '#c0392b';
+        ctx.fillRect(player.x + 5, playerY + 5, 15, 15);
+        
+        // Update and draw obstacles
+        obstacles.forEach((obs, i) => {
+            obs.x -= obs.speed;
+            
+            // Draw obstacle
+            if (obs.type === 'low') {
+                ctx.fillStyle = '#34495e';
+                ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+            } else {
+                ctx.fillStyle = '#95a5a6';
+                ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+            }
+            
+            // Check collision
+            if (player.x < obs.x + obs.width &&
+                player.x + player.width > obs.x &&
+                playerY < obs.y + obs.height &&
+                playerY + playerHeight > obs.y) {
+                gameOver = true;
+            }
+            
+            // Remove off-screen obstacles
+            if (obs.x + obs.width < 0) {
+                obstacles.splice(i, 1);
+                score += 10;
+                scoreEl.textContent = score;
+            }
+        });
+        
+        // Add new obstacles
+        if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - 300) {
+            if (Math.random() < 0.03) {
+                obstacles.push(createObstacle());
+            }
+        }
+        
+        // Draw score
+        ctx.fillStyle = '#333';
+        ctx.font = 'bold 20px Arial';
+        ctx.textAlign = 'left';
+        ctx.fillText('Distance: ' + score + 'm', 10, 30);
+        
+        if (!gameOver) {
+            runnerGame = requestAnimationFrame(gameLoop);
+        }
+    }
+    
+    if (runnerGame) cancelAnimationFrame(runnerGame);
+    score = 0;
+    scoreEl.textContent = '0';
+    gameOver = false;
+    obstacles = [];
+    player = { x: 50, y: 300, width: 40, height: 60, velocityY: 0, jumping: false, sliding: false };
+    gameLoop();
+}
+</script>
+
+</body>
+</html>
+        <div class="game-header">
+            <h2>💆 Progressive Muscle Relaxation</h2>
+            <p style="color: #555; margin-bottom: 2rem;">Tense and relax each muscle group to release physical tension</p>
+            <div id="muscle-display" style="padding: 2rem; min-height: 350px;">
+                <div id="muscle-content" style="text-align: center;">
+                    <p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">Click start to begin your progressive muscle relaxation session</p>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <div id="muscle-timer" style="font-size: 3rem; font-weight: 700; color: #667eea; margin: 1rem 0;"></div>
+                    <div id="muscle-progress" style="display: flex; gap: 10px; justify-content: center; margin: 1rem 0; flex-wrap: wrap;"></div>
+                </div>
+                <button id="start-muscle-btn" onclick="startMuscleRelaxation()" class="btn btn-secondary" style="margin-top: 1rem; padding: 1rem 2rem; font-size: 1.1rem;">Start Relaxation</button>
+            </div>
+            <button onclick="showMenu()" class="btn btn-secondary back-button">Back to Games Menu</button>
+        </div>
+    </div>
+    
+    <!-- Guided Meditation -->
+    <div id="guided-meditation">
+        <div class="game-header">
+            <h2>🕉️ Guided Meditation</h2>
+            <p style="color: #555; margin-bottom: 2rem;">Follow along with peaceful guided meditation</p>
+            <div id="meditation-display" style="padding: 2rem; min-height: 350px;">
+                <div id="meditation-visual" style="width: 200px; height: 200px; margin: 2rem auto; border-radius: 50%; background: linear-gradient(135deg, #667eea, #764ba2); box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3); transition: all 2s ease;"></div>
+                <div id="meditation-text" style="font-size: 1.3rem; color: #667eea; font-weight: 500; margin: 2rem 0; min-height: 80px; text-align: center;"></div>
+                <button id="start-meditation-btn" onclick="startMeditation()" class="btn btn-secondary" style="margin-top: 1rem; padding: 1rem 2rem; font-size: 1.1rem;">Begin Meditation</button>
+                <button id="stop-meditation-btn" onclick="stopMeditation()" class="btn btn-secondary" style="margin-top: 1rem; padding: 1rem 2rem; font-size: 1.1rem; display: none;">Stop</button>
+            </div>
+            <button onclick="showMenu()" class="btn btn-secondary back-button">Back to Games Menu</button>
+        </div>
+    </div>
+    
+    <!-- Body Scan -->
+    <div id="body-scan">
+        <div class="game-header">
+            <h2>🌟 Body Scan Meditation</h2>
+            <p style="color: #555; margin-bottom: 2rem;">Bring awareness to each part of your body</p>
+            <div id="bodyscan-display" style="padding: 2rem; min-height: 350px;">
+                <div style="position: relative; width: 200px; height: 400px; margin: 2rem auto;">
+                    <div id="body-outline" style="font-size: 12rem; line-height: 1; text-align: center;">🧍</div>
+                    <div id="body-highlight" style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 40px; background: rgba(102, 126, 234, 0.3); border-radius: 10px; transition: all 1s ease;"></div>
+                </div>
+                <div id="bodyscan-text" style="font-size: 1.2rem; color: #667eea; font-weight: 500; margin: 1rem 0; text-align: center; min-height: 60px;"></div>
+                <button id="start-bodyscan-btn" onclick="startBodyScan()" class="btn btn-secondary" style="margin-top: 1rem; padding: 1rem 2rem; font-size: 1.1rem;">Start Body Scan</button>
+            </div>
+            <button onclick="showMenu()" class="btn btn-secondary back-button">Back to Games Menu</button>
+        </div>
+    </div>
+    
+    <!-- Mood Booster Game -->
+    <div id="mood-booster">
+        <div class="game-header">
+            <h2>😊 Mood Booster</h2>
+            <p style="color: #555; margin-bottom: 2rem;">Interactive activities to boost your mood instantly!</p>
+            <div id="mood-activity" style="padding: 2rem; min-height: 300px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+                    <button onclick="showGratitude()" class="btn btn-secondary" style="padding: 2rem 1rem; font-size: 1.1rem; height: auto;">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🙏</div>
+                        Gratitude Practice
+                    </button>
+                    <button onclick="showAffirmations()" class="btn btn-secondary" style="padding: 2rem 1rem; font-size: 1.1rem; height: auto;">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">💪</div>
+                        Power Affirmations
+                    </button>
+                    <button onclick="showJokes()" class="btn btn-secondary" style="padding: 2rem 1rem; font-size: 1.1rem; height: auto;">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">😂</div>
+                        Laugh Break
+                    </button>
+                    <button onclick="showInspiration()" class="btn btn-secondary" style="padding: 2rem 1rem; font-size: 1.1rem; height: auto;">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">✨</div>
+                        Daily Inspiration
+                    </button>
+                </div>
+                <div id="mood-content" style="background: rgba(102, 126, 234, 0.1); padding: 2rem; border-radius: 15px; min-height: 200px; display: none;">
+                    <p id="mood-text" style="font-size: 1.3rem; line-height: 1.8; color: #333;"></p>
+                    <button onclick="nextMoodItem()" class="btn btn-secondary" style="margin-top: 1rem;">Next</button>
+                </div>
+            </div>
+            <button onclick="showMenu()" class="btn btn-secondary back-button">Back to Games Menu</button>
+        </div>
+    </div>
+</div>
+<script>
+let muscleInterval;
+let meditationInterval;
+let bodyscanInterval;
+let currentMuscle = 0;
+let currentMoodCategory = '';
+let currentMoodIndex = 0;
+let currentMeditationStep = 0;
+let currentBodyPart = 0;
+
+// Muscle relaxation steps
+const muscleGroups = [
+    { name: 'Hands & Fists', tense: 'Clench your fists tightly', relax: 'Release and feel the tension melt away', duration: 10 },
+    { name: 'Arms', tense: 'Tighten your arm muscles', relax: 'Let your arms go completely loose', duration: 10 },
+    { name: 'Shoulders', tense: 'Raise your shoulders to your ears', relax: 'Drop your shoulders and release', duration: 10 },
+    { name: 'Neck', tense: 'Gently tense your neck muscles', relax: 'Let all tension flow away', duration: 10 },
+    { name: 'Face', tense: 'Scrunch up your facial muscles', relax: 'Soften your entire face', duration: 10 },
+    { name: 'Chest & Back', tense: 'Take a deep breath and hold', relax: 'Exhale slowly and deeply', duration: 10 },
+    { name: 'Stomach', tense: 'Tighten your stomach muscles', relax: 'Let your belly soften', duration: 10 },
+    { name: 'Legs', tense: 'Tighten your leg muscles', relax: 'Feel heaviness in your legs', duration: 10 }
+];
+
+// Meditation prompts
+const meditationSteps = [
+    'Close your eyes and find a comfortable position.',
+    'Notice your breath flowing in and out naturally.',
+    'Feel your body settling into relaxation.',
+    'Let go of any tension you\'re holding.',
+    'Bring your attention to the present moment.',
+    'Feel a sense of peace wash over you.',
+    'You are calm, centered, and at ease.',
+    'Slowly begin to deepen your breath.',
+    'When you\'re ready, gently open your eyes.'
+];
+
+// Body scan areas
+const bodyParts = [
+    { name: 'Top of Head', instruction: 'Notice any sensations at the crown of your head', position: 0 },
+    { name: 'Face', instruction: 'Relax your jaw, soften your eyes', position: 40 },
+    { name: 'Neck & Shoulders', instruction: 'Release any tension in your neck and shoulders', position: 80 },
+    { name: 'Chest', instruction: 'Feel your chest rising and falling with each breath', position: 140 },
+    { name: 'Arms & Hands', instruction: 'Notice the sensation in your arms down to your fingertips', position: 160 },
+    { name: 'Abdomen', instruction: 'Feel your belly expanding and contracting', position: 200 },
+    { name: 'Hips & Legs', instruction: 'Bring awareness to your hips and legs', position: 260 },
+    { name: 'Feet', instruction: 'Notice any sensations in your feet and toes', position: 340 }
+];
+
+const moodData = {
+    gratitude: [
+        "I am grateful for my health and strength.",
+        "I appreciate the people who care about me.",
+        "I am thankful for this moment of peace.",
+        "I value the opportunities that come my way.",
+        "I am grateful for my ability to learn and grow."
+    ],
+    affirmations: [
+        "I am capable of amazing things!",
+        "I radiate confidence and positive energy!",
+        "I deserve happiness and success!",
+        "I am strong, brave, and unstoppable!",
+        "Every day I'm becoming a better version of myself!"
+    ],
+    jokes: [
+        "Why don't scientists trust atoms? Because they make up everything! 😄",
+        "What do you call a bear with no teeth? A gummy bear! 🐻",
+        "Why did the scarecrow win an award? He was outstanding in his field! 🌾",
+        "What do you call a fake noodle? An impasta! 🍝",
+        "Why did the math book look sad? Because it had too many problems! 📚"
+    ],
+    inspiration: [
+        "✨ 'The only way to do great work is to love what you do.' - Steve Jobs",
+        "🌟 'Believe you can and you're halfway there.' - Theodore Roosevelt",
+        "🚀 'The future belongs to those who believe in the beauty of their dreams.' - Eleanor Roosevelt",
+        "💫 'Success is not final, failure is not fatal: it is the courage to continue that counts.' - Winston Churchill",
+        "⭐ 'You are never too old to set another goal or to dream a new dream.' - C.S. Lewis"
+    ]
+};
+
+function showMenu() {
+    document.getElementById('game-menu').style.display = 'block';
+    document.getElementById('muscle-relaxation').style.display = 'none';
+    document.getElementById('guided-meditation').style.display = 'none';
+    document.getElementById('body-scan').style.display = 'none';
+    document.getElementById('mood-booster').style.display = 'none';
+    clearAllIntervals();
+}
+
+function clearAllIntervals() {
+    if (muscleInterval) clearInterval(muscleInterval);
+    if (meditationInterval) clearInterval(meditationInterval);
+    if (bodyscanInterval) clearInterval(bodyscanInterval);
+}
+
+function showGame(gameName) {
+    document.getElementById('game-menu').style.display = 'none';
+    
+    if (gameName === 'muscle-relaxation') {
+        document.getElementById('muscle-relaxation').style.display = 'block';
+        resetMuscleRelaxation();
+    } else if (gameName === 'guided-meditation') {
+        document.getElementById('guided-meditation').style.display = 'block';
+        resetMeditation();
+    } else if (gameName === 'body-scan') {
+        document.getElementById('body-scan').style.display = 'block';
+        resetBodyScan();
+    } else if (gameName === 'mood-booster') {
+        document.getElementById('mood-booster').style.display = 'block';
+    }
+}
+
+// Muscle Relaxation Functions
+function resetMuscleRelaxation() {
+    currentMuscle = 0;
+    document.getElementById('muscle-content').innerHTML = '<p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">Click start to begin your progressive muscle relaxation session</p>';
+    document.getElementById('muscle-timer').textContent = '';
+    document.getElementById('muscle-progress').innerHTML = '';
+    document.getElementById('start-muscle-btn').style.display = 'block';
+}
+
+function startMuscleRelaxation() {
+    currentMuscle = 0;
+    document.getElementById('start-muscle-btn').style.display = 'none';
+    updateMuscleProgress();
+    runMuscleExercise();
+}
+
+function runMuscleExercise() {
+    if (currentMuscle >= muscleGroups.length) {
+        document.getElementById('muscle-content').innerHTML = `
+            <div style="font-size: 3rem; margin: 2rem 0;">✨</div>
+            <h3 style="color: #667eea;">Complete Relaxation Achieved!</h3>
+            <p style="font-size: 1.2rem; color: #666;">Feel the deep relaxation throughout your entire body.</p>
+        `;
+        document.getElementById('muscle-timer').textContent = '';
+        setTimeout(resetMuscleRelaxation, 3000);
+        return;
+    }
+    
+    const group = muscleGroups[currentMuscle];
+    const isTense = currentMuscle % 2 === 0;
+    
+    document.getElementById('muscle-content').innerHTML = `
+        <div style="font-size: 4rem; margin: 1rem 0;">💪</div>
+        <h3 style="color: #667eea; margin: 1rem 0;">${group.name}</h3>
+        <p style="font-size: 1.2rem; color: #666; font-weight: 600; margin: 1.5rem 0;">${isTense ? group.tense : group.relax}</p>
+    `;
+    
+    let timeLeft = group.duration;
+    document.getElementById('muscle-timer').textContent = timeLeft + 's';
+    
+    if (muscleInterval) clearInterval(muscleInterval);
+    muscleInterval = setInterval(() => {
+        timeLeft--;
+        document.getElementById('muscle-timer').textContent = timeLeft + 's';
+        if (timeLeft <= 0) {
+            clearInterval(muscleInterval);
+            currentMuscle++;
+            updateMuscleProgress();
+            setTimeout(runMuscleExercise, 500);
+        }
+    }, 1000);
+}
+
+function updateMuscleProgress() {
+    const progressDiv = document.getElementById('muscle-progress');
+    progressDiv.innerHTML = '';
+    muscleGroups.forEach((group, idx) => {
+        const dot = document.createElement('div');
+        dot.style.width = '12px';
+        dot.style.height = '12px';
+        dot.style.borderRadius = '50%';
+        dot.style.background = idx < currentMuscle ? '#667eea' : idx === currentMuscle ? '#FFD93D' : '#ddd';
+        dot.style.transition = 'all 0.3s';
+        progressDiv.appendChild(dot);
+    });
+}
+
+// Guided Meditation Functions
+function resetMeditation() {
+    currentMeditationStep = 0;
+    document.getElementById('meditation-text').textContent = 'Click "Begin Meditation" to start your guided session';
+    document.getElementById('start-meditation-btn').style.display = 'block';
+    document.getElementById('stop-meditation-btn').style.display = 'none';
+    const visual = document.getElementById('meditation-visual');
+    visual.style.transform = 'scale(1)';
+    visual.style.opacity = '1';
+}
+
+function startMeditation() {
+    document.getElementById('start-meditation-btn').style.display = 'none';
+    document.getElementById('stop-meditation-btn').style.display = 'block';
+    currentMeditationStep = 0;
+    runMeditationStep();
+}
+
+function runMeditationStep() {
+    if (currentMeditationStep >= meditationSteps.length) {
+        resetMeditation();
+        return;
+    }
+    
+    const visual = document.getElementById('meditation-visual');
+    document.getElementById('meditation-text').textContent = meditationSteps[currentMeditationStep];
+    
+    // Breathe animation
+    const scale = currentMeditationStep % 2 === 0 ? 1.2 : 0.9;
+    visual.style.transform = `scale(${scale})`;
+    visual.style.opacity = currentMeditationStep % 2 === 0 ? '0.8' : '1';
+    
+    currentMeditationStep++;
+    meditationInterval = setTimeout(runMeditationStep, 5000);
+}
+
+function stopMeditation() {
+    clearTimeout(meditationInterval);
+    resetMeditation();
+}
+
+// Body Scan Functions
+function resetBodyScan() {
+    currentBodyPart = 0;
+    document.getElementById('bodyscan-text').textContent = 'Click "Start Body Scan" to begin';
+    document.getElementById('start-bodyscan-btn').style.display = 'block';
+    document.getElementById('body-highlight').style.opacity = '0';
+}
+
+function startBodyScan() {
+    document.getElementById('start-bodyscan-btn').style.display = 'none';
+    document.getElementById('body-highlight').style.opacity = '1';
+    currentBodyPart = 0;
+    runBodyScanStep();
+}
+
+function runBodyScanStep() {
+    if (currentBodyPart >= bodyParts.length) {
+        document.getElementById('bodyscan-text').innerHTML = '<strong style="color: #667eea;">Body scan complete! ✨</strong>';
+        document.getElementById('body-highlight').style.opacity = '0';
+        setTimeout(resetBodyScan, 3000);
+        return;
+    }
+    
+    const part = bodyParts[currentBodyPart];
+    document.getElementById('bodyscan-text').innerHTML = `<strong>${part.name}</strong><br><small style="color: #666;">${part.instruction}</small>`;
+    
+    const highlight = document.getElementById('body-highlight');
+    highlight.style.top = part.position + 'px';
+    
+    currentBodyPart++;
+    bodyscanInterval = setTimeout(runBodyScanStep, 4000);
+}
+
+// Mood Booster Functions
+function showGratitude() {
+    currentMoodCategory = 'gratitude';
+    currentMoodIndex = 0;
+    displayMoodItem();
+}
+
+function showAffirmations() {
+    currentMoodCategory = 'affirmations';
+    currentMoodIndex = 0;
+    displayMoodItem();
+}
+
+function showJokes() {
+    currentMoodCategory = 'jokes';
+    currentMoodIndex = 0;
+    displayMoodItem();
+}
+
+function showInspiration() {
+    currentMoodCategory = 'inspiration';
+    currentMoodIndex = 0;
+    displayMoodItem();
+}
+
+function displayMoodItem() {
+    const content = document.getElementById('mood-content');
+    const text = document.getElementById('mood-text');
+    content.style.display = 'block';
+    text.textContent = moodData[currentMoodCategory][currentMoodIndex];
+}
+
+function nextMoodItem() {
+    currentMoodIndex = (currentMoodIndex + 1) % moodData[currentMoodCategory].length;
+    displayMoodItem();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create your journal entries with AI assistance.</title>
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <style>
+    :root{
+      --bg:#ffffff;
+      --muted:#6b7280;
+      --accent:#6750f8;
+      --card-shadow: 0 8px 30px rgba(16,24,40,0.06);
+    }
+    html,body{height:100%;}
+    body {
+        background: #f6f7fb;
+        color: #111827;
+        font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
+    }
+    .container {
+        max-width: 760px;
+        margin: 48px auto;
+        background: var(--bg);
+        border-radius: 14px;
+        box-shadow: var(--card-shadow);
+        padding: 36px 40px;
+        border: 1px solid rgba(15,23,42,0.04);
+    }
+    .navbar {
+        margin-bottom: 18px;
+        background: transparent;
+        box-shadow: none;
+        padding: 0;
+    }
+    .navbar-brand {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: #111827 !important;
+        letter-spacing: 0.2px;
+    }
+    .form-label {
+        font-weight: 500;
+        color: #374151;
+        font-size: 0.95rem;
+    }
+    .form-control, .form-select {
+        background: #fff;
+        color: #111827;
+        border: 1px solid #e6e9ef;
+        border-radius: 10px;
+        padding: 10px 12px;
+        box-shadow: 0 1px 0 rgba(16,24,40,0.02) inset;
+    }
+    .form-control:focus, .form-select:focus {
+        border-color: var(--accent);
+        box-shadow: 0 6px 20px rgba(103,80,248,0.08);
+        outline: none;
+        background: #fff;
+    }
+    .btn-primary, .btn-success {
+        min-width: 120px;
+        font-weight: 600;
+        background: linear-gradient(90deg,var(--accent), #4f46e5);
+        border: none;
+        color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 8px 24px rgba(79,70,229,0.12);
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+    .btn-primary:hover, .btn-success:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 36px rgba(79,70,229,0.14);
+    }
+    .suggestion-list li {
+        margin-bottom: 12px;
+        padding: 14px;
+        background: #f8fafc;
+        border-radius: 10px;
+        border-left: 4px solid rgba(103,80,248,0.14);
+        color: #111827;
+        font-size: 1rem;
+        box-shadow: 0 2px 8px rgba(16,24,40,0.03);
+    }
+    .alert-success { background: #eef2ff; color: #0f172a; border: none; }
+    .text-center h2 { color: #0f172a; font-weight:600; }
+    ::selection { background: var(--accent); color: #fff; }
+    footer{ color: var(--muted); font-size:0.9rem; }
+    .invalid-feedback.d-block{ color:#dc2626; }
+    .suggestion-text{ flex:1; }
+    .fade-in{ animation: fadeIn .32s ease both; }
+    @keyframes fadeIn{ from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none} }
+  </style>
+
+    <script>
+        function updateForm() {
+            var mode = document.getElementById("mode").value;
+            var profession = document.getElementById("profession").value;
+            // Hide all sections first
+            document.getElementById("teacher_professional").style.display = "none";
+            document.getElementById("teacher_personal").style.display = "none";
+            document.getElementById("doctor_professional").style.display = "none";
+            document.getElementById("doctor_personal").style.display = "none";
+            document.getElementById("business_professional").style.display = "none";
+            document.getElementById("business_personal").style.display = "none";
+            // Show only the relevant section
+            if (profession === "teacher" && mode === "professional") {
+                document.getElementById("teacher_professional").style.display = "block";
+            } else if (profession === "teacher" && mode === "personal") {
+                document.getElementById("teacher_personal").style.display = "block";
+            } else if (profession === "doctor" && mode === "professional") {
+                document.getElementById("doctor_professional").style.display = "block";
+            } else if (profession === "doctor" && mode === "personal") {
+                document.getElementById("doctor_personal").style.display = "block";
+            } else if (profession === "business" && mode === "professional") {
+                document.getElementById("business_professional").style.display = "block";
+            } else if (profession === "business" && mode === "personal") {
+                document.getElementById("business_personal").style.display = "block";
+            }
+        }
+    </script>
+</head>
+<body onload="updateForm()">
+    
+    <div class="container">
+        <h2 class="mb-4 text-center">Generate your AI-powered journal entry.</h2>
+        <form method="post" class="mb-4">
+            {% csrf_token %}
+            <div class="row mb-3">
+                <div class="col">
+                    <label class="form-label">Mode:</label>
+                    <select id="mode" name="mode" class="form-select" onchange="updateForm()">
+                        <option value="professional">Professional</option>
+                        <option value="personal">Personal</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label class="form-label">Profession:</label>
+                    <select id="profession" name="profession" class="form-select" onchange="updateForm()">
+                        <option value="teacher">Teacher</option>
+                        <option value="doctor">Doctor</option>
+                        <option value="business">Business Professional</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Teacher Professional -->
+            <div id="teacher_professional" style="display:none;">
+                <div class="mb-3"><label class="form-label">Subject taught:</label><input type="text" name="subject" class="form-control"></div>
+                <div class="mb-3"><label class="form-label">Present Students:</label><input type="number" name="present" class="form-control"></div>
+                <div class="mb-3"><label class="form-label">Absent Students:</label><input type="number" name="absent" class="form-control"></div>
+                <div class="mb-3">
+                    <label class="form-label">Assignments Given:</label>
+                    <select name="assignments" class="form-select">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="mb-3"><label class="form-label">Homework Due Date:</label><input type="date" name="due_date" class="form-control"></div>
+                <div class="mb-3">
+                    <label class="form-label">Tone:</label>
+                    <select name="tone" id="tone" class="form-select">
+                        <option value="cheerful">Cheerful</option>
+                        <option value="sad">Sad</option>
+                        <option value="neutral">Neutral</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Teacher Personal -->
+            <div id="teacher_personal" style="display:none;">
+                <div class="mb-3"><label class="form-label">Mood Today:</label><input type="text" name="mood" class="form-control"></div>
+                <div class="mb-3">
+                    <label class="form-label">Family Time:</label>
+                    <select name="family_time" class="form-select">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Stress Level:</label>
+                    <select name="stress_level"  class="form-select">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="mb-3"><label class="form-label">To-do for Tomorrow:</label><input type="text" name="todo" class="form-control"></div>
+                <div class="mb-3">
+                    <label class="form-label">Tone:</label>
+                    <select name="tone" id="tone" class="form-select">
+                        <option value="cheerful">Cheerful</option>
+                        <option value="sad">Sad</option>
+                        <option value="neutral">Neutral</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Doctor Professional -->
+            <div id="doctor_professional" style="display:none;">
+                <div class="mb-3"><label class="form-label">Department/Specialty:</label><input type="text" name="department" class="form-control"></div>
+                <div class="mb-3"><label class="form-label">Patients Attended:</label><input type="number" name="patients" class="form-control"></div>
+                <div class="mb-3"><label class="form-label">Missed Appointments:</label><input type="number" name="missed_appointments" class="form-control"></div>
+                <div class="mb-3"><label class="form-label">Procedures/Treatments Given:</label><input type="text" name="procedures" class="form-control"></div>
+                <div class="mb-3"><label class="form-label">Next Appointment Date:</label><input type="date" name="next_appointment" class="form-control"></div>
+                <div class="mb-3">
+                    <label class="form-label">Tone:</label>
+                    <select name="tone" id="tone" class="form-select">
+                        <option value="cheerful">Cheerful</option>
+                        <option value="sad">Sad</option>
+                        <option value="neutral">Neutral</option>
+                        <option value="formal">Formal</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Doctor Personal -->
+            <div id="doctor_personal" style="display:none;">
+                <div class="mb-3"><label class="form-label">Sleep Hours:</label><input type="number" name="sleep_hours" class="form-control"></div>
+                <div class="mb-3">
+                    <label class="form-label">Exercise Done:</label>
+                    <select name="exercise" class="form-select">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Stress Level:</label>
+                    <select name="stress_level" class="form-select">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="mb-3"><label class="form-label">Family/Relaxation Time:</label><input type="text" name="relaxation" class="form-control"></div>
+                <div class="mb-3">
+                    <label class="form-label">Mood/Tone:</label>
+                    <select name="tone" id="tone" class="form-select">
+                        <option value="cheerful">Cheerful</option>
+                        <option value="sad">Sad</option>
+                        <option value="neutral">Neutral</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Business Professional -->
+            <div id="business_professional" style="display:none;">
+                <div class="mb-3"><label class="form-label">Business Domain:</label><input type="text" name="domain" class="form-control"></div>
+                <div class="mb-3"><label class="form-label">Meetings Held:</label><input type="number" name="meetings" class="form-control"></div>
+                <div class="mb-3"><label class="form-label">Clients Met:</label><input type="number" name="clients" class="form-control"></div>
+                <div class="mb-3"><label class="form-label">Deals Closed/Pending:</label><input type="text" name="deals" class="form-control"></div>
+                <div class="mb-3"><label class="form-label">Next Deadline/Delivery Date:</label><input type="date" name="deadline" class="form-control"></div>
+                <div class="mb-3">
+                    <label class="form-label">Tone:</label>
+                    <select name="tone" id="tone" class="form-select">
+                        <option value="cheerful">Cheerful</option>
+                        <option value="sad">Sad</option>
+                        <option value="neutral">Neutral</option>
+                        <option value="excited">Excited</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Business Personal -->
+            <div id="business_personal" style="display:none;">
+                <div class="mb-3"><label class="form-label">Daily Mood:</label><input type="text" name="daily_mood" class="form-control"></div>
+                <div class="mb-3">
+                    <label class="form-label">Family Interaction:</label>
+                    <select name="family_interaction" class="form-select">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Financial Stress:</label>
+                    <select name="financial_stress" class="form-select">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Relaxation/Hobbies Done:</label>
+                    <select name="hobbies" class="form-select">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Tone:</label>
+                    <select name="tone" id="tone" class="form-select">
+                        <option value="cheerful">Cheerful</option>
+                        <option value="sad">Sad</option>
+                        <option value="neutral">Neutral</option>
+                    </select>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary mt-2">Generate</button>
+            </div>
+        </form>
+
+        {% if suggestions %}
+<form method="post">
+    {% csrf_token %}
+    <h4 class="mb-3">Select a suggestion to save:</h4>
+    <ul class="suggestion-list list-unstyled">
+        {% for suggestion in suggestions %}
+            <li class="fade-in">
+                <label class="suggestion-text suggestion-item">
+                    <input type="radio" name="selected_suggestion" value="{{ suggestion }}" required>
+                    {{ suggestion }}
+                </label>
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="text-center">
+        <button type="submit" name="save" value="1" class="btn btn-success">Save to Journal</button>
+    </div>
+</form>
+{% endif %}
+
+
+        {% if saved_entry %}
+            <div class="alert alert-success mt-4 text-center">
+                Saved to journal: "{{ saved_entry }}"
+            </div>
+        {% endif %}
+    </div>
+    <footer class="text-center mt-4 mb-3" style="color:#5c4033; font-size: 0.9rem;">
+        © 2025 EchoLog.
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- No-op placeholder for JS insertion point -->
+        <script id="js-insertion-point"></script>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function(){
+        const dateInputs = Array.from(document.querySelectorAll('input[type="date"]'));
+        if (dateInputs.length === 0) return;
+        const today = new Date();
+        const isoToday = today.toISOString().split('T')[0];
+
+        // Set min attribute and attach change handlers
+        dateInputs.forEach(function(input){
+            try { input.setAttribute('min', isoToday); } catch(e){}
+            input.addEventListener('change', function(){
+                if (input.value && input.value < isoToday) {
+                    showError(input, 'Cannot select a past date.');
+                    // clear invalid entry so it cannot be submitted accidentally
+                    input.value = '';
+                } else {
+                    clearError(input);
+                }
+            });
+        });
+
+        // Attach submit handlers to forms that contain date inputs
+        const forms = new Set(dateInputs.map(i => i.closest('form')).filter(Boolean));
+        forms.forEach(function(form){
+            form.addEventListener('submit', function(e){
+                let invalid = false;
+                dateInputs.forEach(function(input){
+                    if (!form.contains(input)) return; // only validate inputs in this form
+                    if (input.value && input.value < isoToday) {
+                        showError(input, 'Cannot select a past date.');
+                        invalid = true;
+                    }
+                });
+                if (invalid) {
+                    e.preventDefault();
+                    showTopAlert('Please correct the highlighted date fields before submitting.', 'danger');
+                    window.scrollTo({top:0, behavior:'smooth'});
+                }
+            });
+        });
+
+        function showError(input, msg){
+            clearError(input);
+            const el = document.createElement('div');
+            el.className = 'invalid-feedback d-block';
+            el.style.marginTop = '6px';
+            el.textContent = msg;
+            input.classList.add('is-invalid');
+            // append after the input's parent (keeps layout consistent)
+            input.parentNode.appendChild(el);
+        }
+
+        function clearError(input){
+            input.classList.remove('is-invalid');
+            const next = input.parentNode.querySelector('.invalid-feedback');
+            if (next) next.remove();
+        }
+
+        function showTopAlert(msg, type){
+            let existing = document.getElementById('date-validation-alert');
+            if (existing) existing.remove();
+            const alert = document.createElement('div');
+            alert.id = 'date-validation-alert';
+            alert.className = 'alert alert-' + (type || 'danger') + ' mt-3';
+            alert.textContent = msg;
+            const container = document.querySelector('.container');
+            if (container) container.insertBefore(alert, container.firstChild);
+            setTimeout(()=>{ const a = document.getElementById('date-validation-alert'); if (a) a.remove(); }, 5000);
+        }
+    });
+    </script>
+    
+</body>
+</html>

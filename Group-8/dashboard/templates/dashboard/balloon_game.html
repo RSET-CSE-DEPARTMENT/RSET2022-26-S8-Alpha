@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Balloon Pop - Stress Relief Game</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        #game-container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .game-header {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        h2 {
+            color: #667eea;
+            font-weight: 700;
+            margin: 0 0 1rem 0;
+        }
+        
+        .score-display {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #764ba2;
+            margin-bottom: 1rem;
+        }
+        
+        #game-canvas {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 250px);
+            min-height: 400px;
+            cursor: crosshair;
+        }
+        
+        .balloon {
+            position: absolute;
+            cursor: pointer;
+            transition: transform 0.1s ease;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+            animation: float-up linear;
+        }
+        
+        .balloon:hover {
+            transform: scale(1.1);
+        }
+        
+        .balloon svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .pop-effect {
+            position: absolute;
+            pointer-events: none;
+            font-size: 3rem;
+            font-weight: 700;
+            animation: pop-animation 0.6s ease-out;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        
+        @keyframes float-up {
+            from {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-100vh) rotate(20deg);
+                opacity: 0.8;
+            }
+        }
+        
+        @keyframes pop-animation {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0 0.5rem;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+            color: white;
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0 4px 15px rgba(17, 153, 142, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(17, 153, 142, 0.6);
+        }
+        
+        .game-info {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+<div id="game-container">
+    <div class="game-header">
+        <a href="{% url 'dashboard' %}" class="btn btn-secondary" style="margin-bottom: 1rem;">Back to Dashboard</a>
+        <h2>🎈 Balloon Pop - Stress Relief 🎈</h2>
+        <div class="score-display">Score: <span id="score">0</span></div>
+        <div class="game-info">Pop the balloons before they float away!</div>
+        <button onclick="resetGame()" class="btn btn-success">New Game</button>
+    </div>
+    
+    <div id="game-canvas"></div>
+</div>
+
+<script>
+let score = 0;
+let gameActive = true;
+let balloonInterval;
+const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E2', '#F8B739', '#52C9B3'];
+
+function createBalloon() {
+    if (!gameActive) return;
+    
+    const canvas = document.getElementById('game-canvas');
+    const balloon = document.createElement('div');
+    balloon.className = 'balloon';
+    
+    // Random size between 60 and 100
+    const size = Math.random() * 40 + 60;
+    balloon.style.width = size + 'px';
+    balloon.style.height = size * 1.2 + 'px';
+    
+    // Random position at bottom
+    const maxX = canvas.offsetWidth - size;
+    balloon.style.left = Math.random() * maxX + 'px';
+    balloon.style.bottom = '-150px';
+    
+    // Random color
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    
+    // Random duration between 4 and 8 seconds
+    const duration = Math.random() * 4 + 4;
+    balloon.style.animationDuration = duration + 's';
+    
+    // Create SVG balloon
+    balloon.innerHTML = `
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="50" rx="40" ry="50" fill="${color}" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+            <path d="M 50 100 Q 45 105 50 110 Q 55 105 50 100" stroke="${color}" stroke-width="2" fill="none"/>
+            <ellipse cx="35" cy="35" rx="10" ry="15" fill="rgba(255,255,255,0.3)"/>
+        </svg>
+    `;
+    
+    balloon.onclick = function(e) {
+        popBalloon(balloon, e);
+    };
+    
+    canvas.appendChild(balloon);
+    
+    // Remove balloon after animation completes
+    setTimeout(() => {
+        if (balloon.parentNode) {
+            balloon.remove();
+        }
+    }, duration * 1000);
+}
+
+function popBalloon(balloon, event) {
+    if (!gameActive) return;
+    
+    // Increase score
+    score++;
+    document.getElementById('score').textContent = score;
+    
+    // Create pop effect
+    const popEffect = document.createElement('div');
+    popEffect.className = 'pop-effect';
+    popEffect.textContent = '💥';
+    popEffect.style.left = balloon.style.left;
+    popEffect.style.bottom = balloon.offsetTop + 'px';
+    
+    document.getElementById('game-canvas').appendChild(popEffect);
+    
+    // Remove balloon
+    balloon.remove();
+    
+    // Remove pop effect after animation
+    setTimeout(() => {
+        popEffect.remove();
+    }, 600);
+    
+    // Play a satisfying sound (optional - using Web Audio API)
+    playPopSound();
+}
+
+function playPopSound() {
+    try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.value = 800;
+        oscillator.type = 'sine';
+        
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.1);
+    } catch (e) {
+        // Silently fail if audio not supported
+    }
+}
+
+function resetGame() {
+    score = 0;
+    document.getElementById('score').textContent = score;
+    gameActive = true;
+    
+    // Clear all existing balloons
+    const canvas = document.getElementById('game-canvas');
+    canvas.innerHTML = '';
+    
+    // Start spawning balloons
+    startGame();
+}
+
+function startGame() {
+    // Clear any existing interval
+    if (balloonInterval) {
+        clearInterval(balloonInterval);
+    }
+    
+    // Create new balloons at random intervals
+    balloonInterval = setInterval(() => {
+        if (gameActive) {
+            createBalloon();
+        }
+    }, 800);
+    
+    // Create initial balloon
+    createBalloon();
+}
+
+// Start game when page loads
+window.onload = function() {
+    startGame();
+};
+
+// Clean up on page unload
+window.onbeforeunload = function() {
+    gameActive = false;
+    if (balloonInterval) {
+        clearInterval(balloonInterval);
+    }
+};
+</script>
+</body>
+</html>

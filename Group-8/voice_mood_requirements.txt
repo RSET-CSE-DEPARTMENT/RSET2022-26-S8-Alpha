@@ -1,0 +1,23 @@
+# Requirements for Voice-to-Text with Mood Detection Feature
+# Add these to your main requirements.txt
+
+# Audio Transcription
+openai-whisper>=20231117
+pydub>=0.25.1
+
+# Mood Detection & NLP
+transformers>=4.30.0
+torch>=2.0.0
+textblob>=0.17.1
+spacy>=3.7.0
+
+# Core Django (should already be in your project)
+Django>=5.0
+djangorestframework>=3.14.0
+
+# JSON Support (usually built-in, but just in case)
+python-json-logger>=2.0.0
+
+# Utilities
+numpy>=1.24.0
+scikit-learn>=1.3.0

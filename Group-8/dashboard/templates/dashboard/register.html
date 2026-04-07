@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EchoJournal | Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+
+        .register-container {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .register-card {
+            background: #ffffff;
+            padding: 3rem 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .logo-icon i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .register-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .register-subtitle {
+            color: #718096;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.85rem 1rem 0.85rem 3rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f7fafc;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 2.6rem;
+            color: #a0aec0;
+            font-size: 1.1rem;
+        }
+
+        .btn-register {
+            width: 100%;
+            padding: 0.9rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-register:active {
+            transform: translateY(0);
+        }
+
+        .alert {
+            border-radius: 12px;
+            padding: 0.9rem 1rem;
+            margin-bottom: 1.5rem;
+            border: none;
+        }
+
+        .alert-success {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .alert-danger {
+            background: #fed7d7;
+            color: #c53030;
+        }
+
+        .links-section {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .link-text {
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+        .link-text a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .link-text a:hover {
+            color: #764ba2;
+        }
+
+        .error-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .error-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 480px) {
+            .register-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .register-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="register-container">
+        <div class="register-card">
+            
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h2 class="register-title">Create Account</h2>
+                <p class="register-subtitle">Join EchoJournal today</p>
+            </div>
+
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    <i class="fas fa-{% if message.tags == 'success' %}check-circle{% else %}exclamation-circle{% endif %}"></i>
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="post" id="registerForm">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <ul class="error-list">
+                        {% for error in form.non_field_errors %}
+                        <li><i class="fas fa-exclamation-circle"></i> {{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <label class="form-label" for="id_username">Username</label>
+                    <i class="fas fa-user input-icon"></i>
+                    <input type="text" 
+                           name="username" 
+                           id="id_username"
+                           class="form-control" 
+                           placeholder="Choose a username"
+                           required
+                           autofocus
+                           value="{{ form.username.value|default:'' }}">
+                    {% if form.username.errors %}
+                        <small style="color: #c53030; display: block; margin-top: 0.3rem;">
+                            {{ form.username.errors.0 }}
+                        </small>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="id_email">Email</label>
+                    <i class="fas fa-envelope input-icon"></i>
+                    <input type="email" 
+                           name="email" 
+                           id="id_email"
+                           class="form-control" 
+                           placeholder="your@email.com"
+                           required
+                           value="{{ form.email.value|default:'' }}">
+                    {% if form.email.errors %}
+                        <small style="color: #c53030; display: block; margin-top: 0.3rem;">
+                            {{ form.email.errors.0 }}
+                        </small>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="id_user_type">User Type</label>
+                    <i class="fas fa-briefcase input-icon"></i>
+                    <select name="user_type" 
+                            id="id_user_type"
+                            class="form-control" 
+                            required
+                            style="padding-left: 2.5rem;">
+                        <option value="">Select your profession</option>
+                        <option value="doctor" {% if form.user_type.value == 'doctor' %}selected{% endif %}>Doctor</option>
+                        <option value="teacher" {% if form.user_type.value == 'teacher' %}selected{% endif %}>Teacher</option>
+                        <option value="business_professional" {% if form.user_type.value == 'business_professional' %}selected{% endif %}>Business Professional</option>
+                    </select>
+                    {% if form.user_type.errors %}
+                        <small style="color: #c53030; display: block; margin-top: 0.3rem;">
+                            {{ form.user_type.errors.0 }}
+                        </small>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="id_password1">Password</label>
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" 
+                           name="password1" 
+                           id="id_password1"
+                           class="form-control" 
+                           placeholder="Create a password"
+                           required>
+                    {% if form.password1.errors %}
+                        <small style="color: #c53030; display: block; margin-top: 0.3rem;">
+                            {{ form.password1.errors.0 }}
+                        </small>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="id_password2">Confirm Password</label>
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" 
+                           name="password2" 
+                           id="id_password2"
+                           class="form-control" 
+                           placeholder="Confirm your password"
+                           required>
+                    {% if form.password2.errors %}
+                        <small style="color: #c53030; display: block; margin-top: 0.3rem;">
+                            {{ form.password2.errors.0 }}
+                        </small>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="btn btn-register">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+            </form>
+
+            <div class="links-section">
+                <div class="link-text">
+                    Already have an account? <a href="{% url 'login' %}">Sign In</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Form validation
+        const registerForm = document.getElementById('registerForm');
+        registerForm.addEventListener('submit', function(e) {
+            const password1 = document.getElementById('id_password1').value;
+            const password2 = document.getElementById('id_password2').value;
+
+            if (password1 !== password2) {
+                e.preventDefault();
+                alert('Passwords do not match!');
+                return false;
+            }
+
+            if (password1.length < 3) {
+                e.preventDefault();
+                alert('Password must be at least 3 characters long!');
+                return false;
+            }
+        });
+    </script>
+
+</body>
+</html>

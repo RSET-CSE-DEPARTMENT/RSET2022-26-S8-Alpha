@@ -1,0 +1,505 @@
+    
+    <!-- Racing Game -->
+    <div id="racing-game">
+        <div class="game-header">
+            <h2>🏎️ Speed Racer</h2>
+            <p style="color: #555; margin-bottom: 1rem;">Use arrow keys to move left and right. Avoid the obstacles!</p>
+            <div class="score-display">Score: <span id="racing-score">0</span></div>
+            <canvas id="racing-canvas" width="400" height="600" style="display: block; margin: 0 auto;"></canvas>
+            <button onclick="startRacingGame()" class="btn btn-secondary" style="margin-top: 1rem;">Start Game</button>
+            <button onclick="showMenu()" class="btn btn-secondary back-button">Back to Games Menu</button>
+        </div>
+    </div>
+    
+    <!-- Maze Game -->
+    <div id="maze-game">
+        <div class="game-header">
+            <h2>🧩 Maze Runner</h2>
+            <p style="color: #555; margin-bottom: 1rem;">Use arrow keys to navigate. Find the exit! 🚩</p>
+            <div class="score-display">Time: <span id="maze-time">0</span>s | Moves: <span id="maze-moves">0</span></div>
+            <canvas id="maze-canvas" width="500" height="500" style="display: block; margin: 0 auto;"></canvas>
+            <button onclick="startMazeGame()" class="btn btn-secondary" style="margin-top: 1rem;">New Maze</button>
+            <button onclick="showMenu()" class="btn btn-secondary back-button">Back to Games Menu</button>
+        </div>
+    </div>
+    
+    <!-- Endless Runner -->
+    <div id="endless-runner">
+        <div class="game-header">
+            <h2>🏃 Endless Runner</h2>
+            <p style="color: #555; margin-bottom: 1rem;">Press SPACE to jump, DOWN arrow to slide. Don't hit obstacles!</p>
+            <div class="score-display">Distance: <span id="runner-score">0</span>m</div>
+            <canvas id="runner-canvas" width="600" height="400" style="display: block; margin: 0 auto;"></canvas>
+            <button onclick="startRunnerGame()" class="btn btn-secondary" style="margin-top: 1rem;">Start Game</button>
+            <button onclick="showMenu()" class="btn btn-secondary back-button">Back to Games Menu</button>
+        </div>
+    </div>
+</div>
+<script>
+// Global game variables
+let currentGame = null;
+
+function showMenu() {
+    document.getElementById('game-menu').style.display = 'block';
+    document.getElementById('racing-game').style.display = 'none';
+    document.getElementById('maze-game').style.display = 'none';
+    document.getElementById('endless-runner').style.display = 'none';
+    stopAllGames();
+}
+
+function stopAllGames() {
+    if (racingGame) cancelAnimationFrame(racingGame);
+    if (runnerGame) cancelAnimationFrame(runnerGame);
+}
+
+function showGame(gameName) {
+    document.getElementById('game-menu').style.display = 'none';
+    
+    if (gameName === 'racing-game') {
+        document.getElementById('racing-game').style.display = 'block';
+    } else if (gameName === 'maze-game') {
+        document.getElementById('maze-game').style.display = 'block';
+        startMazeGame();
+    } else if (gameName === 'endless-runner') {
+        document.getElementById('endless-runner').style.display = 'block';
+    }
+}
+
+// RACING GAME
+let racingGame = null;
+
+function startRacingGame() {
+    const canvas = document.getElementById('racing-canvas');
+    const ctx = canvas.getContext('2d');
+    const scoreEl = document.getElementById('racing-score');
+    
+    let car = { x: 175, y: 500, width: 50, height: 80, speed: 5 };
+    let obstacles = [];
+    let score = 0;
+    let gameOver = false;
+    let keys = {};
+    
+    document.onkeydown = (e) => keys[e.key] = true;
+    document.onkeyup = (e) => keys[e.key] = false;
+    
+    function createObstacle() {
+        const lanes = [50, 175, 300];
+        return {
+            x: lanes[Math.floor(Math.random() * lanes.length)],
+            y: -80,
+            width: 50,
+            height: 80,
+            speed: 3 + score / 100
+        };
+    }
+    
+    obstacles.push(createObstacle());
+    
+    function gameLoop() {
+        if (gameOver) {
+            ctx.fillStyle = 'rgba(0,0,0,0.7)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 30px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('GAME OVER!', canvas.width/2, canvas.height/2 - 20);
+            ctx.font = '20px Arial';
+            ctx.fillText('Score: ' + score, canvas.width/2, canvas.height/2 + 20);
+            return;
+        }
+        
+        // Clear canvas
+        ctx.fillStyle = '#333';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw road
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 5;
+        ctx.setLineDash([20, 15]);
+        ctx.beginPath();
+        ctx.moveTo(135, 0);
+        ctx.lineTo(135, canvas.height);
+        ctx.moveTo(265, 0);
+        ctx.lineTo(265, canvas.height);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        
+        // Move car
+        if (keys['ArrowLeft'] && car.x > 50) car.x -= car.speed;
+        if (keys['ArrowRight'] && car.x < 300) car.x += car.speed;
+        
+        // Draw car
+        ctx.fillStyle = '#e74c3c';
+        ctx.fillRect(car.x, car.y, car.width, car.height);
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(car.x + 10, car.y + 20, 10, 15);
+        ctx.fillRect(car.x + 30, car.y + 20, 10, 15);
+        
+        // Update obstacles
+        obstacles.forEach((obs, i) => {
+            obs.y += obs.speed;
+            
+            // Draw obstacle
+            ctx.fillStyle = '#3498db';
+            ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+            
+            // Check collision
+            if (car.x < obs.x + obs.width &&
+                car.x + car.width > obs.x &&
+                car.y < obs.y + obs.height &&
+                car.y + car.height > obs.y) {
+                gameOver = true;
+            }
+            
+            // Remove off-screen obstacles
+            if (obs.y > canvas.height) {
+                obstacles.splice(i, 1);
+                score += 10;
+                scoreEl.textContent = score;
+            }
+        });
+        
+        // Add new obstacles
+        if (obstacles.length < 3 && Math.random() < 0.02) {
+            obstacles.push(createObstacle());
+        }
+        
+        if (!gameOver) {
+            racingGame = requestAnimationFrame(gameLoop);
+        }
+    }
+    
+    if (racingGame) cancelAnimationFrame(racingGame);
+    score = 0;
+    scoreEl.textContent = '0';
+    gameOver = false;
+    obstacles = [createObstacle()];
+    gameLoop();
+}
+
+// MAZE GAME
+function startMazeGame() {
+    const canvas = document.getElementById('maze-canvas');
+    const ctx = canvas.getContext('2d');
+    const timeEl = document.getElementById('maze-time');
+    const movesEl = document.getElementById('maze-moves');
+    
+    const cellSize = 25;
+    const cols = 20;
+    const rows = 20;
+    let maze = [];
+    let player = { x: 0, y: 0 };
+    let exit = { x: cols - 1, y: rows - 1 };
+    let moves = 0;
+    let startTime = Date.now();
+    let gameWon = false;
+    let keys = {};
+    
+    document.onkeydown = (e) => {
+        if (!gameWon && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+            keys[e.key] = true;
+            e.preventDefault();
+        }
+    };
+    
+    // Generate maze using recursive backtracking
+    function generateMaze() {
+        // Initialize maze with walls
+        for (let y = 0; y < rows; y++) {
+            maze[y] = [];
+            for (let x = 0; x < cols; x++) {
+                maze[y][x] = { top: true, right: true, bottom: true, left: true, visited: false };
+            }
+        }
+        
+        const stack = [];
+        let current = { x: 0, y: 0 };
+        maze[0][0].visited = true;
+        
+        while (true) {
+            const neighbors = [];
+            const { x, y } = current;
+            
+            if (y > 0 && !maze[y-1][x].visited) neighbors.push({ x, y: y-1, dir: 'top' });
+            if (x < cols-1 && !maze[y][x+1].visited) neighbors.push({ x: x+1, y, dir: 'right' });
+            if (y < rows-1 && !maze[y+1][x].visited) neighbors.push({ x, y: y+1, dir: 'bottom' });
+            if (x > 0 && !maze[y][x-1].visited) neighbors.push({ x: x-1, y, dir: 'left' });
+            
+            if (neighbors.length > 0) {
+                const next = neighbors[Math.floor(Math.random() * neighbors.length)];
+                
+                // Remove walls
+                if (next.dir === 'top') {
+                    maze[y][x].top = false;
+                    maze[next.y][next.x].bottom = false;
+                } else if (next.dir === 'right') {
+                    maze[y][x].right = false;
+                    maze[next.y][next.x].left = false;
+                } else if (next.dir === 'bottom') {
+                    maze[y][x].bottom = false;
+                    maze[next.y][next.x].top = false;
+                } else {
+                    maze[y][x].left = false;
+                    maze[next.y][next.x].right = false;
+                }
+                
+                maze[next.y][next.x].visited = true;
+                stack.push(current);
+                current = next;
+            } else if (stack.length > 0) {
+                current = stack.pop();
+            } else {
+                break;
+            }
+        }
+    }
+    
+    function drawMaze() {
+        ctx.fillStyle = '#f0f0f0';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.strokeStyle = '#333';
+        ctx.lineWidth = 2;
+        
+        for (let y = 0; y < rows; y++) {
+            for (let x = 0; x < cols; x++) {
+                const cell = maze[y][x];
+                const px = x * cellSize;
+                const py = y * cellSize;
+                
+                if (cell.top) {
+                    ctx.beginPath();
+                    ctx.moveTo(px, py);
+                    ctx.lineTo(px + cellSize, py);
+                    ctx.stroke();
+                }
+                if (cell.right) {
+                    ctx.beginPath();
+                    ctx.moveTo(px + cellSize, py);
+                    ctx.lineTo(px + cellSize, py + cellSize);
+                    ctx.stroke();
+                }
+                if (cell.bottom) {
+                    ctx.beginPath();
+                    ctx.moveTo(px, py + cellSize);
+                    ctx.lineTo(px + cellSize, py + cellSize);
+                    ctx.stroke();
+                }
+                if (cell.left) {
+                    ctx.beginPath();
+                    ctx.moveTo(px, py);
+                    ctx.lineTo(px, py + cellSize);
+                    ctx.stroke();
+                }
+            }
+        }
+        
+        // Draw exit
+        ctx.fillStyle = '#f39c12';
+        ctx.fillRect(exit.x * cellSize + 5, exit.y * cellSize + 5, cellSize - 10, cellSize - 10);
+        ctx.fillStyle = '#000';
+        ctx.font = '16px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('🚩', exit.x * cellSize + cellSize/2, exit.y * cellSize + cellSize/2 + 5);
+        
+        // Draw player
+        ctx.fillStyle = '#e74c3c';
+        ctx.beginPath();
+        ctx.arc(player.x * cellSize + cellSize/2, player.y * cellSize + cellSize/2, cellSize/3, 0, Math.PI * 2);
+        ctx.fill();
+        
+        if (gameWon) {
+            ctx.fillStyle = 'rgba(0,200,0,0.8)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 30px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('YOU WIN! 🎉', canvas.width/2, canvas.height/2);
+        }
+    }
+    
+    function update() {
+        if (keys['ArrowUp'] && player.y > 0 && !maze[player.y][player.x].top) {
+            player.y--;
+            moves++;
+        }
+        if (keys['ArrowDown'] && player.y < rows-1 && !maze[player.y][player.x].bottom) {
+            player.y++;
+            moves++;
+        }
+        if (keys['ArrowLeft'] && player.x > 0 && !maze[player.y][player.x].left) {
+            player.x--;
+            moves++;
+        }
+        if (keys['ArrowRight'] && player.x < cols-1 && !maze[player.y][player.x].right) {
+            player.x++;
+            moves++;
+        }
+        
+        keys = {};
+        
+        if (player.x === exit.x && player.y === exit.y) {
+            gameWon = true;
+        }
+        
+        movesEl.textContent = moves;
+        timeEl.textContent = Math.floor((Date.now() - startTime) / 1000);
+        
+        drawMaze();
+        
+        if (!gameWon) {
+            requestAnimationFrame(update);
+        }
+    }
+    
+    maze = [];
+    player = { x: 0, y: 0 };
+    moves = 0;
+    startTime = Date.now();
+    gameWon = false;
+    generateMaze();
+    update();
+}
+
+// ENDLESS RUNNER GAME
+let runnerGame = null;
+
+function startRunnerGame() {
+    const canvas = document.getElementById('runner-canvas');
+    const ctx = canvas.getContext('2d');
+    const scoreEl = document.getElementById('runner-score');
+    
+    let player = { x: 50, y: 300, width: 40, height: 60, velocityY: 0, jumping: false, sliding: false };
+    let obstacles = [];
+    let score = 0;
+    let gameOver = false;
+    let keys = {};
+    const gravity = 0.8;
+    const jumpForce = -15;
+    const groundY = 300;
+    
+    document.onkeydown = (e) => {
+        if (e.key === ' ' && !player.jumping && !player.sliding) {
+            player.velocityY = jumpForce;
+            player.jumping = true;
+        }
+        if (e.key === 'ArrowDown' && !player.jumping) {
+            player.sliding = true;
+            setTimeout(() => player.sliding = false, 500);
+        }
+    };
+    
+    function createObstacle() {
+        const type = Math.random() < 0.5 ? 'low' : 'high';
+        return {
+            x: canvas.width,
+            y: type === 'low' ? groundY : groundY - 60,
+            width: 30,
+            height: type === 'low' ? 60 : 30,
+            speed: 5 + score / 500,
+            type: type
+        };
+    }
+    
+    obstacles.push(createObstacle());
+    
+    function gameLoop() {
+        if (gameOver) {
+            ctx.fillStyle = 'rgba(0,0,0,0.7)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 30px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('GAME OVER!', canvas.width/2, canvas.height/2 - 20);
+            ctx.font = '20px Arial';
+            ctx.fillText('Distance: ' + score + 'm', canvas.width/2, canvas.height/2 + 20);
+            return;
+        }
+        
+        // Clear canvas with gradient
+        const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        gradient.addColorStop(0, '#87CEEB');
+        gradient.addColorStop(1, '#90EE90');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw ground
+        ctx.fillStyle = '#8B4513';
+        ctx.fillRect(0, groundY + 60, canvas.width, canvas.height - groundY - 60);
+        ctx.fillStyle = '#228B22';
+        ctx.fillRect(0, groundY + 60, canvas.width, 5);
+        
+        // Update player physics
+        player.velocityY += gravity;
+        player.y += player.velocityY;
+        
+        if (player.y >= groundY) {
+            player.y = groundY;
+            player.velocityY = 0;
+            player.jumping = false;
+        }
+        
+        // Draw player
+        const playerHeight = player.sliding ? 30 : 60;
+        const playerY = player.sliding ? groundY + 30 : player.y;
+        
+        ctx.fillStyle = '#e74c3c';
+        ctx.fillRect(player.x, playerY, player.width, playerHeight);
+        ctx.fillStyle = '#c0392b';
+        ctx.fillRect(player.x + 5, playerY + 5, 15, 15);
+        
+        // Update and draw obstacles
+        obstacles.forEach((obs, i) => {
+            obs.x -= obs.speed;
+            
+            // Draw obstacle
+            if (obs.type === 'low') {
+                ctx.fillStyle = '#34495e';
+                ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+            } else {
+                ctx.fillStyle = '#95a5a6';
+                ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+            }
+            
+            // Check collision
+            if (player.x < obs.x + obs.width &&
+                player.x + player.width > obs.x &&
+                playerY < obs.y + obs.height &&
+                playerY + playerHeight > obs.y) {
+                gameOver = true;
+            }
+            
+            // Remove off-screen obstacles
+            if (obs.x + obs.width < 0) {
+                obstacles.splice(i, 1);
+                score += 10;
+                scoreEl.textContent = score;
+            }
+        });
+        
+        // Add new obstacles
+        if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - 300) {
+            if (Math.random() < 0.03) {
+                obstacles.push(createObstacle());
+            }
+        }
+        
+        // Draw score
+        ctx.fillStyle = '#333';
+        ctx.font = 'bold 20px Arial';
+        ctx.textAlign = 'left';
+        ctx.fillText('Distance: ' + score + 'm', 10, 30);
+        
+        if (!gameOver) {
+            runnerGame = requestAnimationFrame(gameLoop);
+        }
+    }
+    
+    if (runnerGame) cancelAnimationFrame(runnerGame);
+    score = 0;
+    scoreEl.textContent = '0';
+    gameOver = false;
+    obstacles = [];
+    player = { x: 50, y: 300, width: 40, height: 60, velocityY: 0, jumping: false, sliding: false };
+    gameLoop();
+}

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Breathing Exercise</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .exercise-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+        
+        .exercise-header {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .breathing-circle {
+            width: 300px;
+            height: 300px;
+            margin: 2rem auto;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.5);
+            transition: all 4s ease-in-out;
+        }
+        
+        .breathing-circle.inhale {
+            transform: scale(1.4);
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            box-shadow: 0 20px 60px rgba(17, 153, 142, 0.6);
+        }
+        
+        .breathing-circle.hold {
+            transform: scale(1.4);
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            box-shadow: 0 20px 60px rgba(240, 147, 251, 0.6);
+        }
+        
+        .breathing-circle.exhale {
+            transform: scale(1);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.5);
+        }
+        
+        .instruction-text {
+            font-size: 1.8rem;
+            color: #667eea;
+            font-weight: 600;
+            margin: 1.5rem 0;
+            min-height: 2.5rem;
+        }
+        
+        .cycle-counter {
+            font-size: 1.3rem;
+            color: #555;
+            margin: 1rem 0;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+            color: white;
+        }
+        
+        .btn-stop {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4);
+        }
+        
+        .btn-stop:hover {
+            box-shadow: 0 6px 20px rgba(240, 147, 251, 0.6);
+        }
+        
+        .benefits {
+            background: rgba(255,255,255,0.9);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            text-align: left;
+        }
+        
+        .benefits h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .benefits ul {
+            color: #555;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="exercise-container">
+        <div class="exercise-header">
+            <h1>🧘 Breathing Exercise</h1>
+            <p style="color: #666;">Follow the circle and breathe deeply</p>
+            
+            <div class="breathing-circle" id="breathingCircle">
+                <span id="circleText">Ready</span>
+            </div>
+            
+            <div class="instruction-text" id="instruction">Click "Start" to begin</div>
+            <div class="cycle-counter" id="cycleCounter">Completed Cycles: 0</div>
+            
+            <button onclick="startExercise()" class="btn" id="startBtn">▶️ Start Exercise</button>
+            <button onclick="stopExercise()" class="btn btn-stop" id="stopBtn" style="display:none;">⏹️ Stop</button>
+            <a href="{% url 'game_page' %}" class="btn">🎮 Back to Games</a>
+            <a href="{% url 'dashboard' %}" class="btn">🏠 Dashboard</a>
+            
+            <div class="benefits">
+                <h3>✨ Benefits of Deep Breathing:</h3>
+                <ul>
+                    <li>🌟 Reduces stress and anxiety</li>
+                    <li>💆 Promotes relaxation and calm</li>
+                    <li>❤️ Improves heart rate and blood pressure</li>
+                    <li>😌 Enhances focus and clarity</li>
+                    <li>💤 Helps with better sleep</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let exerciseInterval;
+        let cycleCount = 0;
+        let isRunning = false;
+        
+        const circle = document.getElementById('breathingCircle');
+        const circleText = document.getElementById('circleText');
+        const instruction = document.getElementById('instruction');
+        const cycleCounter = document.getElementById('cycleCounter');
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        
+        function startExercise() {
+            if (isRunning) return;
+            
+            isRunning = true;
+            cycleCount = 0;
+            startBtn.style.display = 'none';
+            stopBtn.style.display = 'inline-block';
+            
+            breathingCycle();
+        }
+        
+        function stopExercise() {
+            isRunning = false;
+            if (exerciseInterval) clearTimeout(exerciseInterval);
+            
+            circle.className = 'breathing-circle';
+            circleText.textContent = 'Paused';
+            instruction.textContent = 'Exercise paused';
+            startBtn.style.display = 'inline-block';
+            stopBtn.style.display = 'none';
+        }
+        
+        async function breathingCycle() {
+            if (!isRunning) return;
+            
+            // Inhale - 4 seconds
+            circle.className = 'breathing-circle inhale';
+            circleText.textContent = 'Inhale';
+            instruction.textContent = '🌬️ Breathe in slowly through your nose...';
+            
+            await wait(4000);
+            if (!isRunning) return;
+            
+            // Hold - 4 seconds
+            circle.className = 'breathing-circle hold';
+            circleText.textContent = 'Hold';
+            instruction.textContent = '⏸️ Hold your breath...';
+            
+            await wait(4000);
+            if (!isRunning) return;
+            
+            // Exhale - 4 seconds
+            circle.className = 'breathing-circle exhale';
+            circleText.textContent = 'Exhale';
+            instruction.textContent = '😮‍💨 Breathe out slowly through your mouth...';
+            
+            await wait(4000);
+            if (!isRunning) return;
+            
+            // Short pause
+            circle.className = 'breathing-circle';
+            circleText.textContent = 'Rest';
+            instruction.textContent = '✨ Relax...';
+            
+            cycleCount++;
+            cycleCounter.textContent = `Completed Cycles: ${cycleCount}`;
+            
+            await wait(2000);
+            
+            // Continue cycle
+            if (isRunning) {
+                breathingCycle();
+            }
+        }
+        
+        function wait(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+    </script>
+</body>
+</html>
