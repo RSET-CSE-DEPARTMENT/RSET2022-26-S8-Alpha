@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 92%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 92%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 92%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 20% 20%;
+    --secondary-foreground: 0 0% 92%;
+
+    --muted: 217 10% 15%;
+    --muted-foreground: 217 10% 55%;
+
+    --accent: 189 94% 43%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 217 10% 18%;
+    --input: 217 10% 18%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.5rem;
+
+    --canvas-bg: 217 10% 25%;
+    --panel-bg: 0 0% 7%;
+    --panel-border: 217 10% 18%;
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 92%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 92%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 92%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 20% 20%;
+    --secondary-foreground: 0 0% 92%;
+
+    --muted: 217 10% 15%;
+    --muted-foreground: 217 10% 55%;
+
+    --accent: 189 94% 43%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 217 10% 18%;
+    --input: 217 10% 18%;
+    --ring: 217 91% 60%;
+    
+    --canvas-bg: 217 10% 25%;
+    --panel-bg: 0 0% 7%;
+    --panel-border: 217 10% 18%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+}
+
+@layer components {
+  .panel {
+    @apply bg-card border border-border rounded-lg;
+  }
+  
+  .glass-panel {
+    @apply bg-card/50 backdrop-blur-sm border border-border rounded-lg;
+  }
+}
