@@ -1,0 +1,1707 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nyaya Sahayi - Your Legal AI Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Inter:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --bg-main: #ffffff;
+            --bg-secondary: #f9fafb;
+            --text-main: #111827;
+            --text-dim: #6b7280;
+            --border-color: #e5e7eb;
+            --ai-bubble: #f3f4f6;
+            --user-bubble: #4f46e5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-secondary);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        header {
+            padding: 1rem 1.5rem;
+            background: var(--bg-main);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        #chat-container {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background-color: var(--bg-main);
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background: var(--user-bubble);
+            color: white;
+            border-bottom-right-radius: 0;
+        }
+
+        .ai-message {
+            align-self: flex-start;
+            background: var(--ai-bubble);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            border-bottom-left-radius: 0;
+        }
+
+        .input-area {
+            padding: 1rem 1.5rem;
+            background: var(--bg-main);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        #user-input {
+            flex: 1;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        #user-input:focus {
+            border-color: var(--primary);
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button:hover {
+            background: var(--primary-dark);
+        }
+
+        .typing {
+            font-style: italic;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            position: absolute;
+            bottom: 4.5rem;
+            left: 1.5rem;
+            display: none;
+        }
+
+        /* ===== CALENDAR WIDGET ===== */
+        .calendar-widget {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.25rem;
+            max-width: 380px;
+            width: 100%;
+            animation: fadeIn 0.3s ease-out;
+            box-shadow: 0 4px 24px rgba(79, 70, 229, 0.08);
+            align-self: flex-start;
+        }
+
+        .calendar-widget .cal-header-msg {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .cal-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        .cal-nav button {
+            background: var(--bg-secondary);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            padding: 0;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .cal-nav button:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        .cal-nav .cal-month-label {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        .cal-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            margin-bottom: 0.25rem;
+        }
+
+        .cal-weekdays span {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            padding: 0.25rem 0;
+        }
+
+        .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 3px;
+        }
+
+        .cal-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            cursor: default;
+            transition: all 0.15s;
+            position: relative;
+        }
+
+        .cal-day.available {
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            background: rgba(79, 70, 229, 0.06);
+        }
+
+        .cal-day.available:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .cal-day.available::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        .cal-day.available:hover::after {
+            background: #fff;
+        }
+
+        .cal-day.selected {
+            background: var(--primary);
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .cal-day.selected::after {
+            background: #fff;
+        }
+
+        .cal-day.empty {
+            visibility: hidden;
+        }
+
+        .cal-day.today {
+            border: 2px solid var(--primary);
+        }
+
+        .time-slots-panel {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-color);
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .time-slots-panel .ts-date-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .time-slots-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .time-slot-btn {
+            background: var(--bg-secondary);
+            color: var(--primary);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .time-slot-btn:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+        }
+
+        .cal-booking-confirm {
+            text-align: center;
+            padding: 1rem;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .cal-booking-confirm .confirm-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cal-booking-confirm .confirm-text {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            header {
+                padding: 0.75rem 1rem;
+            }
+
+            header h1 {
+                font-size: 1.1rem;
+            }
+
+            #chat-container {
+                padding: 1rem;
+            }
+
+            .message {
+                max-width: 90%;
+                font-size: 0.9rem;
+            }
+
+            .input-area {
+                padding: 0.75rem 1rem;
+            }
+
+            button {
+                padding: 0.75rem 1rem;
+            }
+
+            button span {
+                display: none;
+            }
+
+            .calendar-widget {
+                max-width: 100%;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Nyaya Sahayi</h1>
+        <div style="font-size: 0.85rem; color: var(--text-dim);">Legal AI Assistant</div>
+    </header>
+
+    <div id="chat-container">
+        <div class="message ai-message">
+            Namaskaram! I am your Nyaya Sahayi AI. How can I help you today?
+        </div>
+    </div>
+
+    <div class="input-area">
+        <div id="typing-indicator" class="typing">Nyaya Sahayi is thinking...</div>
+        <input type="text" id="user-input" placeholder="Ask about your case or legal procedures..." autocomplete="off">
+        <button id="send-btn">
+            Send
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+        </button>
+    </div>
+    <script>
+        const BACKEND_URL = "http://localhost:8000/api/chat";
+        const BOOK_URL = "http://localhost:8000/api/book";
+
+        const chatContainer = document.getElementById('chat-container');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+        const typingIndicator = document.getElementById('typing-indicator');
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const clientToken = urlParams.get('token') || 'default_client';
+
+        const WEEKDAY_LABELS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        function appendMessage(text, isUser) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${isUser ? 'user-message' : 'ai-message'}`;
+            msgDiv.textContent = text;
+            chatContainer.appendChild(msgDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        // =========== CALENDAR WIDGET ===========
+        function renderCalendar(availableSlots, headerMsg) {
+            const slotMap = {};
+            availableSlots.forEach(s => { slotMap[s.date] = s.slots; });
+
+            const firstDate = new Date(availableSlots[0].date + 'T00:00:00');
+            let viewYear = firstDate.getFullYear();
+            let viewMonth = firstDate.getMonth();
+
+            const widget = document.createElement('div');
+            widget.className = 'calendar-widget';
+            chatContainer.appendChild(widget);
+
+            function draw() {
+                widget.innerHTML = '';
+
+                const msgP = document.createElement('div');
+                msgP.className = 'cal-header-msg';
+                msgP.textContent = headerMsg || 'Pick a date & time for your meeting:';
+                widget.appendChild(msgP);
+
+                const nav = document.createElement('div');
+                nav.className = 'cal-nav';
+                const prevBtn = document.createElement('button');
+                prevBtn.innerHTML = '&#8249;';
+                prevBtn.onclick = () => { viewMonth--; if (viewMonth < 0) { viewMonth = 11; viewYear--; } draw(); };
+                const nextBtn = document.createElement('button');
+                nextBtn.innerHTML = '&#8250;';
+                nextBtn.onclick = () => { viewMonth++; if (viewMonth > 11) { viewMonth = 0; viewYear++; } draw(); };
+                const label = document.createElement('span');
+                label.className = 'cal-month-label';
+                label.textContent = `${MONTH_NAMES[viewMonth]} ${viewYear}`;
+                nav.appendChild(prevBtn);
+                nav.appendChild(label);
+                nav.appendChild(nextBtn);
+                widget.appendChild(nav);
+
+                const wkRow = document.createElement('div');
+                wkRow.className = 'cal-weekdays';
+                WEEKDAY_LABELS.forEach(d => { const sp = document.createElement('span'); sp.textContent = d; wkRow.appendChild(sp); });
+                widget.appendChild(wkRow);
+
+                const grid = document.createElement('div');
+                grid.className = 'cal-grid';
+                const firstDayOfMonth = new Date(viewYear, viewMonth, 1).getDay();
+                const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+                const today = new Date();
+
+                for (let i = 0; i < firstDayOfMonth; i++) {
+                    const empty = document.createElement('div');
+                    empty.className = 'cal-day empty';
+                    grid.appendChild(empty);
+                }
+
+                for (let d = 1; d <= daysInMonth; d++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'cal-day';
+                    cell.textContent = d;
+
+                    const dateStr = `${viewYear}-${String(viewMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+
+                    if (d === today.getDate() && viewMonth === today.getMonth() && viewYear === today.getFullYear()) {
+                        cell.classList.add('today');
+                    }
+
+                    if (slotMap[dateStr]) {
+                        cell.classList.add('available');
+                        cell.onclick = () => showTimeSlots(dateStr, slotMap[dateStr], widget, grid);
+                    }
+
+                    grid.appendChild(cell);
+                }
+                widget.appendChild(grid);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+
+            draw();
+        }
+
+        function showTimeSlots(dateStr, slots, widget) {
+            const existing = widget.querySelector('.time-slots-panel');
+            if (existing) existing.remove();
+
+            widget.querySelectorAll('.cal-day').forEach(c => c.classList.remove('selected'));
+            widget.querySelectorAll('.cal-day.available').forEach(c => {
+                const d = parseInt(dateStr.split('-')[2]);
+                if (parseInt(c.textContent) === d) c.classList.add('selected');
+            });
+
+            const panel = document.createElement('div');
+            panel.className = 'time-slots-panel';
+
+            const dateObj = new Date(dateStr + 'T00:00:00');
+            const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+            const label = document.createElement('div');
+            label.className = 'ts-date-label';
+            label.textContent = `📅 ${dayName}`;
+            panel.appendChild(label);
+
+            const grid = document.createElement('div');
+            grid.className = 'time-slots-grid';
+
+            slots.forEach(time => {
+                const btn = document.createElement('button');
+                btn.className = 'time-slot-btn';
+                btn.textContent = `🕐 ${time}`;
+                btn.onclick = () => bookAppointment(dateStr, time, widget);
+                grid.appendChild(btn);
+            });
+
+            panel.appendChild(grid);
+            widget.appendChild(panel);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        async function bookAppointment(date, time, widget) {
+            // Disable buttons to prevent double-clicks
+            widget.querySelectorAll('.time-slot-btn').forEach(b => {
+                b.disabled = true;
+                b.style.opacity = '0.5';
+            });
+
+            try {
+                const res = await fetch(BOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ client_id: clientToken, date, time })
+                });
+
+                const data = await res.json();
+
+                // Handle server errors (like double-booking rules)
+                if (!res.ok) {
+                    const errorMessage = data.detail || 'ക്ഷമിക്കണം, ബുക്കിംഗ് പരാജയപ്പെട്ടു.';
+                    appendMessage(errorMessage, false);
+
+                    widget.querySelectorAll('.time-slot-btn').forEach(b => {
+                        b.disabled = false;
+                        b.style.opacity = '1';
+                    });
+
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                    return;
+                }
+
+                // If successful
+                const panel = widget.querySelector('.time-slots-panel');
+                if (panel) panel.remove();
+
+                widget.innerHTML = '';
+                const confirm = document.createElement('div');
+                confirm.className = 'cal-booking-confirm';
+                confirm.innerHTML = `
+                    <div class="confirm-icon">✅</div>
+                    <div class="confirm-text">${data.message || 'Meeting booked successfully!'}</div>
+                `;
+                widget.appendChild(confirm);
+
+            } catch (err) {
+                console.error('Booking error:', err);
+                appendMessage('നെറ്റ്‌വർക്ക് തകരാർ. ദയവായി വീണ്ടും ശ്രമിക്കുക.', false);
+            }
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        // =========== SEND MESSAGE & PLAY AUDIO ===========
+        async function sendMessage() {
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            appendMessage(message, true);
+            userInput.value = '';
+            typingIndicator.style.display = 'block';
+
+            try {
+                const response = await fetch(BACKEND_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message, client_id: clientToken })
+                });
+
+                const data = await response.json();
+
+                // 1. Render Calendar if it's a scheduling intent
+                if (data.type === 'calendar' && data.available_slots) {
+                    renderCalendar(data.available_slots, data.message);
+                }
+                // 2. Render Text if present
+                else if (data.response) {
+                    appendMessage(data.response, false);
+                }
+                // 3. Fallback error
+                else {
+                    appendMessage('I encountered an error processing your request.', false);
+                }
+
+                // 4. Play Audio if Sarvam returned it
+                if (data.audio) {
+                    try {
+                        const audioUrl = "data:audio/wav;base64," + data.audio;
+                        const aiVoice = new Audio(audioUrl);
+                        aiVoice.play().catch(e => {
+                            console.log("Browser blocked autoplay or audio format issue:", e);
+                        });
+                    } catch (err) {
+                        console.error("Error playing audio:", err);
+                    }
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                appendMessage('Failed to connect to the backend. Please ensure the server is running.', false);
+            } finally {
+                typingIndicator.style.display = 'none';
+            }
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
+
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Nyaya Sahayi - Your Legal AI Assistant</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a3a2a;
+            --primary-mid: #2d5c42;
+            --primary-light: #4a8c63;
+            --accent: #c8a96e;
+            --accent-light: #f0e4cc;
+            --bg-main: #faf9f6;
+            --bg-surface: #ffffff;
+            --bg-input: #f5f3ef;
+            --text-main: #1c1c1a;
+            --text-dim: #7a7167;
+            --text-light: #b0a99e;
+            --border: #e8e4dc;
+            --border-strong: #d0cbc0;
+            --user-bubble: #1a3a2a;
+            --ai-bubble: #ffffff;
+            --shadow-sm: 0 1px 4px rgba(26, 58, 42, 0.06);
+            --shadow-md: 0 4px 20px rgba(26, 58, 42, 0.08);
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html,
+        body {
+            height: 100%;
+            height: 100dvh;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* ── HEADER ── */
+        header {
+            flex-shrink: 0;
+            padding: 0 1.5rem;
+            height: 60px;
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 20;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-mark {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .logo-mark svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--accent);
+        }
+
+        .logo-text {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.15rem;
+            color: var(--primary);
+            letter-spacing: 0.01em;
+        }
+
+        .header-badge {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 100px;
+        }
+
+        /* ── CHAT AREA ── */
+        #chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem 1rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            scroll-behavior: smooth;
+            overscroll-behavior: contain;
+        }
+
+        #chat-container::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        #chat-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #chat-container::-webkit-scrollbar-thumb {
+            background: var(--border-strong);
+            border-radius: 4px;
+        }
+
+        .message-row {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+            animation: msgIn 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        @keyframes msgIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-row.user-row {
+            flex-direction: row-reverse;
+        }
+
+        .avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 500;
+            align-self: flex-end;
+            margin-bottom: 2px;
+        }
+
+        .ai-avatar {
+            background: var(--primary);
+            color: var(--accent);
+            font-family: 'DM Serif Display', serif;
+            font-size: 0.8rem;
+        }
+
+        .user-avatar {
+            background: var(--accent-light);
+            color: var(--primary);
+        }
+
+        .message {
+            max-width: min(72%, 480px);
+            padding: 0.7rem 1rem;
+            font-size: 0.93rem;
+            line-height: 1.6;
+            border-radius: var(--radius-md);
+        }
+
+        .ai-message {
+            background: var(--ai-bubble);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            border-bottom-left-radius: var(--radius-sm);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .user-message {
+            background: var(--user-bubble);
+            color: #ffffff;
+            border-bottom-right-radius: var(--radius-sm);
+        }
+
+        /* ── WELCOME BLOCK ── */
+        .welcome-block {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            animation: msgIn 0.3s ease both;
+            max-width: min(72%, 480px);
+        }
+
+        .welcome-card {
+            background: var(--ai-bubble);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            border-bottom-left-radius: var(--radius-sm);
+            padding: 1rem 1.1rem;
+            font-size: 0.93rem;
+            line-height: 1.6;
+            color: var(--text-main);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .suggestions-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            font-weight: 500;
+            padding-left: 2px;
+        }
+
+        .suggestions-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .suggestion-chip {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 0.55rem 0.9rem;
+            font-size: 0.83rem;
+            color: var(--primary-mid);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-align: left;
+            font-family: 'DM Sans', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            line-height: 1.4;
+        }
+
+        .suggestion-chip:hover {
+            background: var(--accent-light);
+            border-color: var(--accent);
+            color: var(--primary);
+            transform: translateX(2px);
+        }
+
+        .chip-icon {
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        /* ── INPUT AREA ── */
+        .input-wrapper {
+            flex-shrink: 0;
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border);
+            padding: 0.85rem 1rem;
+            padding-bottom: calc(0.85rem + env(safe-area-inset-bottom));
+        }
+
+        .input-row {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 6px 6px 6px 14px;
+            transition: border-color 0.2s;
+        }
+
+        .input-row:focus-within {
+            border-color: var(--primary-mid);
+            background: var(--bg-surface);
+        }
+
+        #user-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.93rem;
+            color: var(--text-main);
+            resize: none;
+            min-height: 24px;
+            max-height: 120px;
+            line-height: 1.5;
+            padding: 4px 0;
+        }
+
+        #user-input::placeholder {
+            color: var(--text-light);
+        }
+
+        #send-btn {
+            flex-shrink: 0;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.15s, transform 0.1s;
+        }
+
+        #send-btn:hover {
+            background: var(--primary-mid);
+        }
+
+        #send-btn:active {
+            transform: scale(0.93);
+        }
+
+        #send-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: #ffffff;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ── TYPING INDICATOR ── */
+        .typing-row {
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            display: none;
+        }
+
+        .typing-bubble {
+            background: var(--ai-bubble);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            border-bottom-left-radius: var(--radius-sm);
+            padding: 0.75rem 1rem;
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--text-light);
+            animation: dotBounce 1.2s ease-in-out infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes dotBounce {
+
+            0%,
+            80%,
+            100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+
+            40% {
+                transform: translateY(-5px);
+                opacity: 1;
+            }
+        }
+
+        /* ── CALENDAR WIDGET (preserved logic, restyled) ── */
+        .calendar-widget {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.1rem;
+            max-width: 360px;
+            width: 100%;
+            animation: msgIn 0.3s ease both;
+            box-shadow: var(--shadow-md);
+            align-self: flex-start;
+        }
+
+        .calendar-widget .cal-header-msg {
+            font-size: 0.83rem;
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .cal-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        .cal-nav button {
+            background: var(--bg-input);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            padding: 0;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .cal-nav button:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        .cal-nav .cal-month-label {
+            font-family: 'DM Serif Display', serif;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .cal-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            margin-bottom: 0.3rem;
+        }
+
+        .cal-weekdays span {
+            font-size: 0.68rem;
+            font-weight: 500;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.25rem 0;
+        }
+
+        .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+        }
+
+        .cal-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 0.82rem;
+            color: var(--text-light);
+            cursor: default;
+            transition: all 0.15s;
+            position: relative;
+        }
+
+        .cal-day.available {
+            color: var(--primary-mid);
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .cal-day.available::after {
+            content: '';
+            position: absolute;
+            bottom: 3px;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .cal-day.available:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .cal-day.available:hover::after {
+            background: #fff;
+        }
+
+        .cal-day.selected {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .cal-day.selected::after {
+            background: #fff;
+        }
+
+        .cal-day.empty {
+            visibility: hidden;
+        }
+
+        .cal-day.today {
+            border: 1.5px solid var(--primary-mid);
+        }
+
+        .time-slots-panel {
+            margin-top: 0.9rem;
+            padding-top: 0.9rem;
+            border-top: 1px solid var(--border);
+            animation: msgIn 0.2s ease both;
+        }
+
+        .time-slots-panel .ts-date-label {
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            color: var(--text-dim);
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+        }
+
+        .time-slots-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .time-slot-btn {
+            background: var(--bg-input);
+            color: var(--primary-mid);
+            border: 1px solid var(--border);
+            padding: 0.45rem 0.85rem;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .time-slot-btn:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        .cal-booking-confirm {
+            text-align: center;
+            padding: 1.25rem 1rem;
+            animation: msgIn 0.3s ease both;
+        }
+
+        .cal-booking-confirm .confirm-icon {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cal-booking-confirm .confirm-text {
+            font-size: 0.88rem;
+            color: var(--text-main);
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 600px) {
+            header {
+                padding: 0 1rem;
+                height: 54px;
+            }
+
+            .logo-text {
+                font-size: 1.05rem;
+            }
+
+            .header-badge {
+                display: none;
+            }
+
+            #chat-container {
+                padding: 1rem 0.75rem 0.75rem;
+            }
+
+            .message {
+                max-width: 88%;
+                font-size: 0.9rem;
+            }
+
+            .welcome-block {
+                max-width: 95%;
+            }
+
+            .input-wrapper {
+                padding: 0.7rem 0.75rem;
+                padding-bottom: calc(0.7rem + env(safe-area-inset-bottom));
+            }
+
+            .calendar-widget {
+                max-width: 100%;
+            }
+        }
+
+        @media (min-width: 768px) {
+            #chat-container {
+                padding: 2rem 2rem 1.5rem;
+            }
+
+            .input-wrapper {
+                padding: 1rem 2rem;
+            }
+
+            .message {
+                max-width: 60%;
+            }
+
+            .welcome-block {
+                max-width: 60%;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            #chat-container {
+                max-width: 800px;
+                margin: 0 auto;
+                width: 100%;
+                padding: 2rem 0 1.5rem;
+            }
+
+            .input-wrapper {
+                padding: 1rem 0;
+            }
+
+            .input-wrapper>* {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo-group">
+            <span class="logo-text">Nyaya Sahayi</span>
+        </div>
+        <div class="header-badge">Legal AI Assistant</div>
+    </header>
+
+    <div id="chat-container">
+        <!-- Welcome block is rendered by JS below -->
+    </div>
+
+    <div class="input-wrapper">
+        <div class="input-row">
+            <textarea id="user-input" placeholder="Ask about your case or legal procedures…" rows="1"
+                autocomplete="off"></textarea>
+            <button id="send-btn" aria-label="Send">
+                <svg viewBox="0 0 24 24">
+                    <line x1="22" y1="2" x2="11" y2="13" />
+                    <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const BACKEND_URL = "http://localhost:8000/api/chat";
+        const BOOK_URL = "http://localhost:8000/api/book";
+
+        const chatContainer = document.getElementById('chat-container');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const clientToken = urlParams.get('token') || 'default_client';
+
+        const WEEKDAY_LABELS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'];
+
+        /* ── auto-resize textarea ── */
+        userInput.addEventListener('input', () => {
+            userInput.style.height = 'auto';
+            userInput.style.height = Math.min(userInput.scrollHeight, 120) + 'px';
+        });
+
+        /* ── WELCOME BLOCK ── */
+        const suggestions = [
+            { text: 'What is the current status of my case?' },
+            { text: 'I would like to schedule a meeting with my lawyer.' },
+            { text: 'When is my next hearing date?' },
+        ];
+
+        function renderWelcome() {
+            const row = document.createElement('div');
+            row.style.display = 'flex';
+            row.style.gap = '10px';
+            row.style.alignItems = 'flex-end';
+
+            const av = document.createElement('div');
+            av.className = 'avatar ai-avatar';
+            av.textContent = 'N';
+
+            const block = document.createElement('div');
+            block.className = 'welcome-block';
+
+            const card = document.createElement('div');
+            card.className = 'welcome-card';
+            card.textContent = 'Namaskaram! I can help you track your case, answer questions, and schedule meetings with your lawyer. I do not provide legal advice.';
+
+            const label = document.createElement('div');
+            label.className = 'suggestions-label';
+            label.textContent = 'How can I help you today?';
+
+            const grid = document.createElement('div');
+            grid.className = 'suggestions-grid';
+
+            suggestions.forEach(s => {
+                const chip = document.createElement('button');
+                chip.className = 'suggestion-chip';
+                chip.innerHTML = `<span>${s.text}</span>`;
+                chip.addEventListener('click', () => {
+                    userInput.value = s.text;
+                    sendMessage();
+                });
+                grid.appendChild(chip);
+            });
+
+            block.appendChild(card);
+            block.appendChild(label);
+            block.appendChild(grid);
+
+            row.appendChild(av);
+            row.appendChild(block);
+            chatContainer.appendChild(row);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        renderWelcome();
+
+        /* ── TYPING INDICATOR ── */
+        let typingRow;
+        function showTyping() {
+            typingRow = document.createElement('div');
+            typingRow.className = 'typing-row';
+            typingRow.style.display = 'flex';
+            typingRow.style.gap = '10px';
+            typingRow.style.alignItems = 'flex-end';
+
+            const av = document.createElement('div');
+            av.className = 'avatar ai-avatar';
+            av.textContent = 'N';
+
+            const bubble = document.createElement('div');
+            bubble.className = 'typing-bubble';
+            [1, 2, 3].forEach(() => {
+                const d = document.createElement('div');
+                d.className = 'dot';
+                bubble.appendChild(d);
+            });
+
+            typingRow.appendChild(av);
+            typingRow.appendChild(bubble);
+            chatContainer.appendChild(typingRow);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function hideTyping() {
+            if (typingRow && typingRow.parentNode) typingRow.parentNode.removeChild(typingRow);
+            typingRow = null;
+        }
+
+        /* ── APPEND MESSAGE ── */
+        function appendMessage(text, isUser) {
+            const row = document.createElement('div');
+            row.className = `message-row ${isUser ? 'user-row' : ''}`;
+
+            const av = document.createElement('div');
+            av.className = `avatar ${isUser ? 'user-avatar' : 'ai-avatar'}`;
+            av.textContent = isUser ? 'U' : 'N';
+
+            const msg = document.createElement('div');
+            msg.className = `message ${isUser ? 'user-message' : 'ai-message'}`;
+            msg.textContent = text;
+
+            row.appendChild(av);
+            row.appendChild(msg);
+            chatContainer.appendChild(row);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        /* ── CALENDAR WIDGET ── */
+        function renderCalendar(availableSlots, headerMsg) {
+            const slotMap = {};
+            availableSlots.forEach(s => { slotMap[s.date] = s.slots; });
+
+            const firstDate = new Date(availableSlots[0].date + 'T00:00:00');
+            let viewYear = firstDate.getFullYear();
+            let viewMonth = firstDate.getMonth();
+
+            const wrapper = document.createElement('div');
+            wrapper.style.display = 'flex';
+            wrapper.style.gap = '10px';
+            wrapper.style.alignItems = 'flex-end';
+
+            const av = document.createElement('div');
+            av.className = 'avatar ai-avatar';
+            av.textContent = 'N';
+
+            const widget = document.createElement('div');
+            widget.className = 'calendar-widget';
+
+            wrapper.appendChild(av);
+            wrapper.appendChild(widget);
+            chatContainer.appendChild(wrapper);
+
+            function draw() {
+                widget.innerHTML = '';
+
+                const msgP = document.createElement('div');
+                msgP.className = 'cal-header-msg';
+                msgP.textContent = headerMsg || 'Pick a date & time for your meeting:';
+                widget.appendChild(msgP);
+
+                const nav = document.createElement('div');
+                nav.className = 'cal-nav';
+                const prevBtn = document.createElement('button');
+                prevBtn.innerHTML = '&#8249;';
+                prevBtn.onclick = () => { viewMonth--; if (viewMonth < 0) { viewMonth = 11; viewYear--; } draw(); };
+                const nextBtn = document.createElement('button');
+                nextBtn.innerHTML = '&#8250;';
+                nextBtn.onclick = () => { viewMonth++; if (viewMonth > 11) { viewMonth = 0; viewYear++; } draw(); };
+                const label = document.createElement('span');
+                label.className = 'cal-month-label';
+                label.textContent = `${MONTH_NAMES[viewMonth]} ${viewYear}`;
+                nav.appendChild(prevBtn);
+                nav.appendChild(label);
+                nav.appendChild(nextBtn);
+                widget.appendChild(nav);
+
+                const wkRow = document.createElement('div');
+                wkRow.className = 'cal-weekdays';
+                WEEKDAY_LABELS.forEach(d => {
+                    const sp = document.createElement('span');
+                    sp.textContent = d;
+                    wkRow.appendChild(sp);
+                });
+                widget.appendChild(wkRow);
+
+                const grid = document.createElement('div');
+                grid.className = 'cal-grid';
+                const firstDayOfMonth = new Date(viewYear, viewMonth, 1).getDay();
+                const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+                const today = new Date();
+
+                for (let i = 0; i < firstDayOfMonth; i++) {
+                    const empty = document.createElement('div');
+                    empty.className = 'cal-day empty';
+                    grid.appendChild(empty);
+                }
+
+                for (let d = 1; d <= daysInMonth; d++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'cal-day';
+                    cell.textContent = d;
+                    const dateStr = `${viewYear}-${String(viewMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+
+                    if (d === today.getDate() && viewMonth === today.getMonth() && viewYear === today.getFullYear()) {
+                        cell.classList.add('today');
+                    }
+                    if (slotMap[dateStr]) {
+                        cell.classList.add('available');
+                        cell.onclick = () => showTimeSlots(dateStr, slotMap[dateStr], widget, grid);
+                    }
+                    grid.appendChild(cell);
+                }
+                widget.appendChild(grid);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+
+            draw();
+        }
+
+        function showTimeSlots(dateStr, slots, widget) {
+            const existing = widget.querySelector('.time-slots-panel');
+            if (existing) existing.remove();
+
+            widget.querySelectorAll('.cal-day').forEach(c => c.classList.remove('selected'));
+            widget.querySelectorAll('.cal-day.available').forEach(c => {
+                const d = parseInt(dateStr.split('-')[2]);
+                if (parseInt(c.textContent) === d) c.classList.add('selected');
+            });
+
+            const panel = document.createElement('div');
+            panel.className = 'time-slots-panel';
+
+            const dateObj = new Date(dateStr + 'T00:00:00');
+            const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+            const label = document.createElement('div');
+            label.className = 'ts-date-label';
+            label.textContent = `📅 ${dayName}`;
+            panel.appendChild(label);
+
+            const grid = document.createElement('div');
+            grid.className = 'time-slots-grid';
+            slots.forEach(time => {
+                const btn = document.createElement('button');
+                btn.className = 'time-slot-btn';
+                btn.textContent = `🕐 ${time}`;
+                btn.onclick = () => bookAppointment(dateStr, time, widget);
+                grid.appendChild(btn);
+            });
+
+            panel.appendChild(grid);
+            widget.appendChild(panel);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        async function bookAppointment(date, time, widget) {
+            widget.querySelectorAll('.time-slot-btn').forEach(b => {
+                b.disabled = true;
+                b.style.opacity = '0.5';
+            });
+
+            try {
+                const res = await fetch(BOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ client_id: clientToken, date, time })
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    const errorMessage = data.detail || 'ക്ഷമിക്കണം, ബുക്കിംഗ് പരാജയപ്പെട്ടു.';
+                    appendMessage(errorMessage, false);
+                    widget.querySelectorAll('.time-slot-btn').forEach(b => {
+                        b.disabled = false;
+                        b.style.opacity = '1';
+                    });
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                    return;
+                }
+
+                const panel = widget.querySelector('.time-slots-panel');
+                if (panel) panel.remove();
+
+                widget.innerHTML = '';
+                const confirm = document.createElement('div');
+                confirm.className = 'cal-booking-confirm';
+                confirm.innerHTML = `
+                    <div class="confirm-icon">✅</div>
+                    <div class="confirm-text">${data.message || 'Meeting booked successfully!'}</div>
+                `;
+                widget.appendChild(confirm);
+
+            } catch (err) {
+                console.error('Booking error:', err);
+                appendMessage('നെറ്റ്‌വർക്ക് തകരാർ. ദയവായി വീണ്ടും ശ്രമിക്കുക.', false);
+            }
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        /* ── SEND MESSAGE ── */
+        async function sendMessage() {
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            appendMessage(message, true);
+            userInput.value = '';
+            userInput.style.height = 'auto';
+            showTyping();
+
+            try {
+                const response = await fetch(BACKEND_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message, client_id: clientToken })
+                });
+
+                const data = await response.json();
+
+                hideTyping();
+
+                if (data.type === 'calendar' && data.available_slots) {
+                    renderCalendar(data.available_slots, data.message);
+                } else if (data.response) {
+                    appendMessage(data.response, false);
+                } else {
+                    appendMessage('I encountered an error processing your request.', false);
+                }
+
+                if (data.audio) {
+                    try {
+                        const aiVoice = new Audio("data:audio/wav;base64," + data.audio);
+                        aiVoice.play().catch(e => console.log("Autoplay blocked:", e));
+                    } catch (err) {
+                        console.error("Audio error:", err);
+                    }
+                }
+
+            } catch (error) {
+                hideTyping();
+                console.error('Error:', error);
+                appendMessage('Failed to connect to the backend. Please ensure the server is running.', false);
+            }
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+/* GoogleSignupButton.css - Google signup button styles */
+
+.google-signup-button {
+  width: 100%;
+  padding: 14px 24px;
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.google-icon {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.google-signup-button:hover {
+  background-color: #1f1f1f;
+  border-color: #444444;
+}
+
+.google-signup-button:active {
+  transform: scale(0.98);
+}

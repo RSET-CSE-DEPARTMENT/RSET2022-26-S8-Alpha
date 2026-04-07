@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Client &amp; Case Data"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Client Details"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/et_client_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Client Name (e.g. Alan J)"
+            android:inputType="textPersonName"/>
+
+        <EditText
+            android:id="@+id/et_client_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number (e.g. +919876543210)"
+            android:inputType="phone"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Case Details"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/et_case_cnr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="CNR Number (e.g. KLER6300...)"
+            android:inputType="textCapCharacters"/>
+
+        <EditText
+            android:id="@+id/et_next_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Next Hearing Date (e.g. 17-01-2026)"
+            android:inputType="date"/>
+            
+        <EditText
+            android:id="@+id/et_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Case Status (e.g. Pending)"
+            android:inputType="text"/>
+
+        <Button
+            android:id="@+id/btn_save_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Save to Local Database"/>
+
+    </LinearLayout>
+</ScrollView>

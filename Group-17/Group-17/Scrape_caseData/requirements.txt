@@ -1,0 +1,6 @@
+flask
+pymongo[srv]
+selenium
+webdriver-manager
+beautifulsoup4
+Pillow

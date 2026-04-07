@@ -1,0 +1,1 @@
+CORE-ALIGN is a kinematic-driven system designed to perform exercise repetition segmentation and posture evaluation using monocular video input. The system converts raw human motion into a structured and biomechanically meaningful representation, enabling accurate analysis of exercise performance.

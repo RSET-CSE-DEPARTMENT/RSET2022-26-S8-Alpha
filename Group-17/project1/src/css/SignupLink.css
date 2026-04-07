@@ -1,0 +1,18 @@
+/* SignupLink.css - Styles for the signup link component */
+
+.signup-text {
+  text-align: center;
+  color: #808080;
+  font-size: 14px;
+  margin: 24px 0 0 0;
+}
+
+.signup-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}

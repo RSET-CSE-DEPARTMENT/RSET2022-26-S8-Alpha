@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Scraper — Admin Dashboard</title>
+    <meta name="description" content="Admin dashboard to scrape and manage case data from Kerala Courts">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖</text></svg>">
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <div class="logo-icon">⚖</div>
+                <div>
+                    <h1>CaseScraper</h1>
+                    <span>Kerala Courts Admin Dashboard</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="status-badge connected" id="dbStatus">
+                    <span class="status-dot"></span>
+                    MongoDB Connected
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main class="main">
+
+        <!-- Stats Row -->
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-label">Total Cases</div>
+                <div class="stat-value" id="totalCases">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Database</div>
+                <div class="stat-value" style="font-size:18px;">Case / CaseDetails</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Source</div>
+                <div class="stat-value" style="font-size:14px;">filing.keralacourts.in</div>
+            </div>
+        </div>
+
+        <!-- Scrape Status Panel -->
+        <div class="scrape-panel" id="scrapePanel">
+            <div class="scrape-panel-header">
+                <h3><span class="spinner"></span> Scraping in Progress</h3>
+            </div>
+            <div class="scrape-panel-body">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar" style="width: 10%"></div>
+                </div>
+                <div class="scrape-message" id="scrapeMessage">Starting...</div>
+
+                <!-- Captcha Section -->
+                <div class="captcha-section" id="captchaSection">
+                    <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">
+                        Solve the captcha below to continue scraping
+                    </p>
+                    <img id="captchaImage" src="" alt="Captcha Image">
+                    <div class="captcha-input-row">
+                        <input type="text" id="captchaInput" placeholder="Enter code"
+                               autocomplete="off" maxlength="10">
+                        <button class="btn btn-success" id="captchaSubmitBtn">✓ Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Search cases by CNR, district, court...">
+            </div>
+            <button class="btn btn-primary" id="addCaseBtn">＋ Add Case</button>
+            <button class="btn btn-secondary" id="refreshBtn">↻ Refresh</button>
+        </div>
+
+        <!-- Cases Table -->
+        <div class="table-container">
+            <div class="table-header">
+                <h2>📁 Cases</h2>
+                <span class="case-count"><span id="totalCases2">0</span> records</span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>CNR Number</th>
+                        <th>District</th>
+                        <th>Court</th>
+                        <th>Status</th>
+                        <th>Next Hearing</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="caseTableBody">
+                    <tr>
+                        <td colspan="6">
+                            <div class="empty-state">
+                                <div class="empty-icon">⏳</div>
+                                <p>Loading cases...</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Result Viewer -->
+        <div class="result-panel" id="resultPanel">
+            <h2 style="margin-bottom:16px; font-size:18px;">📊 Scraped Results</h2>
+            <div id="resultContent"></div>
+        </div>
+
+    </main>
+
+    <!-- ===== ADD CASE MODAL ===== -->
+    <div class="modal-overlay" id="addCaseModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add New Case</h3>
+                <button class="modal-close" onclick="closeAddCaseModal()">✕</button>
+            </div>
+            <form id="addCaseForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="newCnr">CNR Number</label>
+                        <input type="text" id="newCnr" placeholder="e.g. KLER630018162022" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newDistrict">District</label>
+                        <input type="text" id="newDistrict" placeholder="e.g. Ernakulam" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newCourt">Court</label>
+                        <input type="text" id="newCourt"
+                               placeholder="e.g. Judicial First Class Magistrate Court,Angamaly" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeAddCaseModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Case</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== TOAST CONTAINER ===== -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="/static/app.js"></script>
+    <script>
+        // Sync total count to both elements
+        const origRender = renderCases;
+        renderCases = function() {
+            origRender();
+            document.getElementById('totalCases2').textContent = cases.length;
+        };
+    </script>
+</body>
+</html>

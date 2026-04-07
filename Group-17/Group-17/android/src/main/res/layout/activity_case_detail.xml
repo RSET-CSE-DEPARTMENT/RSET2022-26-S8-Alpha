@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_detail_cnr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="CNR Number"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tv_detail_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Status: Loading..."
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tv_detail_client"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="Client Info Loading..."
+        android:layout_marginBottom="16dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/tv_detail_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="History details will appear here."/>
+    </ScrollView>
+
+
+
+    <Button
+        android:id="@+id/btn_add_to_mycase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add to MyCase"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+</LinearLayout>

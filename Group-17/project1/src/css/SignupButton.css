@@ -1,0 +1,24 @@
+/* SignupButton.css - Signup button styles */
+
+.signup-button {
+  width: 100%;
+  padding: 14px 24px;
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+}
+
+.signup-button:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-1px);
+}
+
+.signup-button:active {
+  transform: translateY(0);
+}
