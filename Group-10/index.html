@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Code Assistant</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Side-by-side logic */
+        .editor-container {
+            flex: 1;
+            display: flex;
+            gap: 0;
+            transition: gap 0.3s ease;
+            min-height: 0;
+        }
+
+        .editor-pane {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* Hide optimized pane by default */
+        #pane-optimized {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Split view state */
+        .editor-container.is-split #pane-optimized {
+            display: flex;
+            opacity: 1;
+        }
+
+        .editor-container.is-split {
+            gap: 16px;
+        }
+
+        .pane-label {
+            background: #0f172a;
+            color: #60a5fa;
+            padding: 8px 16px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .split-editor {
+            flex: 1;
+        }
+
+        .result-box {
+            margin-top: 15px;
+            padding: 12px;
+            background: #1b1f2a;
+            color: #9fe6a0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: monospace;
+            display: none; /* Hidden until results exist */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1 class="main-title">Code Assistant</h1>
+
+    <div class="action-bar">
+        <button type="button" class="action-btn">Explain</button>
+
+        <div class="convert-wrapper">
+            <button type="button" class="action-btn" id="convertBtn">
+                Convert ▾
+            </button>
+            <div class="convert-menu" id="convertMenu"></div>
+        </div>
+
+        <button type="button" class="action-btn" id="optimizeBtn">Optimize</button>
+
+        <button type="button"class="action-btn">Algorithm</button>
+        <button type="button"class="action-btn">Flowchart</button>
+
+        <select class="language-select toolbar-lang" id="language">
+            <option value="python">Python</option>
+            <option value="java">Java</option>
+            <option value="javascript">Javascript</option>
+        </select>
+    </div>
+
+    <div class="editor-container" id="editor-wrapper">
+        <div class="editor-pane" id="pane-original">
+           
+            <div id="editor-original" class="split-editor"></div>
+        </div>
+
+        <div class="editor-pane" id="pane-optimized">
+            <div class="pane-label">Optimized Code</div>
+            <div id="editor-optimized" class="split-editor"></div>
+        </div>
+    </div>
+
+    <div id="resultBox" class="result-box"></div>
+
+    <div class="button-area">
+        <button type="button" class="check-btn">Check Code</button>
+    </div>
+
+</div>
+
+<script src="https://unpkg.com/monaco-editor@0.45.0/min/vs/loader.js"></script>
+
+<script>
+    window.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        console.log("ENTER PRESSED");
+    }
+});
+
+require.config({
+    paths: { vs: 'https://unpkg.com/monaco-editor@0.45.0/min/vs' }
+});
+
+require(['vs/editor/editor.main'], function () {
+    
+
+    // 1. Initialize Original Editor
+    const editorOriginal = monaco.editor.create(document.getElementById('editor-original'), {
+        value: '# Start typing your code here\n',
+        language: 'python',
+        theme: 'vs-dark',
+        automaticLayout: true,
+        fontSize: 14,
+        fontFamily: 'JetBrains Mono',
+        minimap: { enabled: false }
+    });
+
+    // 2. Initialize Optimized Editor
+    const editorOptimized = monaco.editor.create(document.getElementById('editor-optimized'), {
+        value: '',
+        language: 'python',
+        theme: 'vs-dark',
+        automaticLayout: true,
+        fontSize: 14,
+        fontFamily: 'JetBrains Mono',
+        readOnly: true,
+        minimap: { enabled: false }
+    });
+
+    const resultBox = document.getElementById("resultBox");
+    const languageSelect = document.getElementById("language");
+    const convertMenu = document.getElementById("convertMenu");
+    const convertBtn = document.getElementById("convertBtn");
+    const optimizeBtn = document.getElementById("optimizeBtn");
+    const wrapper = document.getElementById('editor-wrapper');
+
+    // -------------------------
+    // OPTIMIZE BUTTON
+    // -------------------------
+    optimizeBtn.addEventListener("click", async (event) => {
+        event.preventDefault();  // Add this line
+    
+    event.stopPropagation();
+        
+        
+        const code = editorOriginal.getValue().trim();
+
+        if (!code || code === "# Start typing your code here") {
+            alert("Please enter code before optimizing.");
+            return;
+        }
+
+        try {
+            const response = await fetch("http://127.0.0.1:5000/optimize", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+    code: code,
+    language: languageSelect.value
+})
+            });
+
+            const data = await response.json();
+console.log("OPTIMIZED CODE FROM BACKEND:", data.optimized_code);
+
+
+if (response.ok && data.optimized_code !== undefined) {
+
+                // Show second pane
+                // Show second pane and set content immediately
+wrapper.classList.add('is-split');
+editorOptimized.setValue(data.optimized_code);
+
+// Use requestAnimationFrame for better timing
+requestAnimationFrame(() => {
+    editorOriginal.layout();
+    editorOptimized.layout();
+});
+
+                
+                // Set optimized content
+                
+
+                // Show complexity info
+                resultBox.style.display = "block";
+                resultBox.innerHTML = 
+                    "<strong>Original Complexity:</strong> " + data.original_complexity +
+                    " | <strong>Optimized Complexity:</strong> " + data.optimized_complexity;
+
+                // Force layout recalculation for split view
+                
+            } else {
+                alert(data.error || "Optimization failed.");
+            }
+        } catch (error) {
+            alert("Server error. Is backend running?");
+        }
+    });
+// -------------------------
+// CHECK CODE BUTTON
+// -------------------------
+
+const checkBtn = document.querySelector(".check-btn");
+
+checkBtn.addEventListener("click", async () => {
+
+    const code = editorOriginal.getValue().trim();
+    const language = languageSelect.value;
+
+    if (!code || code === "# Start typing your code here") {
+        alert("Please enter code before checking.");
+        return;
+    }
+
+    try {
+        const response = await fetch("http://127.0.0.1:5000/check-syntax", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                code: code,
+                language: language
+            })
+        });
+
+        const data = await response.json();
+        resultBox.style.display = "block";
+
+        resultBox.style.display = "block";
+
+let output = "";
+
+// ----------------------
+// Syntax Status
+// ----------------------
+if (data.syntax_ok) {
+    resultBox.style.color = "#9fe6a0";
+    output += "✅ <strong>" + data.syntax_result + "</strong><br><br>";
+} else {
+    resultBox.style.color = "#ff6b6b";
+    output += "❌ <strong>" + data.syntax_error + "</strong><br><br>";
+}
+
+// ----------------------
+// Manual Checks
+// ----------------------
+if (data.manual_checks && data.manual_checks.length > 0) {
+    output += "<span style='color:#facc15'><strong>Manual Checks:</strong></span><br>";
+    data.manual_checks.forEach(msg => {
+        output += "• " + msg + "<br>";
+    });
+    output += "<br>";
+}
+
+// ----------------------
+// Semantic Errors
+// ----------------------
+if (data.semantic_errors && data.semantic_errors.length > 0) {
+    output += "<span style='color:#ff6b6b'><strong>Semantic / Runtime Errors:</strong></span><br>";
+    data.semantic_errors.forEach(msg => {
+        output += "• " + msg + "<br>";
+    });
+}
+
+resultBox.innerHTML = output;
+
+    } catch (error) {
+        alert("Server error. Make sure app.py is running.");
+    }
+});
+
+    // -------------------------
+    // CONVERT FUNCTIONS
+    // -------------------------
+    function addConvertOption(text) {
+        const btn = document.createElement("button");
+        btn.textContent = text;
+        btn.addEventListener("click", async () => {
+            const code = editorOriginal.getValue().trim();
+            const language = languageSelect.value;
+
+            if (!code || code === "# Start typing your code here") {
+                alert("Please enter code before converting.");
+                return;
+            }
+
+            try {
+                const response = await fetch("http://127.0.0.1:5000/convert", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ code: code, language: language })
+                });
+
+                const data = await response.json();
+                if (data.converted_code) {
+                    editorOriginal.setValue(data.converted_code);
+                } else {
+                    alert(data.error || "Conversion failed.");
+                }
+            } catch (error) {
+                alert("Server error. Please ensure backend is running.");
+            }
+        });
+        convertMenu.appendChild(btn);
+    }
+
+    function updateConvertOptions() {
+        convertMenu.innerHTML = "";
+        if (languageSelect.value === "python") {
+            addConvertOption("Convert Python → Java");
+        } 
+        else if (languageSelect.value === "java") {
+            addConvertOption("Convert Java → Python");
+        }
+    }
+
+    convertBtn.addEventListener("click", () => {
+        convertMenu.style.display = convertMenu.style.display === "block" ? "none" : "block";
+    });
+
+    languageSelect.addEventListener("change", (e) => {
+    const lang = e.target.value;
+
+    monaco.editor.setModelLanguage(editorOriginal.getModel(), lang);
+    monaco.editor.setModelLanguage(editorOptimized.getModel(), lang);
+
+    if (lang === "python") {
+        editorOriginal.setValue("# Start typing your Python code here\n");
+    } 
+    else if (lang === "java") {
+        editorOriginal.setValue("// Start typing your Java code here\n");
+    } 
+    else if (lang === "javascript") {
+        editorOriginal.setValue("// Start typing your JavaScript code here\n");
+    }
+
+    updateConvertOptions();
+});
+
+
+    updateConvertOptions();
+});
+</script>
+
+</body>
+</html>
