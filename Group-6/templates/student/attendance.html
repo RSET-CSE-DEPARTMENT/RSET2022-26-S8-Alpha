@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}My Attendance - Student Portal{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <!-- Header -->
+    <div class="dashboard-header">
+        <h1>My Attendance</h1>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <div class="stat-icon present"></div>
+            <div class="stat-value">{{ stats.percentage }}%</div>
+            <div class="stat-label">Overall Attendance</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon total"></div>
+            <div class="stat-value">{{ stats.present }}</div>
+            <div class="stat-label">Classes Attended</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon absent"></div>
+            <div class="stat-value">{{ stats.absent }}</div>
+            <div class="stat-label">Classes Missed</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon minimum"></div>
+            <div class="stat-value">75%</div>
+            <div class="stat-label">Minimum Required</div>
+        </div>
+
+    </div>
+
+    <!-- Attendance Log -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Recent Attendance Records</h2>
+        </div>
+
+        <div class="card-body table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Subject</th>
+                        <th>Status</th>
+                        <th>Marked By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in records %}
+                    <tr>
+                        <td>{{ record.date }}</td>
+                        <td>{{ record.subject }}</td>
+                        <td>
+                            {% if record.status == 'present' %}
+                            <span class="status-badge status-pass">Present</span>
+                            {% elif record.status == 'absent' %}
+                            <span class="status-badge status-fail">Absent</span>
+                            {% else %}
+                            <span class="status-badge status-warning">Late</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ record.faculty_name }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4" style="text-align: center;">No attendance records found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

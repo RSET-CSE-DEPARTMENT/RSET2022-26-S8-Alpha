@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Setup MFA - Student Management Portal{% endblock %}
+
+{% block content %}
+<div class="auth-container" style="max-width: 500px;">
+    <div class="auth-card">
+
+        <!-- Header -->
+        <div class="auth-header">
+            <div class="auth-icon" style="background-color: var(--primary);">
+                <i class="fa-solid fa-qrcode" style="color: white;"></i>
+            </div>
+            <h1>Setup Google Authenticator</h1>
+            <p>Scan the QR code to connect your account</p>
+        </div>
+
+        <div class="auth-body text-center" style="padding: 20px;">
+            <p>1. Download the <strong>Google Authenticator</strong> app on your smartphone.</p>
+            <p>2. Open the app and tap the "+" icon to scan a QR code.</p>
+            
+            <div style="background: white; padding: 20px; display: inline-block; border-radius: 10px; margin: 20px 0; border: 2px solid var(--border);">
+                <img src="data:image/png;base64,{{ qr_b64 }}" alt="TOTP QR Code" style="width: 200px; height: auto;">
+            </div>
+
+            <p style="margin-top: 15px;">If you can't scan the barcode, enter this setup key manually:</p>
+            <div class="code-box" style="background: var(--bg-color); padding: 15px; border-radius: 8px; font-family: monospace; font-size: 1.2rem; letter-spacing: 2px; font-weight: bold; border: 1px dashed var(--border);">
+                {{ secret }}
+            </div>
+        </div>
+
+        <div class="auth-footer" style="padding-top: 10px;">
+            <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-block">
+                <i class="fa-solid fa-check"></i> Finished
+            </a>
+            <a href="{{ url_for('dashboard') }}" class="link-back" style="display: block; margin-top: 15px;">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Dashboard
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

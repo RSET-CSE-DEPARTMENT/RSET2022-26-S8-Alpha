@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Verify Identity{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-icon success">
+            <i class="fa-solid fa-user-shield"></i>
+        </div>
+        <h2>Identity Verification</h2>
+        <p>Please enter the 6-digit code sent to your email to verify your identity and regain trust points.</p>
+
+        <form action="{{ url_for('confirm_recovery_otp') }}" method="POST">
+            <div class="form-group">
+                <input type="text" name="otp" class="form-control" placeholder="Enter 6-digit OTP" required
+                    maxlength="6" pattern="\d{6}">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Verify & Regain Trust</button>
+        </form>
+
+        <div class="auth-footer">
+            <a href="{{ url_for('dashboard') }}">Cancel and return to dashboard</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

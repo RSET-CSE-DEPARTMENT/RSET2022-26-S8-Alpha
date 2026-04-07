@@ -1,0 +1,19 @@
+/* DashboardContainer.css - Main dashboard layout */
+
+.dashboard-container {
+  min-height: 100vh;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 20px;
+}
+
+.dashboard-content {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 10px;
+  }
+}

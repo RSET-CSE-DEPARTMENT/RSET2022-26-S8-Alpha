@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Class Students{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>Students Enrolled in: {{ class_info.name }}</h1>
+    <a href="{{ url_for('admin_classes') }}" class="btn btn-secondary">Back to Classes</a>
+</div>
+
+<div class="card">
+    <div class="card-body table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Roll No</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Semester</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in students %}
+                <tr>
+                    <td>{{ s.roll }}</td>
+                    <td>{{ s.name }}</td>
+                    <td>{{ s.department }}</td>
+                    <td>Semester {{ s.semester }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4" style="text-align: center;">No students enrolled in this class.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

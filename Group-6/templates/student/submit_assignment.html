@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Submit Assignment - College Portal{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>Submit Assignment: {{ assignment.title }}</h2>
+        <p>Due Date: {{ assignment.due_date }}</p>
+    </div>
+    <div class="card-body">
+        <div class="assignment-desc"
+            style="padding: 15px; background: #f9f9f9; border-left: 4px solid #007bff; margin-bottom: 25px;">
+            <strong>Instructions:</strong><br>
+            {{ assignment.description or "No specific instructions provided." }}
+        </div>
+
+        <form method="POST">
+            <div class="form-group">
+                <label>Your Submission (Text)</label>
+                <textarea name="submission_text" required class="form-control" rows="10"
+                    placeholder="Type your assignment content here...">{{ submission.submission_text if submission else '' }}</textarea>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button type="submit" class="btn btn-success">
+                    {% if submission %}Update Submission{% else %}Submit Assignment{% endif %}
+                </button>
+                <a href="{{ url_for('student_assignments') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

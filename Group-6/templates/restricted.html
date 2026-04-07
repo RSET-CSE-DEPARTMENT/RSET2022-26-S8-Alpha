@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% block title %}Access Restricted - Student Management Portal{% endblock %}
+{% block extra_css %}
+<style>
+    .restricted-container {
+        min-height: 70vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+    }
+    .restricted-card {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(12px);
+        padding: 3rem;
+        width: 100%;
+        max-width: 600px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-lg);
+        text-align: center;
+        animation: fadeUp 0.6s ease;
+        border-top: 5px solid var(--danger);
+    }
+    .restricted-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1.5rem;
+        border-radius: 50%;
+        background: rgba(239, 68, 68, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--danger);
+        font-size: 2.5rem;
+    }
+    .trust-meter-container {
+        margin: 2rem 0;
+        background: #f1f5f9;
+        height: 12px;
+        border-radius: 6px;
+        overflow: hidden;
+        position: relative;
+    }
+    .trust-meter-fill {
+        height: 100%;
+        transition: width 1s ease-out;
+    }
+    .trust-value {
+        font-weight: 700;
+        font-size: 1.2rem;
+    }
+    .status-badge {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-top: 1rem;
+    }
+    .status-critical {
+        background: #fee2e2;
+        color: #991b1b;
+    }
+    .status-limited {
+        background: #fef9c3;
+        color: #854d0e;
+    }
+    .action-section {
+        margin-top: 2.5rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+    }
+    .admin-note {
+        font-size: 0.9rem;
+        color: var(--secondary);
+        margin-bottom: 1.5rem;
+    }
+    .trust-explanation {
+        text-align: left;
+        background: #f8fafc;
+        padding: 1.5rem;
+        border-radius: var(--radius);
+        margin: 1.5rem 0;
+        font-size: 0.9rem;
+        color: #475569;
+        line-height: 1.6;
+    }
+    .trust-explanation ul {
+        margin-top: 0.5rem;
+        padding-left: 1.5rem;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="restricted-container">
+    <div class="restricted-card">
+        <div class="restricted-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        
+        <h1>Access Restricted</h1>
+        
+        {% set trust = session.get('trust_score', 100) %}
+        
+        <div class="status-badge {% if trust < 30 %}status-critical{% else %}status-limited{% endif %}">
+            {% if trust < 30 %}
+                <i class="fa-solid fa-circle-exclamation"></i> CRITICAL RESTRICTION
+            {% else %}
+                <i class="fa-solid fa-triangle-exclamation"></i> LIMITED ACCESS
+            {% endif %}
+        </div>
+        <div class="trust-meter-container">
+            <div class="trust-meter-fill" style="width: {{ trust }}%; background: {% if trust >= 60 %}var(--success){% elif trust >= 50 %}var(--warning){% else %}var(--danger){% endif %};"></div>
+        </div>
+        
+        <p>Your current trust score is <span class="trust-value" style="color: {% if trust >= 60 %}var(--success){% elif trust >= 50 %}var(--warning){% else %}var(--danger){% endif %};">{{ trust }}</span>.</p>
+        <div class="trust-explanation">
+            <strong>Why is my access limited?</strong>
+            {% if trust < 30 %}
+                <p>Your trust score has fallen below the critical threshold (30). For security reasons, all portal features have been disabled.</p>
+            {% else %}
+                <p>Sensitive operations (Marks, Attendance, Fees) require a trust score of at least <strong>60</strong>.</p>
+                <p>Common reasons for trust reduction:</p>
+                <ul>
+                    <li>Multiple failed login attempts</li>
+                    <li>Accessing the portal from an unrecognized device</li>
+                    <li>Unusual browsing behavior detected</li>
+                    <li>Accessing during non-standard hours</li>
+                </ul>
+            {% endif %}
+        </div>
+        <div class="action-section">
+            <p class="admin-note">If you believe this is an error, you can request a manual review from the administrator.</p>
+            
+            <form action="{{ url_for('request_admin_help') }}" method="POST">
+                <button type="submit" class="btn btn-primary btn-block btn-glow" style="background: var(--danger);">
+                    <i class="fa-solid fa-paper-plane"></i> Alert Administrator for Review
+                </button>
+            </form>
+            
+            <div style="margin-top: 1.5rem;">
+                <a href="{{ url_for('dashboard') }}" class="btn btn-logout" style="color: var(--dark); border-color: var(--border);">
+                    <i class="fa-solid fa-house"></i> Return to Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

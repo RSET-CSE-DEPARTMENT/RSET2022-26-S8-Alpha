@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Grievances{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="dashboard-header">
+        <h1>📢 All Grievances</h1>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+    <div class="card table-container">
+        <table>
+            <tr>
+                <th>Submitted By</th>
+                <th>Name</th>
+                <th>Subject / Title</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+
+            {% for g in grievances %}
+            <tr>
+                <td>
+                    {% if g.submitter_role == 'Parent' %}
+                        Parent
+                    {% else %}
+                        Student
+                    {% endif %}
+                </td>
+
+                <td>{{ g.submitter_name }}</td>
+
+                <td>{{ g.subject }}</td>
+
+                <td>{{ g.description }}</td>
+
+                <td class="{% if g.status|lower == 'pending' %}status-pending{% else %}status-approved{% endif %}">
+                    {{ g.status }}
+                </td>
+
+                <td>
+                    {% if g.status|lower == 'pending' %}
+                    <form method="post"
+                          action="{{ url_for('admin_resolve_grievance', grievance_id=g.id) }}?source={{ 'parent' if g.submitter_role == 'Parent' else 'student' }}">
+                        <button class="btn btn-success">Resolve</button>
+                    </form>
+                    {% else %}
+                        ✔
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

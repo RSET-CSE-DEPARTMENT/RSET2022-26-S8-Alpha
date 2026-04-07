@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}My Grievances{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>My Grievances</h1>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">← Back to Dashboard</a>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h2>Grievances Submitted</h2><br>
+        <button class="btn btn-primary" onclick="openNewGrievanceForm()">+ New Grievance</button>
+        <br>
+        <br>
+    </div>
+    <div class="card-body">
+        {% if grievances %}
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Submitted On</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for g in grievances %}
+                <tr>
+                    <td>{{ g.title }}</td>
+                    <td>{{ g.description }}</td>
+                    <td>{{ g.status }}</td>
+                    <td>{{ g.submitted_at }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="muted">No grievances submitted yet.</p>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Modal for new grievance -->
+<div id="grievanceModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Submit New Grievance</h3>
+            <button class="modal-close" onclick="closeGrievanceModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form method="POST" action="{{ url_for('submit_parent_grievance') }}">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+function openNewGrievanceForm() {
+    document.getElementById('grievanceModal').style.display = 'flex';
+}
+function closeGrievanceModal() {
+    document.getElementById('grievanceModal').style.display = 'none';
+}
+</script>
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Enroll Student{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>Enroll Student in Class</h1>
+    <a href="{{ url_for('admin_classes') }}" class="btn btn-secondary">Cancel</a>
+</div>
+
+<div class="card auth-card" style="max-width: 600px; margin: 0 auto;">
+    <form method="POST">
+        <div class="form-group">
+            <label>Select Class</label>
+            <select name="class_id" class="form-control" required>
+                {% for c in classes %}
+                <option value="{{ c.id }}">{{ c.name }} ({{ c.department }})</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Select Student</label>
+            <select name="student_id" class="form-control" required>
+                {% for s in students %}
+                <option value="{{ s.id }}">{{ s.name }} ({{ s.roll }})</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success btn-block">Enroll Now</button>
+    </form>
+</div>
+{% endblock %}

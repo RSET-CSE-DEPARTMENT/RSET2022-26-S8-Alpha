@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Child's Marks - Parent Portal{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="dashboard-header">
+        <h1>Academic Performance</h1>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">← Back to Dashboard</a>
+    </div>
+
+    {% if student %}
+    <div class="student-info-card">
+        <div class="student-avatar"></div>
+        <div class="student-details">
+            <h2>{{ student.student_name }}</h2>
+            <p><strong>Roll No:</strong> {{ student.roll_number or 'N/A' }}</p>
+            <p><strong>Department:</strong> {{ student.department or 'N/A' }}</p>
+            <p><strong>Semester:</strong> {{ student.semester or 'N/A' }}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="card">
+        <div class="card-header">
+            <h2>Examination Records</h2>
+        </div>
+        <div class="card-body">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Marks Obtained</th>
+                        <th>Max Marks</th>
+                        <th>Exam Type</th>
+                        <th>Faculty</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mark in detailed_marks %}
+                    <tr>
+                        <td>{{ mark.subject }}</td>
+                        <td><strong>{{ mark.marks_obtained }}</strong></td>
+                        <td>{{ mark.max_marks }}</td>
+                        <td><span class="btn-sm btn-info">{{ mark.exam_type }}</span></td>
+                        <td>{{ mark.faculty_name or 'N/A' }}</td>
+                        <td>{{ (mark.entered_at|string)[:10] if mark.entered_at else 'N/A' }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6" style="text-align: center;">No examination records found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

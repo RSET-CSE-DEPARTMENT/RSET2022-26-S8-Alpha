@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Profile Change Requests{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="dashboard-header">
+        <h1> Profile Change Requests</h1>
+         <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+    <div class="card table-container">
+        <table>
+            <tr>
+                <th>Student</th>
+                <th>Field</th>
+                <th>Old</th>
+                <th>New</th>
+                <th>Trust</th>
+                <th>Action</th>
+            </tr>
+            {% for r in requests %}
+            <tr>
+                <td>{{ r.student_name }}</td>
+                <td>{{ r.field_name }}</td>
+                <td>{{ r.old_value }}</td>
+                <td>{{ r.new_value }}</td>
+                <td>{{ r.trust_score }}</td>
+                <td>
+                    <a class="btn btn-success" href="{{ url_for('admin_handle_request', request_id=r.id, action='approve') }}">Approve</a>
+                    <a class="btn btn-danger" href="{{ url_for('admin_handle_request', request_id=r.id, action='reject') }}">Reject</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr><td colspan="6">No pending requests.</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

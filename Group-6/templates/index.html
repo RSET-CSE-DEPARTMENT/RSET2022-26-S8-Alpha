@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome - Student Management Portal{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>Student Management Portal</h1>
+        <p class="hero-subtitle">
+            Secure • Zero-Trust • Role-Based Academic Management System
+        </p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-user-graduate"></i>
+                </div>
+
+                <h3>Student Portal</h3>
+                <p>View marks, attendance, fees and submit grievances</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <h3>Parent Portal</h3>
+                <p>Track academic performance and fee status</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                </div>
+                <h3>Faculty Portal</h3>
+                <p>Manage attendance, marks and announcements</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3>Admin Portal</h3>
+                <p>System control with security & trust monitoring</p>
+            </div>
+        </div>
+
+        <div class="cta-buttons">
+            <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">
+                Login to Portal
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

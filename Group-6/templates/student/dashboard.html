@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}Student Dashboard{% endblock %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="dashboard-header">
+    <h1>Welcome, {{ user.name }}</h1>
+    <p>
+        Roll Number: {{ student.roll if student else 'N/A' }} |
+        Department: {{ student.department if student else 'N/A' }}
+    </p>
+</div>
+
+{% if session.trust_score < 50 %} <div class="alert alert-danger"
+    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <div>
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <strong>Low Trust Score: {{ session.trust_score }}</strong>. Your access is restricted.
+    </div>
+    <a href="{{ url_for('self_service_verify') }}" class="btn btn-warning btn-sm">Verify Identity for +20 Trust</a>
+    </div>
+    {% endif %}
+
+    {% if security_alert %}
+    <div class="alert alert-warning">
+        {{ security_alert }}
+    </div>
+    {% endif %}
+
+    <!-- Dashboard Cards -->
+    <div class="dashboard-grid">
+
+        <!-- Marks -->
+        <a href="{{ url_for('student_marks') }}" class="dashboard-card dashboard-link">
+            <div class="card-icon primary">
+                <i class="fa-solid fa-clipboard-list"></i>
+            </div>
+            <h3>Marks</h3>
+            <p>View internal and exam marks</p>
+        </a>
+
+        <!-- Attendance -->
+        <a href="{{ url_for('student_attendance') }}" class="dashboard-card dashboard-link">
+            <div class="card-icon success">
+                <i class="fa-solid fa-calendar-check"></i>
+            </div>
+            <h3>Attendance</h3>
+            <p>Check your attendance record</p>
+        </a>
+
+        <!-- Fees -->
+        <a href="{{ url_for('student_fees') }}" class="dashboard-card dashboard-link">
+            <div class="card-icon warning">
+                <i class="fa-solid fa-wallet"></i>
+            </div>
+            <h3>Fees</h3>
+            <p>View fee status and payments</p>
+        </a>
+
+        <!-- Notices -->
+        <a href="{{ url_for('student_notices') }}" class="dashboard-card dashboard-link">
+            <div class="card-icon info">
+                <i class="fa-solid fa-bullhorn"></i>
+            </div>
+            <h3>Notices</h3>
+            <p>Important announcements</p>
+        </a>
+
+        <!-- Assignments -->
+        <a href="{{ url_for('student_assignments') }}" class="dashboard-card dashboard-link">
+            <div class="card-icon secondary" style="background: #6c757d; color: white;">
+                <i class="fa-solid fa-file-pen"></i>
+            </div>
+            <h3>Assignments</h3>
+            <p>View and submit coursework</p>
+        </a>
+
+        <!-- Grievances -->
+        <a href="{{ url_for('student_grievance') }}" class="dashboard-card dashboard-link">
+            <div class="card-icon danger">
+                <i class="fa-solid fa-file-circle-exclamation"></i>
+            </div>
+            <h3>Grievances</h3>
+            <p>Submit and track complaints</p>
+        </a>
+
+        <!-- Profile -->
+        <a href="{{ url_for('student_profile') }}" class="dashboard-card dashboard-link">
+            <div class="card-icon dark">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <h3>My Profile</h3>
+            <p>View and request profile changes</p>
+        </a>
+
+    </div>
+
+    {% endblock %}

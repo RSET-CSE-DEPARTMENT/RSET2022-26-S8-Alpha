@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}My Assignments - College Portal{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>Your Assignments</h2>
+    </div>
+    <div class="card-body">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Class</th>
+                    <th>Assignment</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for a in assignments %}
+                <tr>
+                    <td>{{ a.class_name }}</td>
+                    <td>
+                        <strong>{{ a.title }}</strong><br>
+                        <small style="color: #666;">by {{ a.faculty_name }}</small>
+                    </td>
+                    <td>{{ a.due_date }}</td>
+                    <td>
+                        {% if a.is_submitted %}
+                        <span class="status-badge status-pass">Submitted</span>
+                        {% else %}
+                        <span class="status-badge status-warning">Pending</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ url_for('student_submit_assignment', assignment_id=a.id) }}"
+                            class="btn btn-sm btn-primary">
+                            {% if a.is_submitted %}Edit Submission{% else %}Submit Now{% endif %}
+                        </a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" style="text-align: center;">No assignments found for your enrolled classes.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

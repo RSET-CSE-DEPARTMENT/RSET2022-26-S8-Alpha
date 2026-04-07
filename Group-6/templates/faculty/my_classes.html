@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}My Assigned Classes - Faculty Portal{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>My Assigned Classes</h1>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">← Back to Dashboard</a>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3>Class Schedule & Roster</h3>
+    </div>
+    <div class="card-body table-container" style="overflow-x: auto;">
+        <table class="data-table" style="min-width: 600px;">
+            <thead>
+                <tr>
+                    <th>Class Name</th>
+                    <th>Department</th>
+                    <th>Semester</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in assigned_classes %}
+                <tr>
+                    <td><strong>{{ c.name }}</strong></td>
+                    <td>{{ c.department }}</td>
+                    <td>Semester {{ c.semester }}</td>
+                    <td>
+                        <a href="{{ url_for('faculty_attendance', class_id=c.id) }}"
+                            class="btn btn-sm btn-info">Attendance</a>
+                        <a href="{{ url_for('faculty_marks', class_id=c.id) }}" class="btn btn-sm btn-primary">Marks</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4" style="text-align: center;">You haven't been assigned to any classes yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

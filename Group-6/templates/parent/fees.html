@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Child's Fee Details - Parent Portal{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="dashboard-header">
+        <h1>💰 Fee Details</h1>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">← Back to Dashboard</a>
+    </div>
+
+    <div class="student-info-card">
+        <div class="student-avatar">👨‍🎓</div>
+        <div class="student-details">
+            <h2>John Doe</h2>
+            <p><strong>Roll No:</strong> CS2024001</p>
+            <p><strong>Course:</strong> B.Tech CSE - 3rd Year</p>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">💵</div>
+            <div class="stat-value">₹{{ total_fees|round(0, 'common') }}</div>
+            <div class="stat-label">Total Annual Fee</div>
+        </div>
+        <div class="stat-card stat-success">
+            <div class="stat-icon">✅</div>
+            <div class="stat-value">₹{{ fees_paid|round(0, 'common') }}</div>
+            <div class="stat-label">Amount Paid</div>
+        </div>
+        <div class="stat-card stat-warning">
+            <div class="stat-icon">⏳</div>
+            <div class="stat-value">₹{{ fees_due|round(0, 'common') }}</div>
+            <div class="stat-label">Balance Due</div>
+        </div>
+        <div class="stat-card stat-danger">
+            <div class="stat-icon">📅</div>
+            <div class="stat-value">{{ next_due }}</div>
+            <div class="stat-label">Next Due Date</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h2>Payment History</h2>
+        </div>
+        <div class="card-body">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Mode</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in payments %}
+                    <tr>
+                        <td>{{ p.transaction_id }}</td>
+                        <td>{{ p.payment_date }}</td>
+                        <td>₹{{ p.amount }}</td>
+                        <td>{{ p.payment_method }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4" style="text-align: center;">No payment records found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+    function payFee() {
+        alert('Redirecting to payment gateway...\n\nThis would integrate with a real payment system in production.');
+    }
+</script>
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% block title %}Add User - Admin{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+
+    <div class="dashboard-header">
+        <h1>Add New User</h1>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">← Back to Dashboard</a>
+    </div>
+
+    <div class="form-wrapper">
+        <div class="form-card">
+            <form method="post" id="addUserForm" autocomplete="off">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input name="name" required placeholder="e.g. John Smith" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input name="username" required placeholder="e.g. john.smith" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input name="email" type="email" required placeholder="email@college.edu" >
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input name="phone" placeholder="Optional">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input name="password" type="password" required autocomplete="new-password">
+                    </div>
+                    <div class="form-group">
+                        <label>Role</label>
+                        <select name="role" id="roleSelect" required onchange="toggleRoleFields()">
+                            <option value="student">Student</option>
+                            <option value="parent">Parent</option>
+                            <option value="faculty">Faculty</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- ── Student-only fields ─────────────────────────────── -->
+                <div id="studentFields" style="display:none;">
+                    <hr style="margin: 16px 0; opacity:0.2;">
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">
+                        <i class="fas fa-graduation-cap"></i> Student details — roll number is auto-generated.
+                    </p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Department</label>
+                            <select name="department">
+                                <option value="Computer Science">Computer Science</option>
+                                <option value="Information Technology">Information Technology</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Mechanical">Mechanical</option>
+                                <option value="Civil">Civil</option>
+                                <option value="Electrical">Electrical</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Semester</label>
+                            <select name="semester">
+                                {% for i in range(1, 9) %}
+                                <option value="{{ i }}">Semester {{ i }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Batch Year</label>
+                            <select name="batch_year">
+                                {% for y in range(2022, 2029) %}
+                                <option value="{{ y }}" {% if y==2024 %}selected{% endif %}>{{ y }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Roll Number Preview</label>
+                            <input id="rollPreview" readonly placeholder="Auto-generated on save"
+                                style="background:var(--bg-secondary); color:var(--text-muted);">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Parent-only fields ─────────────────────────────── -->
+                <div id="parentFields" style="display:none;">
+                    <hr style="margin: 16px 0; opacity:0.2;">
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">
+                        <i class="fas fa-user-friends"></i> Enter the student's email to link this parent account.
+                    </p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Student Email</label>
+                            <input name="student_email" id="studentEmailInput" type="email"
+                                placeholder="student@college.edu" oninput="lookupStudent()">
+                        </div>
+                        <div class="form-group">
+                            <label>Matched Student</label>
+                            <input id="studentMatchDisplay" readonly placeholder="Will auto-fill when email is found"
+                                style="background:var(--bg-secondary); color:var(--text-muted);">
+                            <input type="hidden" name="student_id" id="studentIdHidden">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-primary" type="submit">Create User</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Build a map of student email → {id, name} for instant lookup
+    const studentMap = {
+        {% for s in students %}
+    "{{ s.email }}": { id: {{ s.student_id }}, name: "{{ s.name }}" },
+    {% endfor %}
+    };
+
+    function toggleRoleFields() {
+        const role = document.getElementById('roleSelect').value;
+        document.getElementById('studentFields').style.display = (role === 'student') ? '' : 'none';
+        document.getElementById('parentFields').style.display = (role === 'parent') ? '' : 'none';
+
+        // Update required attributes
+        document.getElementById('studentEmailInput').required = (role === 'parent');
+
+        if (role === 'student') updateRollPreview();
+    }
+
+    function updateRollPreview() {
+        const dept = document.querySelector('[name=department]')?.value || 'CS';
+        const year = document.querySelector('[name=batch_year]')?.value || new Date().getFullYear();
+        // Abbreviated dept code
+        const deptCodes = {
+            'Computer Science': 'CS', 'Information Technology': 'IT',
+            'Electronics': 'EC', 'Mechanical': 'ME', 'Civil': 'CV', 'Electrical': 'EE'
+        };
+        const code = deptCodes[dept] || dept.slice(0, 2).toUpperCase();
+        document.getElementById('rollPreview').value = `${year}-${code}-XXXX (auto)`;
+    }
+
+    function lookupStudent() {
+        const email = document.getElementById('studentEmailInput').value.trim().toLowerCase();
+        const match = studentMap[email];
+        const display = document.getElementById('studentMatchDisplay');
+        const hidden = document.getElementById('studentIdHidden');
+
+        if (match) {
+            display.value = `✅ ${match.name}`;
+            display.style.color = 'var(--success)';
+            hidden.value = match.id;
+        } else {
+            display.value = email.length > 5 ? '❌ No student found' : '';
+            display.style.color = 'var(--danger)';
+            hidden.value = '';
+        }
+    }
+
+    // Wire up department/year change to update preview
+    document.addEventListener('DOMContentLoaded', () => {
+        toggleRoleFields();
+        document.querySelector('[name=department]')?.addEventListener('change', updateRollPreview);
+        document.querySelector('[name=batch_year]')?.addEventListener('change', updateRollPreview);
+    });
+</script>
+{% endblock %}

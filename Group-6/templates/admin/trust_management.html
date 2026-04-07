@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}Trust Management{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>Trust Score Management</h1>
+    <p>Monitor and recalibrate user trust levels</p>
+</div>
+
+<div class="admin-table-container">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Current Trust</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td><span class="role-badge {{ user.role }}">{{ user.role|capitalize }}</span></td>
+                <td>
+                    <div class="trust-display">
+                        <span class="trust-score">{{ user.trust_score }}</span>
+                        <div class="trust-bar-mini">
+                            <div class="trust-fill-mini {% if (user.trust_score|default(0, true)) < 40 %}trust-fill-low{% elif (user.trust_score|default(0, true)) < 70 %}trust-fill-medium{% else %}trust-fill-high{% endif %}"
+                                style="width: {{ user.trust_score|default(0, true) }}%;">
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    {% if (user.trust_score|default(0, true)) < 100 %} <form
+                        action="{{ url_for('admin_reset_trust', user_id=user.id) }}" method="POST"
+                        style="display:inline;">
+                        <button type="submit" class="btn btn-small"
+                            onclick="return confirm('Are you sure you want to reset trust for {{ user.username }}?')">Reset
+                            to 100</button>
+                        </form>
+                        {% else %}
+                        <span class="text-muted">Maximum Trust</span>
+                        {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="back-link" style="margin-top: 20px;">
+    <a href="{{ url_for('admin_trust_management') }}" class="btn btn-secondary">Refresh List</a>
+    <a href="{{ url_for('dashboard') }}" class="btn">Back to Dashboard</a>
+</div>
+
+<style>
+    .trust-display {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .trust-bar-mini {
+        width: 100px;
+        height: 8px;
+        background: #f1f2f6;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .trust-fill-mini {
+        height: 100%;
+        transition: width 0.3s ease;
+    }
+
+    .trust-fill-low {
+        background-color: #ff4757;
+    }
+
+    .trust-fill-medium {
+        background-color: #ffa502;
+    }
+
+    .trust-fill-high {
+        background-color: #2ed573;
+    }
+
+    .btn-small {
+        padding: 5px 10px;
+        font-size: 0.8em;
+    }
+
+    .text-muted {
+        color: #747d8c;
+        font-size: 0.9em;
+        font-style: italic;
+    }
+</style>
+{% endblock %}

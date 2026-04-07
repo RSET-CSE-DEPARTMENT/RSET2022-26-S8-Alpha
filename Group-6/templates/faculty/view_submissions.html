@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}View Submissions - College Portal{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>Submissions for: {{ assignment.title }}</h2>
+        <p>Class: {{ assignment.class_id }} | Due: {{ assignment.due_date }}</p>
+    </div>
+    <div class="card-body">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Submission Text</th>
+                    <th>Submitted At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in submissions %}
+                <tr>
+                    <td>{{ s.student_name }}</td>
+                    <td>
+                        <div
+                            style="max-height: 100px; overflow-y: auto; white-space: pre-wrap; font-size: 0.9em; background: #fdfdfd; padding: 10px; border: 1px solid #eee;">
+                            {{ s.submission_text }}
+                        </div>
+                    </td>
+                    <td>{{ s.submitted_at }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="3" style="text-align: center;">No submissions yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div style="margin-top: 20px;">
+            <a href="{{ url_for('faculty_assignments') }}" class="btn btn-secondary">Back to Assignments</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

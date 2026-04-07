@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}Enter Marks - Faculty Portal{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="dashboard-header">
+        <h1>📝 Enter Marks</h1>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">← Back to Dashboard</a>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h2>Select Class</h2>
+        </div>
+        <div class="card-body">
+            <form action="{{ url_for('faculty_marks') }}" method="GET" class="form-inline">
+                <div class="form-group">
+                    <label for="class_id">Class</label>
+                    <select id="class_id" name="class_id" class="form-control" required onchange="this.form.submit()">
+                        <option value="">Select Class</option>
+                        {% for c in assigned_classes %}
+                        <option value="{{ c.id }}" {% if selected_class and selected_class.id==c.id %}selected{% endif
+                            %}>
+                            {{ c.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% if selected_class %}
+    <div class="card">
+        <div class="card-header">
+            <h2>Enter Marks - {{ selected_class.name }}</h2>
+        </div>
+        <div class="card-body">
+            <form action="{{ url_for('faculty_marks') }}" method="POST">
+                <input type="hidden" name="class_id" value="{{ selected_class.id }}">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Exam Type</label>
+                        <select name="exam_type" class="form-control" required>
+                            <option value="Internal 1">Internal 1</option>
+                            <option value="Internal 2">Internal 2</option>
+                            <option value="Mid-Term">Mid-Term</option>
+                            <option value="Final">Final Exam</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Max Marks</label>
+                        <input type="number" name="max_marks" class="form-control" value="100" required>
+                    </div>
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Roll No</th>
+                            <th>Name</th>
+                            <th>Marks Obtained</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student in students %}
+                        <tr>
+                            <td>{{ student.roll }}</td>
+                            <td>{{ student.student_name }}</td>
+                            <td>
+                                <input type="number" name="marks_{{ student.id }}" class="form-control" required
+                                    min="0">
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <div class="form-actions" style="margin-top: 20px;">
+                    <button type="submit" class="btn btn-primary btn-lg">Submit Marks</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

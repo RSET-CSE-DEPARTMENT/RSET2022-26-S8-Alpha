@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Parent Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>Welcome, {{ user.name }}!</h1>
+</div>
+
+{% if session.trust_score < 50 %} <div class="alert alert-danger"
+    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; width: 100%; max-width: 800px; margin-left: auto; margin-right: auto;">
+    <div>
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <strong>Low Trust Score: {{ session.trust_score }}</strong>. Your access is restricted.
+    </div>
+    <a href="{{ url_for('self_service_verify') }}" class="btn btn-warning btn-sm">Verify Identity for +20 Trust</a>
+    </div>
+    {% endif %}
+
+    <div class="dashboard-grid"
+        style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 24px;">
+
+        <a href="{{ url_for('parent_marks') }}" class="dashboard-card dashboard-link" style="text-decoration: none;">
+            <div class="card-icon primary">📝</div>
+            <h3>View Marks</h3>
+            <p>Check your ward's academic performance.</p>
+        </a>
+
+        <a href="{{ url_for('parent_attendance') }}" class="dashboard-card dashboard-link"
+            style="text-decoration: none;">
+            <div class="card-icon info">📅</div>
+            <h3>Attendance</h3>
+            <p>View attendance details for your child.</p>
+        </a>
+
+        <a href="{{ url_for('parent_fees') }}" class="dashboard-card dashboard-link" style="text-decoration: none;">
+            <div class="card-icon success">💳</div>
+            <h3>Fee Details</h3>
+            <p>Check fee status and payment history.</p>
+        </a>
+
+        <a href="{{ url_for('parent_notices') }}" class="dashboard-card dashboard-link" style="text-decoration: none;">
+            <div class="card-icon warning">📢</div>
+            <h3>Notices</h3>
+            <p>Stay updated with school announcements.</p>
+        </a>
+
+        <a href="{{ url_for('parent_grievances') }}" class="dashboard-card dashboard-link"
+            style="text-decoration: none;">
+            <div class="card-icon danger">📝</div>
+            <h3>Grievances</h3>
+            <p>Raise concerns or complaints if any.</p>
+        </a>
+
+    </div>
+    {% endblock %}

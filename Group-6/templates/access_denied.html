@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Access Denied{% endblock %}
+
+{% block content %}
+<div class="error-container">
+    <div class="error-card">
+        <span class="error-icon">🚫</span>
+        <h1>Access Denied</h1>
+        <p class="error-detail">
+            You do not have permission to access this page.
+        </p>
+<br><br>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-primary">
+            Go to Dashboard
+        </a>
+    </div>
+</div>
+{% endblock %}

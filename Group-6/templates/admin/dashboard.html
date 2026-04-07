@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>Admin Control Panel</h1>
+    <p>Full system access with security monitoring</p>
+</div>
+
+{% if session.trust_score < 50 %} <div class="alert alert-danger"
+    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <div>
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <strong>Low Trust Score: {{ session.trust_score }}</strong>. Your access is restricted.
+    </div>
+    <a href="{{ url_for('self_service_verify') }}" class="btn btn-warning btn-sm">Verify Identity for +20 Trust</a>
+    </div>
+    {% endif %}
+
+    <div class="dashboard-grid">
+
+        <!-- Admin Action Cards -->
+        <a href="{{ url_for('admin_users') }}" class="dashboard-card dashboard-link">
+            <div class="card-icon">👤</div>
+            <h3>Manage Users</h3>
+            <p>View, edit, or remove existing users from the system.</p>
+        </a>
+
+        <a href="{{ url_for('admin_add_user') }}" class="dashboard-card dashboard-link">
+            <div class="card-icon">➕</div>
+            <h3>Add User</h3>
+            <p>Create a new admin, faculty, or student account quickly.</p>
+        </a>
+
+        <a href="{{ url_for('admin_change_requests') }}" class="dashboard-card dashboard-link">
+            <div class="card-icon">📋</div>
+            <h3>Change Requests</h3>
+            <p>Review and approve pending change requests.</p>
+        </a>
+
+        <a href="{{ url_for('admin_grievances') }}" class="dashboard-card dashboard-link">
+            <div class="card-icon">📝</div>
+            <h3>Grievances</h3>
+            <p>Handle complaints and issues submitted by users.</p>
+        </a>
+
+        <a href="{{ url_for('admin_logs') }}" class="dashboard-card dashboard-link">
+            <div class="card-icon">📊</div>
+            <h3>Access Logs</h3>
+            <p>Monitor system activity and user login history.</p>
+        </a>
+
+        <a href="{{ url_for('admin_trust_management') }}" class="dashboard-card dashboard-link">
+            <div class="card-icon">🛡️</div>
+            <h3>Trust Management</h3>
+            <p>Monitor and reset user trust scores.</p>
+        </a>
+
+        <a href="{{ url_for('admin_classes') }}" class="dashboard-card dashboard-link">
+            <div class="card-icon">🏫</div>
+            <h3>Manage Classes</h3>
+            <p>Create classes and enroll students into courses.</p>
+        </a>
+
+
+
+    </div>
+
+    <!-- Toggle Read-Only Button -->
+    <div class="read-only-toggle" style="display: flex; justify-content: center; margin: 24px 0;">
+        <a href="{{ url_for('admin_toggle_readonly') }}" class="btn">
+            Toggle Read-Only Mode
+        </a>
+    </div>
+
+
+    {% endblock %}

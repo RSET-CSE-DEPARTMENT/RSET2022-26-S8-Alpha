@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Take Attendance - Faculty Portal{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="dashboard-header">
+        <h1>📋 Take Attendance</h1>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">← Back to Dashboard</a>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h2>Select Class</h2>
+        </div>
+        <div class="card-body">
+            <form action="{{ url_for('faculty_attendance') }}" method="GET" class="form-inline">
+                <div class="form-group">
+                    <label for="class_id">Class</label>
+                    <select id="class_id" name="class_id" class="form-control" required onchange="this.form.submit()">
+                        <option value="">Select Class</option>
+                        {% for c in assigned_classes %}
+                        <option value="{{ c.id }}" {% if selected_class and selected_class.id==c.id %}selected{% endif
+                            %}>
+                            {{ c.name }} ({{ c.department }})
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% if selected_class %}
+    <div id="attendanceSection" class="card">
+        <div class="card-header">
+            <h2>Mark Attendance - {{ selected_class.name }}</h2>
+        </div>
+        <div class="card-body">
+            <form action="{{ url_for('faculty_attendance') }}" method="POST">
+                <input type="hidden" name="class_id" value="{{ selected_class.id }}">
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" name="date" class="form-control" value="{{ today }}" required>
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Roll No</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student in students %}
+                        <tr>
+                            <td>{{ student.roll }}</td>
+                            <td>{{ student.student_name }}</td>
+                            <td>
+                                <select name="status_{{ student.id }}" class="form-control">
+                                    <option value="present">Present</option>
+                                    <option value="absent">Absent</option>
+                                    <option value="late">Late</option>
+                                </select>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <div class="form-actions" style="margin-top: 20px;">
+                    <button type="submit" class="btn btn-primary btn-lg">Submit Attendance</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

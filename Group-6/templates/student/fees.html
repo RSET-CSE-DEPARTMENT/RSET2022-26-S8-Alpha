@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+{% block title %}Fee Details - Student Portal{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="dashboard-header">
+        <h1>💰 Fee Details</h1>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">← Back to Dashboard</a>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid" style="margin-bottom: 25px;">
+        <div class="stat-card">
+            <div class="stat-icon">₹</div>
+            <div class="stat-value">₹{{ total_fees|round(0, 'common') }}</div>
+            <div class="stat-label">Total Fees</div>
+        </div>
+        <div class="stat-card stat-success">
+            <div class="stat-icon">✓</div>
+            <div class="stat-value">₹{{ fees_paid|round(0, 'common') }}</div>
+            <div class="stat-label">Paid Amount</div>
+        </div>
+        <div class="stat-card stat-warning">
+            <div class="stat-icon">!</div>
+            <div class="stat-value">₹{{ fees_due|round(0, 'common') }}</div>
+            <div class="stat-label">Pending Amount</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">📅</div>
+            <div class="stat-value">{{ next_due }}</div>
+            <div class="stat-label">Next Due Date</div>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="card" style="margin-bottom: 25px; padding: 25px; background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <h3 style="margin-top: 0; color: var(--text-color);">Payment Progress</h3>
+        {% set progress = 0 %}
+        {% if total_fees > 0 %}
+            {% set progress = (fees_paid / total_fees) * 100 %}
+        {% endif %}
+        <div style="background-color: #e9ecef; border-radius: 10px; height: 24px; width: 100%; overflow: hidden; margin-top: 15px; position: relative;">
+            <div style="background-color: {% if progress == 100 %}var(--success){% else %}var(--primary){% endif %}; height: 100%; width: {{ progress }}%; transition: width 0.5s ease; border-radius: 10px;"></div>
+            <span style="position: absolute; width: 100%; text-align: center; color: {% if progress > 50 %}white{% else %}var(--text-color){% endif %}; font-weight: bold; font-size: 0.85rem; line-height: 24px;">{{ progress|round(1) }}% Paid</span>
+        </div>
+        {% if progress == 100 %}
+            <p style="color: var(--success); font-weight: bold; margin-top: 10px;">🎉 All fees have been paid for this semester!</p>
+        {% endif %}
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 25px;">
+        
+        <!-- Make Payment Form -->
+        <div class="form-card" style="margin: 0; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <h3 style="margin-top: 0;"><i class="fa-solid fa-credit-card"></i> Make a Payment</h3>
+            
+            {% if fees_due > 0 %}
+            <p style="margin-bottom: 15px; color: var(--text-muted); font-size: 0.9rem;">
+                Securely pay your pending fees. Requires Zero-Trust TOTP.
+            </p>
+
+            <form id="paymentForm" method="post" action="{{ url_for('pay_fees') }}">
+                <div class="form-group">
+                    <label>Amount (₹)</label>
+                    <input type="number" name="amount" required placeholder="Ex: 50000" min="1" max="{{ fees_due }}" step="0.01">
+                    <small style="color: var(--text-muted);">Max: ₹{{ fees_due }}</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <select name="payment_method" required>
+                        <option value="Credit/Debit Card">Credit/Debit Card</option>
+                        <option value="Net Banking">Net Banking</option>
+                        <option value="UPI">UPI</option>
+                        <option value="NEFT">NEFT / RTGS</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fa-solid fa-shield-halved"></i> TOTP Code</label>
+                    <input type="text" name="totp_code" required
+                           inputmode="numeric" maxlength="6" pattern="[0-9]{6}"
+                           placeholder="Google Authenticator Code" autocomplete="one-time-code">
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Process Payment</button>
+            </form>
+            {% else %}
+            <div style="text-align: center; padding: 30px 0;">
+                <div style="background: rgba(40, 167, 69, 0.1); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                    <i class="fa-solid fa-check" style="font-size: 2rem; color: var(--success);"></i>
+                </div>
+                <h4 style="margin: 0; color: var(--success);">No Due Balance</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Your account is fully settled.</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Payment History -->
+        <div class="card" style="margin: 0;">
+            <div class="card-header">
+                <h2 style="margin: 0;"><i class="fa-solid fa-clock-rotate-left"></i> Payment History</h2>
+            </div>
+            <div class="card-body table-container" style="max-height: 400px; overflow-y: auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>TXN ID</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Mode</th>
+                            <th>Status</th>
+                            <th>Receipt</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in payments %}
+                        <tr>
+                            <td style="font-family: monospace; font-size: 0.9rem;">{{ p.transaction_id }}</td>
+                            <td>{{ (p.payment_date|string)[:10] if p.payment_date else 'N/A' }}</td>
+                            <td><strong>₹{{ p.amount }}</strong></td>
+                            <td><span class="btn-sm btn-secondary" style="background-color: #e2e8f0; color: #475569; border: none;">{{ p.payment_method }}</span></td>
+                            <td><span class="status-badge status-pass">Success</span></td>
+                            <td>
+                                <a href="{{ url_for('download_receipt', txn_id=p.transaction_id) }}" target="_blank" style="background: none; border: none; color: var(--primary); cursor: pointer; text-decoration: underline;">
+                                    <i class="fa-solid fa-download"></i> PDF
+                                </a>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 30px;">
+                                <i class="fa-solid fa-receipt" style="font-size: 2rem; color: var(--border); margin-bottom: 10px;"></i>
+                                <br>
+                                No payment records found.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Mock UPI Modal -->
+<div id="upiModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; padding: 30px; border-radius: 12px; text-align: center; max-width: 350px; width: 90%;">
+        <h3 style="margin-top: 0; color: var(--primary);">Scan to Pay</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Open your UPI app and scan this (mock) QR code.</p>
+        
+        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <!-- Placeholder for a QR code. Using a font-awesome icon to mimic a QR frame -->
+            <i class="fa-solid fa-qrcode" style="font-size: 8rem; color: #333;"></i>
+            <p style="margin-top: 15px; font-weight: bold;" id="upiAmountText">₹0</p>
+        </div>
+        
+        <div style="display: flex; gap: 10px;">
+            <button type="button" class="btn btn-secondary" style="flex: 1;" onclick="document.getElementById('upiModal').style.display='none'">Cancel</button>
+            <button type="button" class="btn btn-primary" style="flex: 1;" id="confirmUpiBtn">Simulate Scan</button>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const paymentForm = document.getElementById("paymentForm");
+    
+    if (paymentForm) {
+        paymentForm.addEventListener("submit", function(e) {
+            const method = this.elements["payment_method"].value;
+            const amount = this.elements["amount"].value;
+            
+            if (method === "UPI") {
+                e.preventDefault(); // Stop standard form submission
+                
+                // Show modal
+                document.getElementById('upiAmountText').innerText = '₹' + amount;
+                document.getElementById('upiModal').style.display = 'flex';
+                
+                // When button is clicked
+                document.getElementById('confirmUpiBtn').onclick = function() {
+                    document.getElementById('upiModal').style.display = 'none';
+                    // Programmatically submit the form (bypasses the submit event listener)
+                    paymentForm.submit();
+                };
+            }
+        });
+    }
+});
+</script>
+
+{% endblock %}

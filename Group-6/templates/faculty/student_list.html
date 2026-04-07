@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Student List - Faculty Portal{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="dashboard-header">
+        <h1>Student List</h1>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">← Back to Dashboard</a>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h2>My Classes</h2>
+        </div>
+        <div class="card-body">
+            <form action="{{ url_for('student_list') }}" method="GET" class="form-inline">
+                <div class="form-group">
+                    <label for="class_id">Select Class</label>
+                    <select id="class_id" name="class_id" class="form-control" onchange="this.form.submit()">
+                        <option value="">-- Select Class --</option>
+                        {% for c in assigned_classes %}
+                        <option value="{{ c.id }}" {% if selected_class and selected_class.id==c.id %}selected{% endif
+                            %}>
+                            {{ c.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% if selected_class %}
+    <div class="card">
+        <div class="card-header">
+            <h2>Students in {{ selected_class.name }}</h2>
+        </div>
+        <div class="card-body table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Semester</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for s in students %}
+                    <tr>
+                        <td>{{ s.roll }}</td>
+                        <td>{{ s.student_name }}</td>
+                        <td>{{ s.department }}</td>
+                        <td>Semester {{ s.semester }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4" style="text-align: center;">No students enrolled in this class.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

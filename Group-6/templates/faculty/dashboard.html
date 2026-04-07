@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Faculty Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>Welcome, {{ user.name }}! </h1>
+    <p>Department: {{ faculty.department if faculty else 'N/A' }} | {{ faculty.designation if faculty else '' }}</p>
+</div>
+
+<div class="dashboard-grid">
+    <!-- Summary Card -->
+    <a href="{{ url_for('faculty_my_classes') }}" class="dashboard-card dashboard-link">
+        <div class="card-icon warning"><i class="fa-solid fa-chalkboard-user"></i></div>
+        <h3>My Classes</h3>
+        <p>You have {{ assigned_count }} assigned classes.</p>
+        <div style="margin-top: 10px; font-weight: 600; color: var(--primary);">View All →</div>
+    </a>
+
+    <!-- Quick Stats / Actions -->
+    <a href="{{ url_for('faculty_attendance') }}" class="dashboard-card dashboard-link">
+        <div class="card-icon success"><i class="fa-solid fa-calendar-check"></i></div>
+        <h3>Mark Attendance</h3>
+        <p>Record daily attendance for students.</p>
+    </a>
+
+    <a href="{{ url_for('faculty_marks') }}" class="dashboard-card dashboard-link">
+        <div class="card-icon primary"><i class="fa-solid fa-file-signature"></i></div>
+        <h3>Enter Marks</h3>
+        <p>Upload exam and assignment scores.</p>
+    </a>
+
+    <a href="{{ url_for('faculty_announcements') }}" class="dashboard-card dashboard-link">
+        <div class="card-icon info"><i class="fa-solid fa-bullhorn"></i></div>
+        <h3>View Notices</h3>
+        <p>Check recent university announcements.</p>
+    </a>
+
+    <a href="{{ url_for('faculty_assignments') }}" class="dashboard-card dashboard-link">
+        <div class="card-icon secondary" style="background: #343a40; color: white;"><i
+                class="fa-solid fa-file-contract"></i></div>
+        <h3>Manage Assignments</h3>
+        <p>Post and review student coursework.</p>
+    </a>
+
+    <a href="{{ url_for('student_list') }}" class="dashboard-card dashboard-link">
+        <div class="card-icon dark"><i class="fa-solid fa-users"></i></div>
+        <h3>Student List</h3>
+        <p>View enrollment in your classes.</p>
+    </a>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Notices - Student Portal{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="dashboard-header">
+        <h1>📢 Notices & Announcements</h1>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">← Back to Dashboard</a>
+    </div>
+
+    {% for notice in notices %}
+    <div class="card">
+        <div class="card-header">
+            <h2>{{ notice.title }}</h2>
+            <small>
+                Posted by {{ notice.posted_by_name or "System" }}
+                · {{ notice.created_at }}
+            </small>
+        </div>
+        <div class="card-body">
+            <p>{{ notice.message }}</p>
+        </div>
+    </div>
+    {% else %}
+    <div class="card">
+        <div class="card-body">
+            <p>No notices available.</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

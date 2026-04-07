@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Google Authenticator - Student Management Portal{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+
+        <!-- Header -->
+        <div class="auth-header">
+            <div class="auth-icon otp-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <h1>Google Authenticator</h1>
+            <p>Scan the QR code below, then enter the 6-digit code</p>
+        </div>
+
+        <!-- QR Code Section -->
+        {% if qr_b64 %}
+        <div style="text-align: center; padding: 15px 0;">
+            <div style="background: white; padding: 15px; display: inline-block; border-radius: 10px; border: 2px solid var(--border);">
+                <img src="data:image/png;base64,{{ qr_b64 }}" alt="TOTP QR Code" style="width: 180px; height: 180px;">
+            </div>
+            <p style="margin-top: 10px; font-size: 0.85rem; color: var(--text-muted);">
+                <i class="fa-solid fa-mobile-screen"></i>
+                Scan with <strong>Google Authenticator</strong>
+            </p>
+            {% if secret %}
+            <details style="margin-top: 8px;">
+                <summary style="cursor: pointer; font-size: 0.8rem; color: var(--text-muted);">Can't scan? Enter key manually</summary>
+                <div style="background: var(--bg-color); padding: 10px; border-radius: 6px; font-family: monospace; font-size: 0.9rem; letter-spacing: 1.5px; margin-top: 8px; border: 1px dashed var(--border); word-break: break-all;">
+                    {{ secret }}
+                </div>
+            </details>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <!-- OTP Form -->
+        <form method="POST" class="auth-form">
+            <div class="form-group">
+                <label for="otp">6-Digit Code</label>
+                <input
+                    type="text"
+                    id="otp"
+                    name="otp"
+                    class="otp-input"
+                    inputmode="numeric"
+                    autocomplete="one-time-code"
+                    placeholder="••••••"
+                    maxlength="6"
+                    pattern="[0-9]{6}"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
+                Verify & Login
+            </button>
+        </form>
+
+        <!-- Footer -->
+        <div class="auth-footer">
+            <p class="security-note">
+                <i class="fa-solid fa-shield-check"></i>
+                Zero-Trust verification enabled
+            </p>
+
+            <a href="{{ url_for('login') }}" class="link-back">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Login
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

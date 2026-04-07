@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}My Profile - Student Portal{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="dashboard-header">
+        <h1>👤 My Profile</h1>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">← Back to Dashboard</a>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h2>Personal Information</h2>
+        </div>
+        <div class="card-body">
+            <table>
+                <tr><th>Name</th><td>{{ user.name }}</td></tr>
+                <tr><th>Email</th><td>{{ user.email }}</td></tr>
+                <tr><th>Phone</th><td>{{ user.phone }}</td></tr>
+                <tr><th>Roll No</th><td>{{ student.roll }}</td></tr>
+                <tr><th>Department</th><td>{{ student.department }}</td></tr>
+                <tr><th>Semester</th><td>{{ student.semester }}</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="form-card">
+        <h3>🔐 Request Profile Change (TOTP Verification)</h3>
+        <p style="margin-bottom: 15px; color: var(--text-muted); font-size: 0.9rem;">
+            Enter your Google Authenticator code to verify this request.
+        </p>
+
+        <form method="post" action="{{ url_for('request_profile_change') }}">
+            <div class="form-group">
+                <label>Field to Change</label>
+                <select name="field_name" required>
+                    <option value="email">Email</option>
+                    <option value="phone">Phone</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>New Value</label>
+                <input type="text" name="new_value" required placeholder="Enter new value">
+            </div>
+
+            <div class="form-group">
+                <label>TOTP Code (Google Authenticator)</label>
+                <input type="text" name="totp_code" required
+                       inputmode="numeric" maxlength="6" pattern="[0-9]{6}"
+                       placeholder="Enter 6-digit code" autocomplete="one-time-code">
+            </div>
+
+            <button class="btn btn-primary">Verify & Submit Request</button>
+        </form>
+    </div>
+
+    {% if pending_requests %}
+    <div class="card">
+        <div class="card-header">
+            <h2>Pending Requests</h2>
+        </div>
+        <div class="card-body">
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>New Value</th>
+                    <th>Status</th>
+                </tr>
+                {% for r in pending_requests %}
+                <tr>
+                    <td>{{ r.field_name }}</td>
+                    <td>{{ r.new_value }}</td>
+                    <td class="status-pending">{{ r.status }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

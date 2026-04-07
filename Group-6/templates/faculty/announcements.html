@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Announcements - Faculty Portal{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+
+    <!-- Header -->
+    <div class="dashboard-header">
+        <h1>📢 Announcements</h1>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+    <!-- Post Announcement -->
+    {% if not readonly %}
+    <div class="card form-card centered-card">
+        <h2>Post New Announcement</h2>
+
+        <form method="post">
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" name="title" placeholder="Enter announcement title" required>
+            </div>
+
+            <div class="form-group">
+                <label>Message</label>
+                <textarea name="message" rows="4" placeholder="Write announcement message..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Target Audience</label>
+                <select name="target">
+                    <option value="all">All</option>
+                    <option value="student">Students</option>
+                    <option value="parent">Parents</option>
+                </select>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-primary">Post Announcement</button>
+            </div>
+        </form>
+    </div>
+    {% else %}
+    <div class="alert alert-warning">
+        Read-only mode enabled. You cannot post announcements.
+    </div>
+    {% endif %}
+
+    <!-- Announcements Table -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Recent Announcements</h2>
+        </div>
+
+        <div class="card-body table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Message</th>
+                        <th>Target</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for a in announcements %}
+                    <tr>
+                        <td><strong>{{ a.title }}</strong></td>
+                        <td>{{ a.message }}</td>
+                        <td>
+                            <span class="badge badge-info">
+                                {{ a.target_role }}
+                            </span>
+                        </td>
+                        <td>{{ a.created_at }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center">
+                            No announcements posted yet.
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

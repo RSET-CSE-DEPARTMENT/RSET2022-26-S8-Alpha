@@ -1,0 +1,42 @@
+/* SignupHeader.css - Signup header styles */
+
+.signup-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.signup-logo {
+  width: 56px;
+  height: 56px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.signup-logo img {
+  width: 56px;
+  height: 56px;
+}
+
+.signup-title {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+}
+
+.signup-main-title {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.signup-description {
+  color: #808080;
+  font-size: 14px;
+  margin: 0;
+}

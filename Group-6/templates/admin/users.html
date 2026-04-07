@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Users - Admin Portal{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="dashboard-header">
+        <h1>User Management</h1>
+
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+    <div class="card">
+        <div class="card-body table-container">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Email</th>
+                    <th>Trust</th>
+                    <th>Actions</th>
+                </tr>
+                {% for u in users %}
+                <tr>
+                    <td>{{ u.name }}</td>
+                    <td>{{ u.username }}</td>
+                    <td>{{ u.role }}</td>
+                    <td>{{ u.email }}</td>
+                    <td>{{ u.trust_score }}</td>
+                    <td>
+                        {% if u.id != session.user_id %}
+                        <a href="{{ url_for('admin_delete_user', user_id=u.id) }}" class="btn btn-danger btn-sm"
+                            onclick="return confirm('Are you sure you want to delete this user? This action cannot be undone.')">
+                            Delete
+                        </a>
+                        {% else %}
+                        <span class="badge badge-secondary">Self</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
