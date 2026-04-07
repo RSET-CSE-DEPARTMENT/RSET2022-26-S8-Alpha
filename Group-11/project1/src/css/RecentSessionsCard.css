@@ -1,0 +1,171 @@
+/* RecentSessionsCard.css - Recent workout sessions list */
+
+.recent-sessions-card {
+  background-color: #050505;
+  border-radius: 16px;
+  padding: 25px;
+  border: 2px solid #2a2a2a;
+}
+
+.recent-sessions-card .card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.recent-sessions-card .card-header .card-title {
+  flex: 1;
+}
+
+.view-all-btn {
+  padding: 8px 16px;
+  background-color: transparent;
+  border: 1px solid #444444;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.view-all-btn:hover {
+  background-color: #2a2a2a;
+  border-color: #666666;
+}
+
+.sessions-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 400px;
+  overflow-y: hidden;
+}
+
+.sessions-list.expanded {
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.sessions-list.expanded::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sessions-list.expanded::-webkit-scrollbar-track {
+  background: #0a0a0a;
+  border-radius: 4px;
+}
+
+.sessions-list.expanded::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 4px;
+}
+
+.sessions-list.expanded::-webkit-scrollbar-thumb:hover {
+  background: #444444;
+}
+
+.session-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: #0a0a0a;
+  border-radius: 10px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.session-item:hover {
+  background-color: #2a2a2a;
+}
+
+.session-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.session-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.session-icon img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.session-info h4 {
+  margin: 0 0 5px 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.session-info p {
+  margin: 0;
+  font-size: 12px;
+  color: #808080;
+}
+
+.session-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.session-duration {
+  text-align: right;
+}
+
+.duration-value {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.duration-label {
+  display: block;
+  font-size: 11px;
+  color: #808080;
+}
+
+.view-details-btn {
+  padding: 8px 16px;
+  background-color: transparent;
+  border: 1px solid #444444;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.view-details-btn:hover {
+  background-color: #2a2a2a;
+  border-color: #666666;
+}
+
+@media (max-width: 768px) {
+  .session-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .session-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
