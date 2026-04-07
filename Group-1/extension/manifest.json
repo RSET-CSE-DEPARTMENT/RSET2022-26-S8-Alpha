@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "ImageGuard - AI Image Detector & Mismatch Checker",
+  "version": "1.4",
+  "description": "Detects AI-generated images and checks e-commerce image-description mismatches",
+  "icons": { 
+    "48": "icon48.png",
+    "128": "icon128.png" 
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:8000/*",
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "ImageGuard",
+    "default_icon": {
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+  "web_accessible_resources": [{
+    "resources": ["icon48.png"],
+    "matches": ["<all_urls>"]
+  }]
+}

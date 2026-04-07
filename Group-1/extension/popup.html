@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ImageGuard - AI Image Analysis</title>
+  <style>
+    :root {
+      --gradient-start: #1a56db;
+      --gradient-end: #1e40af;
+      --primary: #1a56db;
+      --primary-dark: #1e40af;
+      --primary-light: #3b82f6;
+      --success: #059669;
+      --danger: #dc2626;
+      --warning: #d97706;
+      --text-primary: #111827;
+      --text-secondary: #6b7280;
+      --border: #e5e7eb;
+      --bg-light: #f9fafb;
+      --bg-white: #ffffff;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      width: 560px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-white);
+      color: var(--text-primary);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .logo svg {
+      width: 28px;
+      height: 28px;
+    }
+    
+    .logo h1 {
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      margin: 0;
+    }
+    
+    .version {
+      color: rgba(255,255,255,0.7);
+      font-size: 11px;
+      font-weight: 500;
+    }
+    
+    /* Container */
+    .container {
+      padding: 20px;
+    }
+    
+    /* Status Bar */
+    .status-bar {
+      background: var(--bg-light);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+    
+    .status-dot.warning {
+      background: var(--warning);
+    }
+    
+    .status-dot.error {
+      background: var(--danger);
+    }
+    
+    /* Buttons */
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    
+    button {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+      border: none;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+    
+    .btn-secondary {
+      background: var(--bg-light);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--border);
+      border-color: var(--text-secondary);
+    }
+    
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+    
+    .btn-success:hover {
+      background: #047857;
+      transform: translateY(-1px);
+    }
+    
+    .btn-danger {
+      background: var(--danger);
+      color: white;
+    }
+    
+    .btn-danger:hover {
+      background: #b91c1c;
+      transform: translateY(-1px);
+    }
+    
+    .btn-warning {
+      background: var(--warning);
+      color: white;
+    }
+    
+    .btn-warning:hover {
+      background: #b45309;
+      transform: translateY(-1px);
+    }
+    
+    .btn-full {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    /* Result Card */
+    .result-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    
+    .verdict-section {
+      padding: 16px;
+      background: var(--bg-light);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .verdict-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+    
+    .verdict-value {
+      font-size: 24px;
+      font-weight: 700;
+    }
+    
+    .verdict-value.fake {
+      color: var(--danger);
+    }
+    
+    .verdict-value.real {
+      color: var(--success);
+    }
+    
+    .confidence-bar {
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    
+    .confidence-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+    
+    .confidence-fill.fake {
+      background: var(--danger);
+    }
+    
+    .confidence-fill.real {
+      background: var(--success);
+    }
+    
+    /* Image Preview */
+    .image-preview {
+      padding: 16px;
+      text-align: center;
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .image-preview img {
+      max-width: 100%;
+      max-height: 100px;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+    
+    /* Three Column Grid - Single Row */
+    .three-col-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+    
+    .grid-item {
+      background: var(--bg-white);
+      padding: 12px 14px;
+      text-align: center;
+    }
+    
+    .grid-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+    
+    .grid-value {
+      font-size: 14px;
+      font-weight: 700;
+    }
+    
+    .grid-value.fake {
+      color: var(--danger);
+    }
+    
+    .grid-value.real {
+      color: var(--success);
+    }
+    
+    /* Section */
+    .section {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    
+    .section-header {
+      padding: 12px 16px;
+      background: var(--bg-light);
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+      font-size: 12px;
+    }
+    
+    .section-content {
+      padding: 16px;
+    }
+    
+    /* XAI Grid */
+    .xai-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    
+    .xai-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .xai-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .xai-title {
+      padding: 8px 10px;
+      background: var(--bg-light);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .xai-card img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      display: block;
+    }
+    
+    /* Feedback Section */
+    .feedback-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .feedback-buttons button {
+      flex: 1;
+    }
+    
+    .label-select {
+      display: flex;
+      gap: 10px;
+      margin: 12px 0;
+    }
+    
+    .label-btn {
+      flex: 1;
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+    
+    .label-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+    
+    /* Mismatch Section */
+    .description-input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 12px;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 80px;
+      margin-bottom: 12px;
+    }
+    
+    .description-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(26,86,219,0.1);
+    }
+    
+    .mismatch-image-preview {
+      background: var(--bg-light);
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    
+    .mismatch-image-preview img {
+      max-width: 100%;
+      max-height: 80px;
+      border-radius: 6px;
+    }
+    
+    .match-card {
+      background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+      color: white;
+      padding: 14px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+    
+    .match-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .match-score {
+      font-size: 32px;
+      font-weight: 800;
+    }
+    
+    .match-rating {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    
+    .feature-card {
+      background: var(--bg-light);
+      padding: 10px;
+      border-radius: 8px;
+    }
+    
+    .feature-label {
+      font-size: 10px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+    
+    .feature-value {
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .mismatch-item {
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+    }
+    
+    .mismatch-item.error {
+      background: rgba(220,38,38,0.08);
+      border-left: 3px solid var(--danger);
+    }
+    
+    .mismatch-item.warning {
+      background: rgba(217,119,6,0.08);
+      border-left: 3px solid var(--warning);
+    }
+    
+    .mismatch-item.success {
+      background: rgba(5,150,105,0.08);
+      border-left: 3px solid var(--success);
+    }
+    
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    
+    .analysis-card {
+      background: var(--bg-light);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .analysis-title {
+      padding: 8px 10px;
+      background: white;
+      font-size: 11px;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .analysis-content {
+      padding: 10px;
+    }
+    
+    .color-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-size: 11px;
+    }
+    
+    .color-swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+    
+    .quality-meter {
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      margin: 8px 0;
+      overflow: hidden;
+    }
+    
+    .quality-fill {
+      height: 100%;
+      border-radius: 2px;
+    }
+    
+    .quality-fill.excellent { background: var(--success); }
+    .quality-fill.good { background: var(--primary); }
+    .quality-fill.fair { background: var(--warning); }
+    .quality-fill.poor { background: var(--danger); }
+    
+    .bg-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-size: 11px;
+    }
+    
+    /* Loading */
+    .loading {
+      text-align: center;
+      padding: 30px;
+    }
+    
+    .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 12px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Error & Success */
+    .error-message {
+      background: rgba(220,38,38,0.08);
+      color: var(--danger);
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      margin-top: 12px;
+    }
+    
+    .success-message {
+      background: rgba(5,150,105,0.08);
+      color: var(--success);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      text-align: center;
+    }
+    
+    /* Utilities */
+    .hidden {
+      display: none !important;
+    }
+    
+    .mt-3 {
+      margin-top: 12px;
+    }
+    
+    .mb-3 {
+      margin-bottom: 12px;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+      <h1>ImageGuard</h1>
+    </div>
+    <span class="version">v1.5</span>
+  </div>
+  
+  <div class="container">
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <div class="status-dot" id="statusDot"></div>
+      <span id="statusText">System ready</span>
+    </div>
+    
+    <!-- Action Buttons -->
+    <div class="btn-group">
+      <button id="testBtn" class="btn-primary">Test Connection</button>
+      <button id="clearBtn" class="btn-secondary">Clear</button>
+    </div>
+    
+    <!-- Loading -->
+    <div class="loading hidden" id="loading">
+      <div class="spinner"></div>
+      <div id="loadingText">Processing...</div>
+    </div>
+    
+    <!-- AI Detection Result -->
+    <div class="result-card hidden" id="result">
+      <div class="verdict-section">
+        <div class="verdict-label">Analysis Verdict</div>
+        <div class="verdict-value" id="verdict">-</div>
+        <div class="confidence-bar">
+          <div class="confidence-fill" id="confidenceFill" style="width: 0%"></div>
+        </div>
+      </div>
+      
+      <div class="image-preview">
+        <img id="original" src="" alt="Product image">
+      </div>
+      
+      <!-- Three Column Grid - Single Row -->
+      <div class="three-col-grid">
+        <div class="grid-item">
+          <div class="grid-label">EfficientNet (CNN)</div>
+          <div class="grid-value" id="effPred">-</div>
+        </div>
+        <div class="grid-item">
+          <div class="grid-label">Vision Transformer (ViT)</div>
+          <div class="grid-value" id="vitPred">-</div>
+        </div>
+        <div class="grid-item">
+          <div class="grid-label">Final Verdict</div>
+          <div class="grid-value" id="finalPred">-</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- XAI Section -->
+    <div class="section hidden" id="xaiSection">
+      <div class="section-header">Explainable AI Analysis</div>
+      <div class="section-content">
+        <button id="generateXaiBtn" class="btn-warning btn-full">Generate Explanations</button>
+        <div class="loading hidden" id="xaiLoading" style="padding: 16px 0;">
+          <div class="spinner" style="width: 24px; height: 24px;"></div>
+          <div style="font-size: 11px; margin-top: 8px;">Generating visual explanations...</div>
+        </div>
+        <div class="xai-grid hidden" id="xaiGrid">
+          <div class="xai-card" data-title="CNN Grad-CAM">
+            <div class="xai-title">CNN Grad-CAM</div>
+            <img id="cnn_gradcam" src="" alt="CNN Grad-CAM">
+          </div>
+          <div class="xai-card" data-title="ViT Grad-CAM">
+            <div class="xai-title">ViT Grad-CAM</div>
+            <img id="vit_gradcam" src="" alt="ViT Grad-CAM">
+          </div>
+          <div class="xai-card" data-title="CNN Feature Analysis">
+            <div class="xai-title">CNN Feature Analysis</div>
+            <img id="cnn_features" src="" alt="CNN Features">
+          </div>
+          <div class="xai-card" data-title="ViT Feature Analysis">
+            <div class="xai-title">ViT Feature Analysis</div>
+            <img id="vit_features" src="" alt="ViT Features">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Feedback Section -->
+    <div class="section hidden" id="feedbackSection">
+      <div class="section-header">User Feedback</div>
+      <div class="section-content">
+        <div class="feedback-buttons">
+          <button id="correctBtn" class="btn-success">Correct</button>
+          <button id="wrongBtn" class="btn-danger">Incorrect</button>
+        </div>
+        <div id="wrongFeedback" class="hidden">
+          <div class="label-select">
+            <button id="realBtn" class="label-btn">Real</button>
+            <button id="fakeBtn" class="label-btn">Fake</button>
+          </div>
+          <button id="submitFeedbackBtn" class="btn-primary btn-full">Submit Feedback</button>
+        </div>
+        <div id="feedbackSuccess" class="success-message hidden"></div>
+      </div>
+    </div>
+    
+    <!-- Mismatch Detection Section -->
+    <div class="section">
+      <div class="section-header">Product Mismatch Detection</div>
+      <div class="section-content">
+        <textarea 
+          class="description-input" 
+          id="descriptionInput" 
+          placeholder="Enter product description here...&#10;Example: Nike Air Max running shoes, size 10, black color"
+        ></textarea>
+        
+        <div class="btn-group">
+          <button id="autoExtractBtn" class="btn-primary" style="flex: 2;">Extract from Page</button>
+          <button id="clearMismatchBtn" class="btn-secondary" style="flex: 1;">Clear</button>
+        </div>
+        
+        <div class="mismatch-image-preview hidden" id="mismatchImagePreview">
+          <img id="mismatchImage" src="" alt="Product image">
+          <div id="mismatchImageInfo" style="font-size: 10px; margin-top: 6px; color: var(--text-secondary);"></div>
+        </div>
+        
+        <button id="analyzeMismatchBtn" class="btn-warning btn-full">Analyze Mismatch</button>
+        
+        <div class="loading hidden" id="mismatchLoading" style="padding: 16px 0;">
+          <div class="spinner" style="width: 24px; height: 24px;"></div>
+          <div id="mismatchLoadingText">Analyzing...</div>
+        </div>
+        
+        <div id="mismatchResult" class="hidden">
+          <div class="result-card" style="margin-bottom: 12px;">
+            <div class="verdict-section">
+              <div class="verdict-label">Risk Assessment</div>
+              <div class="verdict-value" id="mismatchVerdict">-</div>
+              <div class="confidence-bar">
+                <div class="confidence-fill" id="riskFill" style="width: 0%"></div>
+              </div>
+              <div style="text-align: center; margin-top: 8px; font-size: 12px;">
+                Risk Score: <strong id="riskScore">0</strong>/100
+              </div>
+            </div>
+          </div>
+          
+          <div class="match-card">
+            <div class="match-row">
+              <span class="match-score" id="matchValue">0.50</span>
+              <span class="match-rating" id="matchLabel">Moderate Match</span>
+            </div>
+            <div style="font-size: 11px; margin-top: 8px; opacity: 0.9;" id="matchDescription">
+              The product generally matches the description.
+            </div>
+          </div>
+          
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-label">Image Shows</div>
+              <div class="feature-value" id="imageProductType">-</div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-label">Description Says</div>
+              <div class="feature-value" id="textProductType">-</div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-label">Image Colors</div>
+              <div class="feature-value" id="imageColors">-</div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-label">Description Color</div>
+              <div class="feature-value" id="textColor">-</div>
+            </div>
+          </div>
+          
+          <div id="mismatchItems"></div>
+          
+          <div class="analysis-grid">
+            <div class="analysis-card">
+              <div class="analysis-title">Color Analysis</div>
+              <div class="analysis-content" id="colorAnalysisContent">-</div>
+            </div>
+            <div class="analysis-card">
+              <div class="analysis-title">Image Quality</div>
+              <div class="analysis-content" id="qualityAnalysisContent">-</div>
+            </div>
+            <div class="analysis-card">
+              <div class="analysis-title">Background</div>
+              <div class="analysis-content" id="backgroundAnalysisContent">-</div>
+            </div>
+            <div class="analysis-card">
+              <div class="analysis-title">Product Details</div>
+              <div class="analysis-content" id="productDetailsContent">-</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Error Message -->
+    <div class="error-message hidden" id="error">
+      <span id="errorMsg"></span>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
