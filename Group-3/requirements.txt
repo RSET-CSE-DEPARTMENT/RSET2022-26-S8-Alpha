@@ -1,0 +1,30 @@
+## Core
+
+numpy
+pandas
+scikit-learn
+
+## Deep Learning (GAN + LSTM)
+
+torch
+torchvision
+
+## Gradient Boosting
+
+xgboost
+
+## Visualization
+
+matplotlib
+seaborn
+
+## Notebook support
+
+jupyter
+notebook
+ipykernel
+
+## Utilities
+
+tqdm
+scipy
