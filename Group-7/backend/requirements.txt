@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+python-multipart
+python-dotenv
+pydantic-settings
+httpx
+supabase
+python-jose[cryptography]
+edge-tts
+aiofiles
+opencv-python
+mediapipe

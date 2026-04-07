@@ -1,0 +1,3 @@
+opencv-python      # Computer vision & webcam capture
+mediapipe          # Face & hand detection
+numpy              # Numerical operations

@@ -1,0 +1,202 @@
+﻿{
+    "status":  true,
+    "fetched_question":  {
+                             "status":  true,
+                             "question":  {
+                                              "question_id":  "101180db-7403-4350-b2d6-ae42d392360e",
+                                              "question_name":  "Longest Increasing Subsequence",
+                                              "description":  "You are given an integer array nums. Your task is to determine the length of the longest strictly increasing subsequence within the array.\n\nA subsequence is a sequence that can be derived from the array by deleting some or no elements without changing the order of the remaining elements. Unlike a subarray, the elements of a subsequence do not need to be contiguous.\n\nThe goal is to find the maximum length of any subsequence where each element is strictly greater than the previous element.\n\nThis problem evaluates the candidate\u0027s ability to apply dynamic programming and algorithm optimization techniques. A straightforward dynamic programming solution can achieve a time complexity of O(nÂ²) by comparing each element with all previous elements. However, a more optimized solution can achieve O(n log n) time complexity using binary search and a dynamic list to maintain potential subsequence endings.\n\nThe candidate should consider how to efficiently maintain increasing sequences and update them as new elements are encountered in the array.\n\nConstraints:\n- The array will contain at least one element.\n- Array length may range from 1 to 10^5 elements.\n- Each element in the array can range between -10^4 and 10^4.\n\nYour function should return a single integer representing the length of the longest increasing subsequence.",
+                                              "signature":  "def longest_increasing_subsequence(nums: List[int]) -\u003e int",
+                                              "examples":  {
+                                                               "examples":  [
+                                                                                {
+                                                                                    "input":  {
+                                                                                                  "nums":  [
+                                                                                                               10,
+                                                                                                               9,
+                                                                                                               2,
+                                                                                                               5,
+                                                                                                               3,
+                                                                                                               7,
+                                                                                                               101,
+                                                                                                               18
+                                                                                                           ]
+                                                                                              },
+                                                                                    "output":  4,
+                                                                                    "explanation":  "The longest increasing subsequence is [2, 3, 7, 101], so the length is 4."
+                                                                                },
+                                                                                {
+                                                                                    "input":  {
+                                                                                                  "nums":  [
+                                                                                                               0,
+                                                                                                               1,
+                                                                                                               0,
+                                                                                                               3,
+                                                                                                               2,
+                                                                                                               3
+                                                                                                           ]
+                                                                                              },
+                                                                                    "output":  4,
+                                                                                    "explanation":  "One possible longest increasing subsequence is [0, 1, 2, 3]."
+                                                                                },
+                                                                                {
+                                                                                    "input":  {
+                                                                                                  "nums":  [
+                                                                                                               7,
+                                                                                                               7,
+                                                                                                               7,
+                                                                                                               7,
+                                                                                                               7,
+                                                                                                               7,
+                                                                                                               7
+                                                                                                           ]
+                                                                                              },
+                                                                                    "output":  1,
+                                                                                    "explanation":  "All numbers are equal, so the longest strictly increasing subsequence contains only one element."
+                                                                                }
+                                                                            ]
+                                                           },
+                                              "testcases":  {
+                                                                "cases":  [
+                                                                              {
+                                                                                  "input":  {
+                                                                                                "nums":  [
+                                                                                                             10,
+                                                                                                             9,
+                                                                                                             2,
+                                                                                                             5,
+                                                                                                             3,
+                                                                                                             7,
+                                                                                                             101,
+                                                                                                             18
+                                                                                                         ]
+                                                                                            },
+                                                                                  "expected_output":  4
+                                                                              },
+                                                                              {
+                                                                                  "input":  {
+                                                                                                "nums":  [
+                                                                                                             0,
+                                                                                                             1,
+                                                                                                             0,
+                                                                                                             3,
+                                                                                                             2,
+                                                                                                             3
+                                                                                                         ]
+                                                                                            },
+                                                                                  "expected_output":  4
+                                                                              },
+                                                                              {
+                                                                                  "input":  {
+                                                                                                "nums":  [
+                                                                                                             7,
+                                                                                                             7,
+                                                                                                             7,
+                                                                                                             7,
+                                                                                                             7,
+                                                                                                             7,
+                                                                                                             7
+                                                                                                         ]
+                                                                                            },
+                                                                                  "expected_output":  1
+                                                                              },
+                                                                              {
+                                                                                  "input":  {
+                                                                                                "nums":  [
+                                                                                                             1,
+                                                                                                             3,
+                                                                                                             6,
+                                                                                                             7,
+                                                                                                             9,
+                                                                                                             4,
+                                                                                                             10,
+                                                                                                             5,
+                                                                                                             6
+                                                                                                         ]
+                                                                                            },
+                                                                                  "expected_output":  6
+                                                                              },
+                                                                              {
+                                                                                  "input":  {
+                                                                                                "nums":  [
+                                                                                                             4,
+                                                                                                             10,
+                                                                                                             4,
+                                                                                                             3,
+                                                                                                             8,
+                                                                                                             9
+                                                                                                         ]
+                                                                                            },
+                                                                                  "expected_output":  3
+                                                                              },
+                                                                              {
+                                                                                  "input":  {
+                                                                                                "nums":  [
+                                                                                                             1
+                                                                                                         ]
+                                                                                            },
+                                                                                  "expected_output":  1
+                                                                              },
+                                                                              {
+                                                                                  "input":  {
+                                                                                                "nums":  [
+                                                                                                             1,
+                                                                                                             2,
+                                                                                                             3,
+                                                                                                             4,
+                                                                                                             5
+                                                                                                         ]
+                                                                                            },
+                                                                                  "expected_output":  5
+                                                                              },
+                                                                              {
+                                                                                  "input":  {
+                                                                                                "nums":  [
+                                                                                                             5,
+                                                                                                             4,
+                                                                                                             3,
+                                                                                                             2,
+                                                                                                             1
+                                                                                                         ]
+                                                                                            },
+                                                                                  "expected_output":  1
+                                                                              },
+                                                                              {
+                                                                                  "input":  {
+                                                                                                "nums":  [
+                                                                                                             2,
+                                                                                                             2,
+                                                                                                             2,
+                                                                                                             2,
+                                                                                                             2
+                                                                                                         ]
+                                                                                            },
+                                                                                  "expected_output":  1
+                                                                              },
+                                                                              {
+                                                                                  "input":  {
+                                                                                                "nums":  [
+                                                                                                             3,
+                                                                                                             4,
+                                                                                                             -1,
+                                                                                                             0,
+                                                                                                             6,
+                                                                                                             2,
+                                                                                                             3
+                                                                                                         ]
+                                                                                            },
+                                                                                  "expected_output":  4
+                                                                              }
+                                                                          ]
+                                                            },
+                                              "tags":  [
+                                                           "array",
+                                                           "dynamic_programming",
+                                                           "binary_search",
+                                                           "optimization",
+                                                           "algorithmic_thinking"
+                                                       ],
+                                              "created_at":  "2026-03-05T01:09:41.741295+00:00"
+                                          }
+                         }
+}

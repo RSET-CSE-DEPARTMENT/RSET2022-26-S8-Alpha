@@ -1,0 +1,17 @@
+[
+    {
+        "timestamp": "2026-02-17 11:15:35.450496",
+        "question": "Tell me about yourself.",
+        "answer": "I am Bin Binu and I and I am from Ernable. I currently study the charge-free school of engineering and technology and I am a fourth year student studying computer science and engineering. My current CGPA is 6.5 and my current interests are Well, I am looking forward to be a software engineer working in your company and I have accomplished several projects based on Python, C++ and Java."
+    },
+    {
+        "timestamp": "2026-02-17 11:16:20.608406",
+        "question": "Explain a challenging project you worked on.",
+        "answer": "So I currently work on a project named Water Hyacinth Cleaner and it was quite challenging because the resources needed for this project were quite scarce and had to develop everything out of hand. It was a tiring process but still we worked as a team and moved on to secure the final round. Although we didn't make it quite after, we still enjoyed the process and it was a really good time to be with."
+    },
+    {
+        "timestamp": "2026-02-17 11:17:01.025890",
+        "question": "What is the difference between list and tuple in Python?",
+        "answer": "Okay, so the difference between a list and tuple in Python is that a list is mutable, whereas a Python is immutable. A list is a row of information of columns, whereas a tuple is a table, a relation of rows and columns of the information that it provides. And a list is smaller in size, whereas a tuple is larger. considering the line setting of the day."
+    }
+]

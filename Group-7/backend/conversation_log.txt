@@ -1,0 +1,29 @@
+
+============================================================
+INTERVIEW SESSION  |  2026-03-06T02:35:20.150Z
+Session  : 4f20024e-18f3-11f1-9bdd-ff6c355c4bdf
+Role     : Interview
+Type     : mixed  |  Difficulty: medium
+------------------------------------------------------------
+[AI  ] Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.
+[USER] Well, my name is Augustine and I'm an undergraduate engineer at Rajahmundry School of Engineering and Technology and I'm truly delighted to be part of this interview. And to be honest, I have done internships in full stack engineering and I have been.
+[USER] A new enthusiastic learner and I also been part of various club activities. I'm also very much interested in coding competitions and I've been an active participant in hackathons. Recently I have done a hackathon which I had collaborated with my friends to solve real world problems and I.
+[USER] Actually bound that hackathon with my team as well.
+[AI  ] Can you walk me through a challenging project you have worked on recently?
+============================================================
+
+============================================================
+INTERVIEW SESSION  |  2026-03-06T02:57:08.220Z
+Session  : 4f20024e-18f3-11f1-9bdd-ff6c355c4bdf
+Role     : Interview
+Type     : mixed  |  Difficulty: medium
+------------------------------------------------------------
+============================================================
+
+============================================================
+INTERVIEW SESSION  |  2026-03-06T03:33:52.528Z
+Session  : 4f20024e-18f3-11f1-9bdd-ff6c355c4bdf
+Role     : Interview
+Type     : mixed  |  Difficulty: medium
+------------------------------------------------------------
+============================================================

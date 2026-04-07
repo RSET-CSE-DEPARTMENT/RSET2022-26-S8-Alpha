@@ -1,0 +1,869 @@
+[
+  {
+    "timestamp": "2026-03-06 07:57:16",
+    "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+    "answer": "Well, my name is Augustine and I'm an undergraduate engineer at Rajahmundry School of Engineering and Technology and I'm truly delighted to be part of this interview. And to be honest, I have done internships in full stack engineering and I have been. A new enthusiastic learner and I also been part of various club activities. I'm also very much interested in coding competitions and I've been an active participant in hackathons. Recently I have done a hackathon which I had collaborated with my friends to solve real world problems and I. Actually bound that hackathon with my team as well.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+        "answer": "Well, my name is Augustine and I'm an undergraduate engineer at Rajahmundry School of Engineering and Technology and I'm truly delighted to be part of this interview. And to be honest, I have done internships in full stack engineering and I have been. A new enthusiastic learner and I also been part of various club activities. I'm also very much interested in coding competitions and I've been an active participant in hackathons. Recently I have done a hackathon which I had collaborated with my friends to solve real world problems and I. Actually bound that hackathon with my team as well.",
+        "output": {
+          "revelance": 0.9,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.7
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-06 08:06:36",
+    "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+    "answer": "Hello, I'm Augustine Lee, I'm an undergraduate computer science engineering student at IG E School of Engineering and Technology and I would like to talk about myself. I have been an intern in full stack engineering and I also familiar with. Basic artificial intelligence and machine learning I'm also very much interested in. Coding competitions and I have been an active participant in hackathons where I have collaborated with my team to participate in a number of them and recently I have won a hackathon as well, so. And that's all about me.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+        "answer": "Hello, I'm Augustine Lee, I'm an undergraduate computer science engineering student at IG E School of Engineering and Technology and I would like to talk about myself. I have been an intern in full stack engineering and I also familiar with. Basic artificial intelligence and machine learning I'm also very much interested in. Coding competitions and I have been an active participant in hackathons where I have collaborated with my team to participate in a number of them and recently I have won a hackathon as well, so. And that's all about me.",
+        "output": {
+          "revelance": 0.9,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.7
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-06 08:20:11",
+    "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+    "answer": "I'm Augustine Benson. I'm an undergraduate engineer in computer science in Graduate School of engineering and technology, and I'm truly delighted to be part of this interview. I am skilled in full stack engineering and I have been in there for three months over I'm also. Done projects involving artificial intelligence and machine learning. Now I am also very much interested in coding competitions and I have been participating in various hackathons. I collaborated with various teams to participate in it and I have also. Yeah, that's all.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+        "answer": "I'm Augustine Benson. I'm an undergraduate engineer in computer science in Graduate School of engineering and technology, and I'm truly delighted to be part of this interview. I am skilled in full stack engineering and I have been in there for three months over I'm also. Done projects involving artificial intelligence and machine learning. Now I am also very much interested in coding competitions and I have been participating in various hackathons. I collaborated with various teams to participate in it and I have also. Yeah, that's all.",
+        "output": {
+          "revelance": 0.9,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.7
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-06 08:22:39",
+    "question": "Considering your experience with full stack engineering, artificial intelligence, and machine learning, how do you ensure the scalability and reliability of your deployed systems, particularly in a production environment where API design, database querying, and debugging skills are crucial?",
+    "answer": "I believe that full stack engineering, artificial intelligence and machine learning is very much useful in API design, especially when it comes to the latest generation of technology which uses artificial intelligence vector databases. And various other modes of skills which are highly relevant in today's case. In API design itself, we need to consider various aspects where we need to understand how exactly the system works and. In by ensuring that there is a clear and definite flow which is happening in between the front end and back end and by using suitable means of using the artificial intelligence technology. As well as the machine learning fundamentals, I believe we can actually.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Considering your experience with full stack engineering, artificial intelligence, and machine learning, how do you ensure the scalability and reliability of your deployed systems, particularly in a production environment where API design, database querying, and debugging skills are crucial?",
+        "answer": "I believe that full stack engineering, artificial intelligence and machine learning is very much useful in API design, especially when it comes to the latest generation of technology which uses artificial intelligence vector databases. And various other modes of skills which are highly relevant in today's case. In API design itself, we need to consider various aspects where we need to understand how exactly the system works and. In by ensuring that there is a clear and definite flow which is happening in between the front end and back end and by using suitable means of using the artificial intelligence technology. As well as the machine learning fundamentals, I believe we can actually.",
+        "output": {
+          "revelance": 0.3,
+          "language_proficency": 0.4,
+          "tech_knowledge": 0.2
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-06 08:25:03",
+    "question": "Considering your experience with scalable architecture patterns, how do you balance the trade-offs between speedy technical decisions and careful system design, especially in an environment where AI system requirements are constantly evolving?",
+    "answer": "OK, so I'm not much familiar with scalable architecture because I am just an intern. Also, what I know is that I basically remember that we can actually scale various platforms, but this adds to the cost where we need to actually use. The AI tokens and this can actually add to the cost of the particular structure and we need to ensure that whatever system or agents are being used, those are actually optimized for that particular role which we are kind of taking off like we need to ensure scalability as. We need to balance these trade-offs, so we need some means by which we can actually do this.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Considering your experience with scalable architecture patterns, how do you balance the trade-offs between speedy technical decisions and careful system design, especially in an environment where AI system requirements are constantly evolving?",
+        "answer": "OK, so I'm not much familiar with scalable architecture because I am just an intern. Also, what I know is that I basically remember that we can actually scale various platforms, but this adds to the cost where we need to actually use. The AI tokens and this can actually add to the cost of the particular structure and we need to ensure that whatever system or agents are being used, those are actually optimized for that particular role which we are kind of taking off like we need to ensure scalability as. We need to balance these trade-offs, so we need some means by which we can actually do this.",
+        "output": {
+          "revelance": 0.3,
+          "language_proficency": 0.4,
+          "tech_knowledge": 0.2
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-06 08:26:17",
+    "question": "Considering your familiarity with vector search, API design, and machine learning, can you detail how you would design an efficient query system to integrate vector search with full-text search and other filterable fields in a production environment?",
+    "answer": "I'm sorry, I'm not much familiar with Vectorsource. I just have basic experience using AI and ML.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Considering your familiarity with vector search, API design, and machine learning, can you detail how you would design an efficient query system to integrate vector search with full-text search and other filterable fields in a production environment?",
+        "answer": "I'm sorry, I'm not much familiar with Vectorsource. I just have basic experience using AI and ML.",
+        "output": {
+          "revelance": 0.1,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.1
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-06 08:57:42",
+    "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+    "answer": "Well, good morning. I am Augustine B I'm an undergraduate engineering student at Rajidi School of Engineering and Technology. I'm truly delighted to talk about my experience where I have worked as a friend and developer as well as I have experience doing back end. Development so basically it's a full stack development and during my college days I had work in a number of clubs, student organizations, and I'm an eager participant and have participated in various scouting competitions like hackathons and. Stuff like that.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+        "answer": "Well, good morning. I am Augustine B I'm an undergraduate engineering student at Rajidi School of Engineering and Technology. I'm truly delighted to talk about my experience where I have worked as a friend and developer as well as I have experience doing back end. Development so basically it's a full stack development and during my college days I had work in a number of clubs, student organizations, and I'm an eager participant and have participated in various scouting competitions like hackathons and. Stuff like that.",
+        "output": {
+          "revelance": 0.8,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.5
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-06 08:59:16",
+    "question": "Considering you've mentioned your experience with backend development, full-stack experience, and participation in hackathons, can you walk me through an example of how you would approach and implement a REST API with authentication and authorization features in a production-ready environment?",
+    "answer": "Right, so when it comes to authentication and authorization feature, I have worked primarily using. The Python flask back end. So in the Python flask back end we have the authentication feature. This can be done using. The particular Python package for authentication and we can actually use this. We are basically hashing the resulting fields and this field can later be processed. To actually perform the authentication. So each time when a user is signing up for something, we ask them for the details along with the password. The password is hashed and stored in an encrypted manner and. This can later be used for logging.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Considering you've mentioned your experience with backend development, full-stack experience, and participation in hackathons, can you walk me through an example of how you would approach and implement a REST API with authentication and authorization features in a production-ready environment?",
+        "answer": "Right, so when it comes to authentication and authorization feature, I have worked primarily using. The Python flask back end. So in the Python flask back end we have the authentication feature. This can be done using. The particular Python package for authentication and we can actually use this. We are basically hashing the resulting fields and this field can later be processed. To actually perform the authentication. So each time when a user is signing up for something, we ask them for the details along with the password. The password is hashed and stored in an encrypted manner and. This can later be used for logging.",
+        "output": {
+          "revelance": 0.5,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.4
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-06 09:01:09",
+    "question": "Can you elaborate on how you would implement authentication and authorization using a framework like JWT or OAuth2 in a production-ready environment, given your experience with Python and FastAPI?",
+    "answer": "So JWT implementation basically involves using a token. So here once the user joins, we are generating a signed token and we'll store this in our database so we can use. We'll send this as a authorization with the token and the subsequent request for the header is also sent and based on this, the server will take this token and validate it using the signature and once it is valid it will. Allow the authentication to take place and the user can actually log in. So this is basically part of JWT authentication when it comes to. And all all. Yeah. So that's basically how it works.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Can you elaborate on how you would implement authentication and authorization using a framework like JWT or OAuth2 in a production-ready environment, given your experience with Python and FastAPI?",
+        "answer": "So JWT implementation basically involves using a token. So here once the user joins, we are generating a signed token and we'll store this in our database so we can use. We'll send this as a authorization with the token and the subsequent request for the header is also sent and based on this, the server will take this token and validate it using the signature and once it is valid it will. Allow the authentication to take place and the user can actually log in. So this is basically part of JWT authentication when it comes to. And all all. Yeah. So that's basically how it works.",
+        "output": {
+          "revelance": 0.7,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.4
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-06 09:03:22",
+    "question": "How would you integrate JWT-based authentication with a PostgreSQL database, considering indexing and query optimization, to meet the API's performance and security requirements?",
+    "answer": "We want to implement JWT with PostgreSQL. It involves actually using the back end logic. So using the back end logic we can actually manage the user data in the database. And this can be done using the JWT library which is present and this library can handle the. Token creation and validation portion. So our back end will use the PostgreSQL as a database to store the user credentials such as the hashed passwords which I mentioned before and. Once they've successfully authenticated, it will issue the JWT.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "How would you integrate JWT-based authentication with a PostgreSQL database, considering indexing and query optimization, to meet the API's performance and security requirements?",
+        "answer": "We want to implement JWT with PostgreSQL. It involves actually using the back end logic. So using the back end logic we can actually manage the user data in the database. And this can be done using the JWT library which is present and this library can handle the. Token creation and validation portion. So our back end will use the PostgreSQL as a database to store the user credentials such as the hashed passwords which I mentioned before and. Once they've successfully authenticated, it will issue the JWT.",
+        "output": {
+          "revelance": 0.7,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.5
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-02 14:25:28",
+    "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+    "answer": "Hello, I'm Ebin. I'm Agustin Vincent. I'm an undergraduate student at Rajigiri School of Engineering and Technology, and I'm truly delighted to be part of this interview. So before we begin, I would like to talk about my cybersecurity skills I am very much interested in. Cyber security and I have also done a number of courses in various platforms related to cyber security. I learned about a lot of cryptographic tools. I have also learned about the basics of blockchain and I'm also very much interested to apply for this particular role.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+        "answer": "Hello, I'm Ebin. I'm Agustin Vincent. I'm an undergraduate student at Rajigiri School of Engineering and Technology, and I'm truly delighted to be part of this interview. So before we begin, I would like to talk about my cybersecurity skills I am very much interested in. Cyber security and I have also done a number of courses in various platforms related to cyber security. I learned about a lot of cryptographic tools. I have also learned about the basics of blockchain and I'm also very much interested to apply for this particular role.",
+        "output": {
+          "revelance": 0.8,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.7
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-02 14:32:50",
+    "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+    "answer": "I'm Augustine Vincent. I am an undergraduate student in computer science and engineering and I'm very much delighted to learn about cryptography and blockchain and a lot of cybersecurity based aspects. So that's why I have applied to this particular role because it has caught my interest to learn. More about cybersecurity as well as to help be build practical applications which is secure and can help in dealing. Uh, less attacks and help ensure that everything is properly managed and there are no vulnerable issues within the code. I have done relevant courses in relation to cybersecurity and due to my extreme passion in cybersecurity, I also. Done a lot of studies regarding it. So currently I have limited experience but I have strong academic background in cybersecurity.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+        "answer": "I'm Augustine Vincent. I am an undergraduate student in computer science and engineering and I'm very much delighted to learn about cryptography and blockchain and a lot of cybersecurity based aspects. So that's why I have applied to this particular role because it has caught my interest to learn. More about cybersecurity as well as to help be build practical applications which is secure and can help in dealing. Uh, less attacks and help ensure that everything is properly managed and there are no vulnerable issues within the code. I have done relevant courses in relation to cybersecurity and due to my extreme passion in cybersecurity, I also. Done a lot of studies regarding it. So currently I have limited experience but I have strong academic background in cybersecurity.",
+        "output": {
+          "revelance": 0.9,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.7
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-02 14:33:11",
+    "question": "Can you walk me through your background and what motivated you to pursue this role?",
+    "answer": "Well.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Can you walk me through your background and what motivated you to pursue this role?",
+        "answer": "Well.",
+        "output": {
+          "revelance": 0.1,
+          "language_proficency": 0.2,
+          "tech_knowledge": 0.0
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-02 14:34:27",
+    "question": "Where do you see yourself growing technically in the next two years?",
+    "answer": "I see myself being an exceptionally good cyber security with strong background in cyber security fundamentals as well as someone who is keen enough to contribute to help secure the databases and step for the company and I am also very much. To go beyond it, help secure the company with regards to preventing data breaches and all kind of stuff.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Where do you see yourself growing technically in the next two years?",
+        "answer": "I see myself being an exceptionally good cyber security with strong background in cyber security fundamentals as well as someone who is keen enough to contribute to help secure the databases and step for the company and I am also very much. To go beyond it, help secure the company with regards to preventing data breaches and all kind of stuff.",
+        "output": {
+          "revelance": 0.7,
+          "language_proficency": 0.4,
+          "tech_knowledge": 0.5
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-02 14:37:46",
+    "question": "What is the difference between REST and GraphQL? When would you choose one?",
+    "answer": "Well, Rust is used for. Applications involving REST protocols. I'm not much familiar with this topic.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "What is the difference between REST and GraphQL? When would you choose one?",
+        "answer": "Well, Rust is used for. Applications involving REST protocols. I'm not much familiar with this topic.",
+        "output": {
+          "revelance": 0.1,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.05
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-02 14:54:30",
+    "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+    "answer": "I'm Augustine Benson. I'm an undergraduate student at Ajeri School of Engineering and Technology, and I'm truly delighted to be part of this interview. To be a ethical hacker or a cybersecurity specialist was always my dream when I was graduating from my college. And I would like to say that I have a strong academic relevance in this particular background. I have done numerous courses in cyber security. I have learned a lot about cryptographic techniques. I also have honors in cyber security. I also, in addition, have learned about blockchain. And I have been really passionate about cryptography and I've done a bit of projects in it. So that's all about me.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+        "answer": "I'm Augustine Benson. I'm an undergraduate student at Ajeri School of Engineering and Technology, and I'm truly delighted to be part of this interview. To be a ethical hacker or a cybersecurity specialist was always my dream when I was graduating from my college. And I would like to say that I have a strong academic relevance in this particular background. I have done numerous courses in cyber security. I have learned a lot about cryptographic techniques. I also have honors in cyber security. I also, in addition, have learned about blockchain. And I have been really passionate about cryptography and I've done a bit of projects in it. So that's all about me.",
+        "output": {
+          "revelance": 0.8,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.7
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-02 15:02:15",
+    "question": "Where do you see yourself growing technically in the next two years?",
+    "answer": "I see myself as a professional cybersecurity specialist at your Esteem company and I am very much willing to be a senior professional working to keep up ensuring there are no vulnerabilities and everything works smoothly. I'll try to. Bypass any kind of malicious attacks and all kind of such issues which can come to and affect the reputation of the company and I'll also. Consider myself to be a strong, hard working employee of this particular company.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Where do you see yourself growing technically in the next two years?",
+        "answer": "I see myself as a professional cybersecurity specialist at your Esteem company and I am very much willing to be a senior professional working to keep up ensuring there are no vulnerabilities and everything works smoothly. I'll try to. Bypass any kind of malicious attacks and all kind of such issues which can come to and affect the reputation of the company and I'll also. Consider myself to be a strong, hard working employee of this particular company.",
+        "output": {
+          "revelance": 0.7,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.4
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-02 15:21:29",
+    "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+    "answer": "Good morning. I'm Augustine Wenson. I'm an undergraduate student at Rajagiri School of Engineering and Technology, and I'm truly delighted to be part of this interview. Now to begin with, I am a cybersecurity specialist and I'm a student with passion to learn a lot about cybersecurity. Cryptographic techniques and even I'm currently interested in blockchain as well and I have done a lot of academic projects regarding with this. Even though I don't have any practical experience, I have strong academics to back my skills.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+        "answer": "Good morning. I'm Augustine Wenson. I'm an undergraduate student at Rajagiri School of Engineering and Technology, and I'm truly delighted to be part of this interview. Now to begin with, I am a cybersecurity specialist and I'm a student with passion to learn a lot about cybersecurity. Cryptographic techniques and even I'm currently interested in blockchain as well and I have done a lot of academic projects regarding with this. Even though I don't have any practical experience, I have strong academics to back my skills.",
+        "output": {
+          "revelance": 0.9,
+          "language_proficency": 0.7,
+          "tech_knowledge": 0.6
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-02 15:22:55",
+    "question": "Considering your background in cybersecurity and interest in blockchain, how do you plan to apply vector search techniques, such as those using Pinecone or Qdrant, to improve the security or efficiency of a system or application?",
+    "answer": "To be honest I am not much familiar with pine cone or quadrant. It seems to be too high level cyber security based concepts which I have not yet familiar with. But regarding to vector service techniques, if I recall vector search techniques are techniques which uses vector. Semantics between matching words and I think it's commonly used in natural language processing as well as artificial intelligence. I'm not sure how it comes with in relation with cyber security, but I believe that these techniques can be used in security as well as. And use for improving the efficiency of application because natural language processing techniques like the vector search help a wide range of applications and it helps us to relate human speech to computer language in a much more efficient manner.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Considering your background in cybersecurity and interest in blockchain, how do you plan to apply vector search techniques, such as those using Pinecone or Qdrant, to improve the security or efficiency of a system or application?",
+        "answer": "To be honest I am not much familiar with pine cone or quadrant. It seems to be too high level cyber security based concepts which I have not yet familiar with. But regarding to vector service techniques, if I recall vector search techniques are techniques which uses vector. Semantics between matching words and I think it's commonly used in natural language processing as well as artificial intelligence. I'm not sure how it comes with in relation with cyber security, but I believe that these techniques can be used in security as well as. And use for improving the efficiency of application because natural language processing techniques like the vector search help a wide range of applications and it helps us to relate human speech to computer language in a much more efficient manner.",
+        "output": {
+          "revelance": 0.4,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.3
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-02 15:23:56",
+    "question": "Here is a professional question based on the provided conversation and information:\n\nCan you explain how you would integrate a vector search technique, such as Pinecone or Qdrant, into a web application to improve the security and usability of a search function, and what benefits you anticipate this integration would bring to the application's performance?",
+    "answer": "I mentioned before I'm not familiar with pine cone or quadrant based search technique. So can you ask a different question? I'm something which is more related to cyber security especially those which I'm familiar with like. The basic ones.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Here is a professional question based on the provided conversation and information:\n\nCan you explain how you would integrate a vector search technique, such as Pinecone or Qdrant, into a web application to improve the security and usability of a search function, and what benefits you anticipate this integration would bring to the application's performance?",
+        "answer": "I mentioned before I'm not familiar with pine cone or quadrant based search technique. So can you ask a different question? I'm something which is more related to cyber security especially those which I'm familiar with like. The basic ones.",
+        "output": {
+          "revelance": 0.4,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.2
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-02 15:47:22",
+    "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+    "answer": "Hello, I'm Alvin Binham. I'm an undergraduate student at Rajagiri School of Engineering and Technology and I'm truly delighted to be part of this interview. Especially I am very much interested in cyber security and I would really like to be part of this team. And considering my passion for cybersecurity, I have done relevant courses in cybersecurity as well. I have learned a lot of concepts like cryptography, blockchain technologies and a lot of other algorithms, especially those. With our concern with cryptography and I'm truly interested to be a professional software. Cyber security specialist at your company.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+        "answer": "Hello, I'm Alvin Binham. I'm an undergraduate student at Rajagiri School of Engineering and Technology and I'm truly delighted to be part of this interview. Especially I am very much interested in cyber security and I would really like to be part of this team. And considering my passion for cybersecurity, I have done relevant courses in cybersecurity as well. I have learned a lot of concepts like cryptography, blockchain technologies and a lot of other algorithms, especially those. With our concern with cryptography and I'm truly interested to be a professional software. Cyber security specialist at your company.",
+        "output": {
+          "revelance": 0.9,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.7
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-02 15:50:49",
+    "question": "Tell me about a time you disagreed with a teammate and how you resolved it.",
+    "answer": "Well, I remember, uh, that one particular incident where, uh, in a particular hackathon of mine, I had an argument with my, uh, teammate on implementing a particular concept. So the problem was whether we should use a local server or should we? Turn it on as a combined effort using multiple different computers so we had different viewpoints whether we had to use a local host or a particular aspect. But my valid argument was that we had a tying on string, so. Implementing something which was a wide server connection is not actually necessary in a hackathon based environment where we are given limited time and all of our teammates are with us. So that was a valid concern. But. The my friend's point of view was a different 1, so however with our differences we were eventually able to solve this particular issue and able to do things properly.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Tell me about a time you disagreed with a teammate and how you resolved it.",
+        "answer": "Well, I remember, uh, that one particular incident where, uh, in a particular hackathon of mine, I had an argument with my, uh, teammate on implementing a particular concept. So the problem was whether we should use a local server or should we? Turn it on as a combined effort using multiple different computers so we had different viewpoints whether we had to use a local host or a particular aspect. But my valid argument was that we had a tying on string, so. Implementing something which was a wide server connection is not actually necessary in a hackathon based environment where we are given limited time and all of our teammates are with us. So that was a valid concern. But. The my friend's point of view was a different 1, so however with our differences we were eventually able to solve this particular issue and able to do things properly.",
+        "output": {
+          "revelance": 0.7,
+          "language_proficency": 0.4,
+          "tech_knowledge": 0.5
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-02 15:52:08",
+    "question": "How do you see your cyber security expertise and experience with vector search algorithms contributing to collaborative hackathon environments, specifically in the resolution of conflicts or differing perspectives on a particular project or concept?",
+    "answer": "When it comes to cyber security, I believe that in when it comes to a vector source algorithm, especially in a hackathon environment, I believe we can actually use concepts like. Vector search techniques and this helps enhance the natural language processing capabilities along with the machine language. So it helps us to better understand the type of queries which are happening and implement these kind of queries into. Applications which uses both the natural language processing as well as cryptography, cybersecurity domains as well. To be honest, I'm not much familiar with this. I have just explained what had just came to my mind.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "How do you see your cyber security expertise and experience with vector search algorithms contributing to collaborative hackathon environments, specifically in the resolution of conflicts or differing perspectives on a particular project or concept?",
+        "answer": "When it comes to cyber security, I believe that in when it comes to a vector source algorithm, especially in a hackathon environment, I believe we can actually use concepts like. Vector search techniques and this helps enhance the natural language processing capabilities along with the machine language. So it helps us to better understand the type of queries which are happening and implement these kind of queries into. Applications which uses both the natural language processing as well as cryptography, cybersecurity domains as well. To be honest, I'm not much familiar with this. I have just explained what had just came to my mind.",
+        "output": {
+          "revelance": 0.3,
+          "language_proficency": 0.4,
+          "tech_knowledge": 0.2
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-02 15:53:22",
+    "question": "Explain how you would design a URL shortening service at scale.",
+    "answer": "So when it comes to URL shopping service, uh, I believe that it's a particular technique which, uh, we are passing a URL and uh, we are getting a result which contains A shortened URL. So I believe that it uses a particular kind of technique. Which uses a database and based on is performing some kind of mapping with a lengthy database lengthy URL to a smaller URL which can be custom made. So and I think it works kind of like a hash map based technique, so by. When it comes to scalability, I believe that there are methods which we can use to implement this. Which I'm not much familiar with.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Explain how you would design a URL shortening service at scale.",
+        "answer": "So when it comes to URL shopping service, uh, I believe that it's a particular technique which, uh, we are passing a URL and uh, we are getting a result which contains A shortened URL. So I believe that it uses a particular kind of technique. Which uses a database and based on is performing some kind of mapping with a lengthy database lengthy URL to a smaller URL which can be custom made. So and I think it works kind of like a hash map based technique, so by. When it comes to scalability, I believe that there are methods which we can use to implement this. Which I'm not much familiar with.",
+        "output": {
+          "revelance": 0.6,
+          "language_proficency": 0.4,
+          "tech_knowledge": 0.3
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-06 10:22:26",
+    "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+    "answer": "I am an undergraduate student at Rajidi School of Engineering. Hello there, I'm an undergraduate student at Ajiri School of Engineering and Technology and I'm very much interested to be part of. This interview. And I'm also a very much interested in this particular role of computer science engineering and I'm also a done a number of courses in this particular field with. Passion for cryptographic and blockchain analysis and also I have performed many other valid programs for this also.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+        "answer": "I am an undergraduate student at Rajidi School of Engineering. Hello there, I'm an undergraduate student at Ajiri School of Engineering and Technology and I'm very much interested to be part of. This interview. And I'm also a very much interested in this particular role of computer science engineering and I'm also a done a number of courses in this particular field with. Passion for cryptographic and blockchain analysis and also I have performed many other valid programs for this also.",
+        "output": {
+          "revelance": 0.7,
+          "language_proficency": 0.4,
+          "tech_knowledge": 0.5
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-06 10:24:38",
+    "question": "Describe your experience with version control and your usual branching strategy.",
+    "answer": "So when it comes to version control, I tend to use something called. Git. So I have experience using git and with the help of git we can use the git branch command where we can create a new branch of the existing. Folder and we can work on this particular folder and if eventually if we say that okay this version is a much better version, then we can actually merge this version with our main version. So this is actually a common strategy which is used especially when. Multiple versions of a single project is being developed now, and especially if it is being developed by multiple members of the same team. And in my case I have used it in a number of projects, especially recent projects which involve a lot of high level architecture and schemas.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Describe your experience with version control and your usual branching strategy.",
+        "answer": "So when it comes to version control, I tend to use something called. Git. So I have experience using git and with the help of git we can use the git branch command where we can create a new branch of the existing. Folder and we can work on this particular folder and if eventually if we say that okay this version is a much better version, then we can actually merge this version with our main version. So this is actually a common strategy which is used especially when. Multiple versions of a single project is being developed now, and especially if it is being developed by multiple members of the same team. And in my case I have used it in a number of projects, especially recent projects which involve a lot of high level architecture and schemas.",
+        "output": {
+          "revelance": 0.7,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.5
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-06 10:26:30",
+    "question": "Can you explain how you would apply vector search principles to identify relevant blocks or transactions in a blockchain system, considering your experience with blockchain analysis and cryptographic techniques?",
+    "answer": "When it comes to vector search principles, I have heard so far that it is mainly concerned with and finding the similarities between words especially when in case of natural language processing or NLP. So basically. The vector source principles can also be applied to the blocks or transactions blockchain system. Actually this is kind of a new knowledge to me because I haven't used vector search principles in detail, especially when it comes to blogs and transactions. Basically, when we consider the blocks or basically transactions, basically transaction can be anything. It can range between sending or transferring of some kind of data like a cryptocurrency or something and these transactions, a list of these transactions are used to create a block by the miners. So that's basically the sense in a blockchain basis. And I think we can kind of implement these vectors, such principles which can be used to find similarities, so like similarities in the type of transaction which is being done so. I'm not much familiar with this particular topic, but. I'm interested to find learn new things so far.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Can you explain how you would apply vector search principles to identify relevant blocks or transactions in a blockchain system, considering your experience with blockchain analysis and cryptographic techniques?",
+        "answer": "When it comes to vector search principles, I have heard so far that it is mainly concerned with and finding the similarities between words especially when in case of natural language processing or NLP. So basically. The vector source principles can also be applied to the blocks or transactions blockchain system. Actually this is kind of a new knowledge to me because I haven't used vector search principles in detail, especially when it comes to blogs and transactions. Basically, when we consider the blocks or basically transactions, basically transaction can be anything. It can range between sending or transferring of some kind of data like a cryptocurrency or something and these transactions, a list of these transactions are used to create a block by the miners. So that's basically the sense in a blockchain basis. And I think we can kind of implement these vectors, such principles which can be used to find similarities, so like similarities in the type of transaction which is being done so. I'm not much familiar with this particular topic, but. I'm interested to find learn new things so far.",
+        "output": {
+          "revelance": 0.4,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.3
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-06 10:28:04",
+    "question": "Tell me about a time you disagreed with a teammate and how you resolved it.",
+    "answer": "So when I I remember this particular occasion that I in one of my projects I had to disagree with my teammate on a particular project. So this particular project was a high level data structure based project which involved multiple dependencies. So my teammate was much more focused on focusing on a particular module which had a lot of dependencies before them. So I had to disagree with him that we have to start doing those dependencies first and then should we build the project because. We can't exactly predict how exactly the flow goes on, and if there are, if something doesn't work in the initial stage, then we actually have to make a lot of changes to the upcoming 1. So instead of building the upcoming parts, we can actually focus on the basic. Models. So that was a disagreement which I had and personally I felt it was valid and eventually we were able to do so as well. So it was good.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Tell me about a time you disagreed with a teammate and how you resolved it.",
+        "answer": "So when I I remember this particular occasion that I in one of my projects I had to disagree with my teammate on a particular project. So this particular project was a high level data structure based project which involved multiple dependencies. So my teammate was much more focused on focusing on a particular module which had a lot of dependencies before them. So I had to disagree with him that we have to start doing those dependencies first and then should we build the project because. We can't exactly predict how exactly the flow goes on, and if there are, if something doesn't work in the initial stage, then we actually have to make a lot of changes to the upcoming 1. So instead of building the upcoming parts, we can actually focus on the basic. Models. So that was a disagreement which I had and personally I felt it was valid and eventually we were able to do so as well. So it was good.",
+        "output": {
+          "revelance": 0.8,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.7
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-06 10:53:35",
+    "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+    "answer": "Good morning, Sir. I am Ashwin Ashokan. I am an undergraduate student at Ajiri School of Engineering and Technology and I'm very much interested to be part of this particular program to talk about my skills. In cryptography as well as in cyber security. I'm deeply passionate in cyber security and I have run a number of projects in it. Recently I've been part of a hackathon which uses. Cyber security and cryptographic concepts. Now getting to my skills, I have basic industrial experience. I'm not much confident in that by myself, but I'm truly very much confident in it and I have done a number of. In cybersecurity, especially those with relation to cryptography, I have done some basic blockchain based courses and in addition I also done a typical hacking based courses as well. So that's all about me.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+        "answer": "Good morning, Sir. I am Ashwin Ashokan. I am an undergraduate student at Ajiri School of Engineering and Technology and I'm very much interested to be part of this particular program to talk about my skills. In cryptography as well as in cyber security. I'm deeply passionate in cyber security and I have run a number of projects in it. Recently I've been part of a hackathon which uses. Cyber security and cryptographic concepts. Now getting to my skills, I have basic industrial experience. I'm not much confident in that by myself, but I'm truly very much confident in it and I have done a number of. In cybersecurity, especially those with relation to cryptography, I have done some basic blockchain based courses and in addition I also done a typical hacking based courses as well. So that's all about me.",
+        "output": {
+          "revelance": 0.8,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.7
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-06 10:56:10",
+    "question": "Based on your experience with cryptography and cyber security, how do you envision applying cryptographic concepts to solve real-world security breaches and threats, and what kind of tools or approaches would you utilize in such scenarios?",
+    "answer": "Raffaele has always been one of the most basic and as well as very much critical important security concepts which have been applied in real world scenarios, especially when it comes to authentication. As well as encryption of data, it has been widely applied all over the world were in any way to access source like Internet work, we have a number of users we cannot exactly distinguish between. Who are good and who are bad. So we need a way in which we can secure our own data such that it is not intercepted by malicious users. And for such a particular aspect, photography has been. A very useful tool in our day-to-day lives. So whenever we are sending a particular data, we tend to encrypt in in a particular format such that only the receiver or the recipient is able to access that particular data whereas the sender. Can encrypt this data using a particular key and the receiver can decrypt that particular data using some other key. So in such a scenario, we can say that if there are any malicious resources intending to find out. This data or trying to get this vertical error, they need to know the key in order to decode the encryption. So it makes it irrelevant to them to have this particular data. So that's another importance is that it also helps in ensuring the confidentiality. As well as integrity of the particular data. So when you say that the recipient knows who exactly is the centrist because the recipient can actually validate the data and check if the sender is the particular sender of the data was manipulated in between. So when we consume all these sort of. Patient's photograph has been a truly essential part of this particular system.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Based on your experience with cryptography and cyber security, how do you envision applying cryptographic concepts to solve real-world security breaches and threats, and what kind of tools or approaches would you utilize in such scenarios?",
+        "answer": "Raffaele has always been one of the most basic and as well as very much critical important security concepts which have been applied in real world scenarios, especially when it comes to authentication. As well as encryption of data, it has been widely applied all over the world were in any way to access source like Internet work, we have a number of users we cannot exactly distinguish between. Who are good and who are bad. So we need a way in which we can secure our own data such that it is not intercepted by malicious users. And for such a particular aspect, photography has been. A very useful tool in our day-to-day lives. So whenever we are sending a particular data, we tend to encrypt in in a particular format such that only the receiver or the recipient is able to access that particular data whereas the sender. Can encrypt this data using a particular key and the receiver can decrypt that particular data using some other key. So in such a scenario, we can say that if there are any malicious resources intending to find out. This data or trying to get this vertical error, they need to know the key in order to decode the encryption. So it makes it irrelevant to them to have this particular data. So that's another importance is that it also helps in ensuring the confidentiality. As well as integrity of the particular data. So when you say that the recipient knows who exactly is the centrist because the recipient can actually validate the data and check if the sender is the particular sender of the data was manipulated in between. So when we consume all these sort of. Patient's photograph has been a truly essential part of this particular system.",
+        "output": {
+          "revelance": 0.6,
+          "language_proficency": 0.4,
+          "tech_knowledge": 0.5
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-06 10:57:42",
+    "question": "What techniques or protocols would you employ to detect and prevent both insider threats and external attacks within a network, leveraging your expertise in cryptography and cyber security?",
+    "answer": "A number of ethnics. So first of all, when it comes to fault tolerance phase protocols do exist which can help avoid certain scenarios. Like when we consider the bison and fault tolerance based protocols like PDF, we can use these protocols. Like Practical Bycendine Fault Tolerant Protocol is a very commonly used protocol for managing the send and receive of data while. Being under the presence of malicious uses, so the specialty of this particular protocol is that it can actually help in consensus based systems and it's widely used in blockchain based technologies when we consider. Insider threats. This is very useful.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "What techniques or protocols would you employ to detect and prevent both insider threats and external attacks within a network, leveraging your expertise in cryptography and cyber security?",
+        "answer": "A number of ethnics. So first of all, when it comes to fault tolerance phase protocols do exist which can help avoid certain scenarios. Like when we consider the bison and fault tolerance based protocols like PDF, we can use these protocols. Like Practical Bycendine Fault Tolerant Protocol is a very commonly used protocol for managing the send and receive of data while. Being under the presence of malicious uses, so the specialty of this particular protocol is that it can actually help in consensus based systems and it's widely used in blockchain based technologies when we consider. Insider threats. This is very useful.",
+        "output": {
+          "revelance": 0.3,
+          "language_proficency": 0.4,
+          "tech_knowledge": 0.5
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-06 11:03:46",
+    "question": "Here is a professional question based on the provided conversation:\n\nGiven your experience with cryptography and cyber security, how would you design a robust cybersecurity framework to protect vector search databases against unauthorized access, insider threats, and malicious vector injections, leveraging techniques such as encryption, access controls, and data validation?",
+    "answer": "So when it comes to. A particular cryptography or cyber security based system and if you are supposed to find or design A robust cybersecurity framework, especially when it comes to unauthorized access inside of threads, we can actually use a lot of particular. Are concerned with cyber security, especially we can use the concepts of basic fundamentals of cyber security provide confidentiality service which integrity service data. Authentication service or the validity or basically nonrecordation and basically a lot more accountability services can also be provided. So all of these are part of cybersecurity as well as. More broader application in cryptography, so we can use a lot of particular techniques which can be used to protect the vector databases, especially under threats like in that service database I think it uses. Concerned with natural language processing and it uses the similarity based services based on natural language so we can use more stronger authentication based capabilities to ensure. Malaysia Spectra injection. So data validation can be performed using techniques like hashing which can be used to check if there has been any change or unauthorized change in the particular data and this is also a key part in cryptography.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Here is a professional question based on the provided conversation:\n\nGiven your experience with cryptography and cyber security, how would you design a robust cybersecurity framework to protect vector search databases against unauthorized access, insider threats, and malicious vector injections, leveraging techniques such as encryption, access controls, and data validation?",
+        "answer": "So when it comes to. A particular cryptography or cyber security based system and if you are supposed to find or design A robust cybersecurity framework, especially when it comes to unauthorized access inside of threads, we can actually use a lot of particular. Are concerned with cyber security, especially we can use the concepts of basic fundamentals of cyber security provide confidentiality service which integrity service data. Authentication service or the validity or basically nonrecordation and basically a lot more accountability services can also be provided. So all of these are part of cybersecurity as well as. More broader application in cryptography, so we can use a lot of particular techniques which can be used to protect the vector databases, especially under threats like in that service database I think it uses. Concerned with natural language processing and it uses the similarity based services based on natural language so we can use more stronger authentication based capabilities to ensure. Malaysia Spectra injection. So data validation can be performed using techniques like hashing which can be used to check if there has been any change or unauthorized change in the particular data and this is also a key part in cryptography.",
+        "output": {
+          "revelance": 0.6,
+          "language_proficency": 0.4,
+          "tech_knowledge": 0.5
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-06 12:34:19",
+    "question": "Hi there! Welcome, and thanks for joining us today. Before we dive into anything technical, I'd love to hear a bit about you — your background, what you've been working on lately, and what drew you to this opportunity.",
+    "answer": "Hello there, I'm Ashwin Shogun. I'm an undergraduate student at IGT School of Engineering and Technology and I'm truly delighted to be part of this interview to speak about my skills in cybersecurity. So I'm very much interested in cyber security and I have also done a number of projects in cybersecurity ranging from various kinds of application developments in cybersecurity as well as when it comes to the recent technology I have been part of. A hackathon which had involved cyber security. Recently I have also done projects related to cyber security such as Vision uses blockchain as well as also in addition to that I have done. Projects which uses cryptography based techniques for doing my project. So that's all about me.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Hi there! Welcome, and thanks for joining us today. Before we dive into anything technical, I'd love to hear a bit about you — your background, what you've been working on lately, and what drew you to this opportunity.",
+        "answer": "Hello there, I'm Ashwin Shogun. I'm an undergraduate student at IGT School of Engineering and Technology and I'm truly delighted to be part of this interview to speak about my skills in cybersecurity. So I'm very much interested in cyber security and I have also done a number of projects in cybersecurity ranging from various kinds of application developments in cybersecurity as well as when it comes to the recent technology I have been part of. A hackathon which had involved cyber security. Recently I have also done projects related to cyber security such as Vision uses blockchain as well as also in addition to that I have done. Projects which uses cryptography based techniques for doing my project. So that's all about me.",
+        "output": {
+          "revelance": 0.8,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.7
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-06 12:34:45",
+    "question": "What is the difference between REST and GraphQL? When would you choose one?",
+    "answer": "Well, Rust is used in computer science when we are. I'm not much familiar with this topic.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "What is the difference between REST and GraphQL? When would you choose one?",
+        "answer": "Well, Rust is used in computer science when we are. I'm not much familiar with this topic.",
+        "output": {
+          "revelance": 0.1,
+          "language_proficency": 0.4,
+          "tech_knowledge": 0.0
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-06 13:53:18",
+    "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+    "answer": "Good morning. I am Ashina Sharpen. I am an undergraduate student at Graduate School of Engineering and Technology, and I am truly delighted to be part of this interview to talk about my skills in cybersecurity. I'm very much interested in cyber security as well as its applications and I've also done foundational courses in cyber security with experience learning on cryptographic tools as well as I have also done a minor project in blockchain technologies. And I'm also a sharp and intellectual student with strong academic standing and great achievements throughout my life, and I'm very much interested in this particular role.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+        "answer": "Good morning. I am Ashina Sharpen. I am an undergraduate student at Graduate School of Engineering and Technology, and I am truly delighted to be part of this interview to talk about my skills in cybersecurity. I'm very much interested in cyber security as well as its applications and I've also done foundational courses in cyber security with experience learning on cryptographic tools as well as I have also done a minor project in blockchain technologies. And I'm also a sharp and intellectual student with strong academic standing and great achievements throughout my life, and I'm very much interested in this particular role.",
+        "output": {
+          "revelance": 0.9,
+          "language_proficency": 0.7,
+          "tech_knowledge": 0.6
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-06 13:53:53",
+    "question": "What is the difference between REST and GraphQL? When would you choose one?",
+    "answer": "When we talk about REST and graph QL, REST QL is basically a particular form of.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "What is the difference between REST and GraphQL? When would you choose one?",
+        "answer": "When we talk about REST and graph QL, REST QL is basically a particular form of.",
+        "output": {
+          "revelance": 0.2,
+          "language_proficency": 0.3,
+          "tech_knowledge": 0.1
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-06 13:59:03",
+    "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+    "answer": "Well, good morning. I am Ashun Ashoka. I am an undergraduate student at Rajagiri School of Engineering and Technology, and I'm truly delighted to be part of this interview to introduce myself. So basically, I am a B.Tech student and I'm having strong. I'm also very much passionate about cyber security, which is the domain to which I'm currently applying for. So I have always had this interest for ethical hacking. I have done some foundational courses in cyber security and I also done projects which are related. Iodine cores, which is related to cryptographic techniques as well as ethical hacking. And I'm also being a winner at the hackathon which was conducted in our college. I'm also very much passionate about my studies and I have a strong. Academic standing in my class, so that's all about me.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+        "answer": "Well, good morning. I am Ashun Ashoka. I am an undergraduate student at Rajagiri School of Engineering and Technology, and I'm truly delighted to be part of this interview to introduce myself. So basically, I am a B.Tech student and I'm having strong. I'm also very much passionate about cyber security, which is the domain to which I'm currently applying for. So I have always had this interest for ethical hacking. I have done some foundational courses in cyber security and I also done projects which are related. Iodine cores, which is related to cryptographic techniques as well as ethical hacking. And I'm also being a winner at the hackathon which was conducted in our college. I'm also very much passionate about my studies and I have a strong. Academic standing in my class, so that's all about me.",
+        "output": {
+          "revelance": 0.9,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.7
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-06 14:03:14",
+    "question": "Can you walk me through a specific instance where you utilized the concept of vector similarity search in one of your projects, such as the Network Packet Analyzer or the REST API Security Testing tool?",
+    "answer": "Well, speaking about vectors in lattices, vectors in lattice search is a concept which is used to find similarly sounding words and I think it has practical applications in the REST API security testing tools, so especially when we are checking for the natural language processing. Techniques such as Vectisimilar research, we can implement this particular one in our security testing tool because it helps us to connect the compiler. Compilers so basically we are basically connecting the natural language which is the language we are speaking to the text which a computer can understand so by using this particular account so we can actually. Better implement our tools.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Can you walk me through a specific instance where you utilized the concept of vector similarity search in one of your projects, such as the Network Packet Analyzer or the REST API Security Testing tool?",
+        "answer": "Well, speaking about vectors in lattices, vectors in lattice search is a concept which is used to find similarly sounding words and I think it has practical applications in the REST API security testing tools, so especially when we are checking for the natural language processing. Techniques such as Vectisimilar research, we can implement this particular one in our security testing tool because it helps us to connect the compiler. Compilers so basically we are basically connecting the natural language which is the language we are speaking to the text which a computer can understand so by using this particular account so we can actually. Better implement our tools.",
+        "output": {
+          "revelance": 0.3,
+          "language_proficency": 0.4,
+          "tech_knowledge": 0.2
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-06 14:04:26",
+    "question": "Can you elaborate on how you would implement vector similarity search in a real-world scenario, such as in a REST API security testing tool, to improve the effectiveness of natural language processing techniques?",
+    "answer": "To be honest, I'm not much familiar with the purpose of vectors and lattices in natural language processing techniques and how I can actually implement it in REST API security testing tools. But according to my personal opinion, I feel like. It is something that can be practically implemented in a real world scenario, especially when we are considering how various cryptographic schemes are being used to improve the security vector. Similarity based search can be practically possible when we are talking about. Improving security in a REST API base system.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Can you elaborate on how you would implement vector similarity search in a real-world scenario, such as in a REST API security testing tool, to improve the effectiveness of natural language processing techniques?",
+        "answer": "To be honest, I'm not much familiar with the purpose of vectors and lattices in natural language processing techniques and how I can actually implement it in REST API security testing tools. But according to my personal opinion, I feel like. It is something that can be practically implemented in a real world scenario, especially when we are considering how various cryptographic schemes are being used to improve the security vector. Similarity based search can be practically possible when we are talking about. Improving security in a REST API base system.",
+        "output": {
+          "revelance": 0.3,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.2
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-06 14:06:48",
+    "question": "Can you elaborate on how you would apply knowledge of cryptography basics, ethical hacking, and natural language processing to design and implement an effective vulnerability scanning tool for REST APIs, particularly in terms of vector similarity search and deep context-aware searches?",
+    "answer": "So cryptographic basics and ethical hacking, especially when the natural language processing which is out of context to the cyber security schemes is actually really practicable, practical when you're talking about. In using to find vulnerabilities, especially in REST APIs. This because when we talk about the cryptographic techniques like encryption and decryption, we can use these techniques to actually find concepts. Find the roles data which are supposed to be encrypted. So the sender wants to send a particular data to the recipient. Then the sender can encrypt the data using cryptographic techniques and they can be done with the help of a key and when the receiver has a key and the receiver can then decrypt the data using this game. So in case any kind of intermediate is trying to access the data without the permission, they will not be having the key. So they cannot decrypt or find out what the data the sender has sent. So this is actually one of the basic techniques which is used in cryptography. Then when it comes to. Other things like cryptographic techniques also provide other means like it helps in confidentiality, it helps to ensure accountability, authenticity, non repudiation as well as even other aspects like integrating. So it helps ensure that integrity like. Again, I actually added I who exactly the center is with the help of cryptographic techniques like we can use means like hashing and things like that, but improve the security and help prevent vulnerabilities in APIs.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Can you elaborate on how you would apply knowledge of cryptography basics, ethical hacking, and natural language processing to design and implement an effective vulnerability scanning tool for REST APIs, particularly in terms of vector similarity search and deep context-aware searches?",
+        "answer": "So cryptographic basics and ethical hacking, especially when the natural language processing which is out of context to the cyber security schemes is actually really practicable, practical when you're talking about. In using to find vulnerabilities, especially in REST APIs. This because when we talk about the cryptographic techniques like encryption and decryption, we can use these techniques to actually find concepts. Find the roles data which are supposed to be encrypted. So the sender wants to send a particular data to the recipient. Then the sender can encrypt the data using cryptographic techniques and they can be done with the help of a key and when the receiver has a key and the receiver can then decrypt the data using this game. So in case any kind of intermediate is trying to access the data without the permission, they will not be having the key. So they cannot decrypt or find out what the data the sender has sent. So this is actually one of the basic techniques which is used in cryptography. Then when it comes to. Other things like cryptographic techniques also provide other means like it helps in confidentiality, it helps to ensure accountability, authenticity, non repudiation as well as even other aspects like integrating. So it helps ensure that integrity like. Again, I actually added I who exactly the center is with the help of cryptographic techniques like we can use means like hashing and things like that, but improve the security and help prevent vulnerabilities in APIs.",
+        "output": {
+          "revelance": 0.3,
+          "language_proficency": 0.4,
+          "tech_knowledge": 0.5
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-06 14:17:09",
+    "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+    "answer": "Good morning, I am Ashwin Ashokan. I am an undergraduate Btech Computer Science engineering student at Graduate School of Engineering and Technology, and I am truly delighted to be part of this interview. I am looking forward to our software developer. I have strong foundations in web development. And I have done a number of projects and have been part of numerous hackathons. I have also been the winner of the recent hackathon which was conducted in the college. And I'm also truly passionate about. Studies and I have a good academic scores as well. I have also been a active member in a broad student club activities. And yeah, that's all about me.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+        "answer": "Good morning, I am Ashwin Ashokan. I am an undergraduate Btech Computer Science engineering student at Graduate School of Engineering and Technology, and I am truly delighted to be part of this interview. I am looking forward to our software developer. I have strong foundations in web development. And I have done a number of projects and have been part of numerous hackathons. I have also been the winner of the recent hackathon which was conducted in the college. And I'm also truly passionate about. Studies and I have a good academic scores as well. I have also been a active member in a broad student club activities. And yeah, that's all about me.",
+        "output": {
+          "revelance": 0.8,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.5
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-06 14:19:59",
+    "question": "How would you approach the implementation of a high-efficiency vector search algorithm for a database, considering factors such as scalability, performance, and trade-offs between different algorithms and indexing techniques?",
+    "answer": "OK, so when we are considering about basically a natural language processing concept which uses similarity based searching by comparing similarly related words which are words which have been associated with the vector and they are comparing these vectors to find the matching words. So this is basically. Used in artificial intelligence which was one of the projects which I worked on. Now this concept of vector search in database is a special mode of searching operation and it's commonly used in vector databases and. The benefit of vector database is that it helps us to go beyond the standard normal database operations. Like instead of using simple SQL commands like SELECT or something like that, we can actually use high level. Much more efficient. Searching operations which are beyond the standard regex point of view and is bit more advanced because here we have an LM which is using the vector similarities to find matching terms and these terms can be later based into an large language model and being used in. A multitude of applications.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "How would you approach the implementation of a high-efficiency vector search algorithm for a database, considering factors such as scalability, performance, and trade-offs between different algorithms and indexing techniques?",
+        "answer": "OK, so when we are considering about basically a natural language processing concept which uses similarity based searching by comparing similarly related words which are words which have been associated with the vector and they are comparing these vectors to find the matching words. So this is basically. Used in artificial intelligence which was one of the projects which I worked on. Now this concept of vector search in database is a special mode of searching operation and it's commonly used in vector databases and. The benefit of vector database is that it helps us to go beyond the standard normal database operations. Like instead of using simple SQL commands like SELECT or something like that, we can actually use high level. Much more efficient. Searching operations which are beyond the standard regex point of view and is bit more advanced because here we have an LM which is using the vector similarities to find matching terms and these terms can be later based into an large language model and being used in. A multitude of applications.",
+        "output": {
+          "revelance": 0.4,
+          "language_proficency": 0.6,
+          "tech_knowledge": 0.3
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-06 14:22:43",
+    "question": "Given your experience with projects such as the Student Management System and Basic Web Application, and considering the need for optimal performance in a vector search algorithm, how would you approach choosing the most suitable indexing technique to balance accuracy and efficiency in a high-efficiency vector search implementation?",
+    "answer": "Uh, thinking about the vector search implementation. So in this particular situation I would most likely choose the searching technique which is utilized over here. And that particular searching technique is vector search. Actually vector service algorithm is. A recent mode of such which has been very popular now with the advent of artificial intelligence and to be honest, my projects were actually being related to. Much more to web development and I've done much less projects which are purely aids and I haven't used much of the practice of sanitation. So that's basically in one minor project and it didn't actually require such a high level implementation. However, based on the given particular problem, I feel like we can actually optimize this solution over here and we can choose optimal indexing techniques. Like high efficient matches or synchronizations. And it's highly likely that we can improve the searching operations even though it might not be necessary in the given situation, but it can be applied very efficient.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Given your experience with projects such as the Student Management System and Basic Web Application, and considering the need for optimal performance in a vector search algorithm, how would you approach choosing the most suitable indexing technique to balance accuracy and efficiency in a high-efficiency vector search implementation?",
+        "answer": "Uh, thinking about the vector search implementation. So in this particular situation I would most likely choose the searching technique which is utilized over here. And that particular searching technique is vector search. Actually vector service algorithm is. A recent mode of such which has been very popular now with the advent of artificial intelligence and to be honest, my projects were actually being related to. Much more to web development and I've done much less projects which are purely aids and I haven't used much of the practice of sanitation. So that's basically in one minor project and it didn't actually require such a high level implementation. However, based on the given particular problem, I feel like we can actually optimize this solution over here and we can choose optimal indexing techniques. Like high efficient matches or synchronizations. And it's highly likely that we can improve the searching operations even though it might not be necessary in the given situation, but it can be applied very efficient.",
+        "output": {
+          "revelance": 0.3,
+          "language_proficency": 0.4,
+          "tech_knowledge": 0.2
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-07 10:56:48",
+    "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+    "answer": "So that's being an absolute privilege in order to get into this interview. First of all, I am Ashwin Ashogan as cybersecurity expert. As I mentioned in my resume, I am doing a lot of encryption piracy issues and resolving it. That is a very interesting for me. Beyond that, I used to work in cyber firm, ethical hacking and all, and that's a very good experience for me. Blockchain technology is also one of my favorite topic in order to work on.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+        "answer": "So that's being an absolute privilege in order to get into this interview. First of all, I am Ashwin Ashogan as cybersecurity expert. As I mentioned in my resume, I am doing a lot of encryption piracy issues and resolving it. That is a very interesting for me. Beyond that, I used to work in cyber firm, ethical hacking and all, and that's a very good experience for me. Blockchain technology is also one of my favorite topic in order to work on.",
+        "output": {
+          "revelance": 0.7,
+          "language_proficency": 0.4,
+          "tech_knowledge": 0.6
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-07 10:58:06",
+    "question": "What is an example of a project you have managed that demonstrates your experience with code quality and readability, as mentioned in the key performance indicator of this technical evaluation round?",
+    "answer": "I was been working in building a blockchain, a new blockchain called Ebenezes Alapat. That's quite interesting. We have IT organization approach for that. We use build alapat token. Which is completely used for TRA, money plant, building money, money plant and other. Indoor plants, cultivation firm. Also uh, dogs den uh. Is also available in that form.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "What is an example of a project you have managed that demonstrates your experience with code quality and readability, as mentioned in the key performance indicator of this technical evaluation round?",
+        "answer": "I was been working in building a blockchain, a new blockchain called Ebenezes Alapat. That's quite interesting. We have IT organization approach for that. We use build alapat token. Which is completely used for TRA, money plant, building money, money plant and other. Indoor plants, cultivation firm. Also uh, dogs den uh. Is also available in that form.",
+        "output": {
+          "revelance": 0.1,
+          "language_proficency": 0.2,
+          "tech_knowledge": 0.2
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-07 11:01:32",
+    "question": "What experience do you have integrating vector search algorithms into production systems?",
+    "answer": "Multiple phase. Multiple phase.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "What experience do you have integrating vector search algorithms into production systems?",
+        "answer": "Multiple phase. Multiple phase.",
+        "output": {
+          "revelance": 0.1,
+          "language_proficency": 0.2,
+          "tech_knowledge": 0.0
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-07 11:02:06",
+    "question": "How have you incorporated techniques for optimizing vector search scalability and cost in your previous experience or personal projects?",
+    "answer": "I don't have experience using vector search. Don't ask us first things.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "How have you incorporated techniques for optimizing vector search scalability and cost in your previous experience or personal projects?",
+        "answer": "I don't have experience using vector search. Don't ask us first things.",
+        "output": {
+          "revelance": 0.2,
+          "language_proficency": 0.3,
+          "tech_knowledge": 0.0
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-07 11:22:07",
+    "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+    "answer": "So bye, bye.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Welcome to the interview! Before we begin with technical questions, could you please introduce yourself? Tell me about your background, your experience, and what interests you about this role.",
+        "answer": "So bye, bye.",
+        "output": {
+          "revelance": 0.0,
+          "language_proficency": 0.2,
+          "tech_knowledge": 0.0
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-07 11:22:47",
+    "question": "Can you explain how your experience as a Cyber Security Trainee and education in Computer Science Engineering at RSET have helped you develop skills that are relevant to this Software Developer position?",
+    "answer": "I did internship at RSAT. And now I am professional. Software Dynamite.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "Can you explain how your experience as a Cyber Security Trainee and education in Computer Science Engineering at RSET have helped you develop skills that are relevant to this Software Developer position?",
+        "answer": "I did internship at RSAT. And now I am professional. Software Dynamite.",
+        "output": {
+          "revelance": 0.1,
+          "language_proficency": 0.2,
+          "tech_knowledge": 0.0
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-07 11:23:35",
+    "question": "How do you believe your experience in cybersecurity, along with your computer science background and hands-on project experience, align with the software development requirements outlined in today's objective?",
+    "answer": "Use cyber security. With a lot of fundamental software development applications helps improve security. My makes ensuring confidentiality, integrity, authentication, accountability, counter correlation, etcetera stuff.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "How do you believe your experience in cybersecurity, along with your computer science background and hands-on project experience, align with the software development requirements outlined in today's objective?",
+        "answer": "Use cyber security. With a lot of fundamental software development applications helps improve security. My makes ensuring confidentiality, integrity, authentication, accountability, counter correlation, etcetera stuff.",
+        "output": {
+          "revelance": 0.4,
+          "language_proficency": 0.3,
+          "tech_knowledge": 0.5
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-07 11:25:07",
+    "question": "How do you see your relevant computer science background, experience with cybersecurity and hands-on projects, such as the Basic Web Vulnerability Scanner and Network Packet Analyzer, applying to the software development aspects mentioned as core skills required for this Software Developer position?",
+    "answer": "I am very much capable, just give me the job.",
+    "evaluation": {
+      "status": "success",
+      "result": {
+        "question": "How do you see your relevant computer science background, experience with cybersecurity and hands-on projects, such as the Basic Web Vulnerability Scanner and Network Packet Analyzer, applying to the software development aspects mentioned as core skills required for this Software Developer position?",
+        "answer": "I am very much capable, just give me the job.",
+        "output": {
+          "revelance": 0.1,
+          "language_proficency": 0.3,
+          "tech_knowledge": 0.0
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,1277 @@
+[
+  {
+    "timestamp": "2026-03-04 22:54:01",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-04 23:02:57",
+    "session_id": "matt_652354331",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-03-04 23:02:57",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-04 23:02:58",
+    "session_id": "matt_652354331",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-03-04 23:02:59",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-04 23:03:07",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-04 23:03:09",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-04 23:03:14",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-04 23:03:16",
+    "session_id": "matt_652354331",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-03-04 23:03:17",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-04 23:03:19",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-04 23:03:39",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-04 23:03:56",
+    "session_id": "matt_652354331",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-03-04 23:03:57",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-04 23:04:24",
+    "session_id": "matt_652354331",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-03-04 23:04:25",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-04 23:04:32",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-04 23:04:44",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-04 23:05:08",
+    "session_id": "matt_652354331",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-03-04 23:05:08",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-04 23:05:08",
+    "session_id": "matt_652354331",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-03-04 23:05:08",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-04 23:05:08",
+    "session_id": "matt_652354331",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-03-04 23:05:09",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-05 07:28:22",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:28:30",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-05 07:28:34",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:28:39",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-05 07:28:41",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:28:50",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-05 07:29:01",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:29:10",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-05 07:29:52",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:29:58",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-05 07:30:35",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:30:45",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-05 07:30:46",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:30:56",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-05 07:30:59",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:31:05",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-05 07:31:26",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:31:31",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-05 07:31:52",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:31:57",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-05 07:33:10",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:33:18",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-05 07:33:27",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:33:32",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-05 07:34:25",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:34:30",
+    "session_id": "matt_652354331",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:34:31",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-05 07:39:37",
+    "session_id": "matt_652354331",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:39:40",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:39:48",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-05 07:42:10",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:42:15",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-05 07:44:17",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:44:22",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-05 07:44:25",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:44:30",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-05 07:45:02",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:45:07",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-03-05 07:45:11",
+    "session_id": "matt_652354331",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-03-05 07:45:16",
+    "session_id": "matt_652354331",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 14:25:06",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 14:25:06",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-02 14:25:06",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 14:25:10",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 14:25:11",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 14:31:30",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 14:53:42",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:20:50",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:20:52",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:20:53",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:21:00",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:21:01",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:21:17",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:21:18",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:22:16",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:22:17",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:22:37",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:22:38",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:22:40",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:22:41",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:22:47",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:22:48",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:22:50",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:22:51",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:23:35",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:23:37",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:23:41",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:23:43",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:23:46",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:23:47",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:23:48",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:23:49",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:23:50",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:23:51",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:23:52",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:23:53",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:23:54",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:23:57",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:24:00",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:24:01",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:25:48",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:25:49",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:26:06",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:26:07",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:26:22",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:26:24",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:26:46",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:26:47",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:26:50",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:26:51",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:27:43",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:27:44",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:27:52",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:27:53",
+    "session_id": "962e7b2a-2e6f-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:46:32",
+    "session_id": "9f236b7a-2e7c-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:47:14",
+    "session_id": "9f236b7a-2e7c-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:47:15",
+    "session_id": "9f236b7a-2e7c-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:47:31",
+    "session_id": "9f236b7a-2e7c-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:47:32",
+    "session_id": "9f236b7a-2e7c-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:51:43",
+    "session_id": "9f236b7a-2e7c-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:51:44",
+    "session_id": "9f236b7a-2e7c-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:52:34",
+    "session_id": "9f236b7a-2e7c-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:52:35",
+    "session_id": "9f236b7a-2e7c-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:52:36",
+    "session_id": "9f236b7a-2e7c-11f1-84eb-8928b9787283",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-02 15:52:37",
+    "session_id": "9f236b7a-2e7c-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:52:48",
+    "session_id": "9f236b7a-2e7c-11f1-84eb-8928b9787283",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-02 15:52:52",
+    "session_id": "9f236b7a-2e7c-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 10:21:58",
+    "session_id": "9f236b7a-2e7c-11f1-84eb-8928b9787283",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 10:52:42",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 10:59:22",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-06 10:59:23",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 13:52:24",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 13:54:58",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-06 13:54:59",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 13:57:45",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 13:57:46",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:00:26",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:00:28",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:00:36",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:00:37",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:01:49",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:01:50",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:02:01",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:02:02",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:02:04",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:02:10",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:03:25",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:03:26",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:05:04",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:05:05",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:06:43",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:06:44",
+    "session_id": "ca2c5fb8-3177-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:17:05",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:17:06",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:17:10",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:17:10",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:19:54",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:19:55",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:21:15",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:21:16",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:21:34",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:21:35",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:27:26",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:27:27",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:30:05",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:30:06",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:30:18",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:30:20",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:32:57",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:33:00",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:33:35",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:33:36",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:34:58",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:34:59",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-06 14:35:14",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-06 14:35:15",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-07 10:56:36",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:56:45",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:56:46",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:57:12",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:57:13",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:57:15",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:57:16",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:57:23",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:57:24",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:57:44",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:57:45",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:57:49",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:57:52",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:58:02",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:58:03",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:58:04",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:58:05",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:58:07",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:58:08",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:58:10",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:58:11",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-07 10:58:13",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:58:17",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-07 10:58:18",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:58:27",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:58:28",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:58:31",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:58:33",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:59:26",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:59:27",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:59:31",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Multiple faces detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:59:32",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 10:59:33",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:00:28",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-07 11:00:30",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:01:13",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-07 11:01:14",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:01:17",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-07 11:01:19",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:01:24",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-07 11:01:26",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:01:27",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:01:28",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:01:41",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:01:42",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:01:55",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:01:58",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:02:08",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:02:09",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:02:14",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:02:15",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:02:27",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:02:28",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:02:31",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-07 11:02:38",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:03:35",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-07 11:03:36",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:03:37",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-07 11:03:38",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:03:40",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-07 11:03:44",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:03:47",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-07 11:03:51",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:03:52",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-07 11:04:01",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:04:02",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-07 11:04:03",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:04:42",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:04:45",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:04:46",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Candidate OK"
+  },
+  {
+    "timestamp": "2026-04-07 11:04:47",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:04:51",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:22:04",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:23:50",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Background object detected"
+  },
+  {
+    "timestamp": "2026-04-07 11:23:51",
+    "session_id": "c27c62a6-318e-11f1-908c-6da6efb2c439",
+    "status": "Face not detected"
+  }
+]

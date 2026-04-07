@@ -1,0 +1,97 @@
+﻿{
+    "openapi":  "3.1.0",
+    "info":  {
+                 "title":  "FastAPI",
+                 "version":  "0.1.0"
+             },
+    "paths":  {
+                  "/Agent/generate_question":  {
+                                                   "post":  "@{summary=Generate Question; operationId=generate_question_Agent_generate_question_post; requestBody=; responses=}"
+                                               },
+                  "/Agent/evaluate_interview_conv":  {
+                                                         "post":  "@{summary=Evaluate Interview Conversation; operationId=evaluate_interview_conversation_Agent_evaluate_interview_conv_post; requestBody=; responses=}"
+                                                     },
+                  "/upload_resume":  {
+                                         "post":  "@{summary=Upload Resume; operationId=upload_resume_upload_resume_post; requestBody=; responses=}"
+                                     },
+                  "/auth/company_signin":  {
+                                               "post":  "@{summary=Company Signin Main; operationId=company_signin_main_auth_company_signin_post; requestBody=; responses=}"
+                                           },
+                  "/signup/insert_company_details":  {
+                                                         "post":  "@{summary=Insert Company Details Main; operationId=insert_company_details_main_signup_insert_company_details_post; requestBody=; responses=}"
+                                                     },
+                  "/db/objective_database":  {
+                                                 "post":  "@{summary=Insert Objective Database Main; operationId=insert_objective_database_main_db_objective_database_post; requestBody=; responses=}"
+                                             },
+                  "/db/interview_details":  {
+                                                "post":  "@{summary=Insert Interview Details Main; operationId=insert_interview_details_main_db_interview_details_post; requestBody=; responses=}"
+                                            },
+                  "/db/insert_candidate":  {
+                                               "post":  "@{summary=Insert Candidate Login Main; operationId=insert_candidate_login_main_db_insert_candidate_post; requestBody=; responses=}"
+                                           },
+                  "/db/interview_details/by_company":  {
+                                                           "post":  "@{summary=Fetch Interviews By Company Main; operationId=fetch_interviews_by_company_main_db_interview_details_by_company_post; requestBody=; responses=}"
+                                                       },
+                  "/db/candidate_details/by_interview":  {
+                                                             "post":  "@{summary=Fetch Candidate By Interview Main; operationId=fetch_candidate_by_interview_main_db_candidate_details_by_interview_post; requestBody=; responses=}"
+                                                         },
+                  "/db/interview_details/by_id":  {
+                                                      "post":  "@{summary=Fetch Interview By Id Main; operationId=fetch_interview_by_id_main_db_interview_details_by_id_post; requestBody=; responses=}"
+                                                  },
+                  "/confidence/evaluate":  {
+                                               "post":  "@{summary=Evaluate Confidence Endpoint; operationId=evaluate_confidence_endpoint_confidence_evaluate_post; requestBody=; responses=}"
+                                           },
+                  "/db/insert_coding_question":  {
+                                                     "post":  "@{summary=Insert Coding Question Main; operationId=insert_coding_question_main_db_insert_coding_question_post; requestBody=; responses=}"
+                                                 },
+                  "/db/fetch_coding_question":  {
+                                                    "post":  "@{summary=Fetch Coding Question Main; operationId=fetch_coding_question_main_db_fetch_coding_question_post; requestBody=; responses=}"
+                                                },
+                  "/db/insert_aptitude_score":  {
+                                                    "post":  "@{summary=Insert Score; operationId=insert_score_db_insert_aptitude_score_post; requestBody=; responses=}"
+                                                },
+                  "/db/insert_coding_score":  {
+                                                  "post":  "@{summary=Insert Coding Score; operationId=insert_coding_score_db_insert_coding_score_post; requestBody=; responses=}"
+                                              },
+                  "/db/calculate_final_score":  {
+                                                    "post":  "@{summary=Calculate Final Score; operationId=calculate_final_score_db_calculate_final_score_post; requestBody=; responses=}"
+                                                },
+                  "/db/insert_tech_score":  {
+                                                "post":  "@{summary=Insert Tech Score Main; operationId=insert_tech_score_main_db_insert_tech_score_post; requestBody=; responses=}"
+                                            },
+                  "/db/check_candidate_login":  {
+                                                    "post":  "@{summary=Check Candidate Login Api; operationId=check_candidate_login_api_db_check_candidate_login_post; requestBody=; responses=}"
+                                                },
+                  "/db/get_candidate_ranking":  {
+                                                    "post":  "@{summary=Get Candidate Ranking Api; operationId=get_candidate_ranking_api_db_get_candidate_ranking_post; requestBody=; responses=}"
+                                                }
+              },
+    "components":  {
+                       "schemas":  {
+                                       "Body_evaluate_confidence_endpoint_confidence_evaluate_post":  "@{properties=; type=object; required=System.Object[]; title=Body_evaluate_confidence_endpoint_confidence_evaluate_post}",
+                                       "Body_upload_resume_upload_resume_post":  "@{properties=; type=object; required=System.Object[]; title=Body_upload_resume_upload_resume_post}",
+                                       "CandidateLogin":  "@{properties=; type=object; required=System.Object[]; title=CandidateLogin}",
+                                       "CandidateLoginRequest":  "@{properties=; type=object; required=System.Object[]; title=CandidateLoginRequest}",
+                                       "CandidateRanking":  "@{properties=; type=object; required=System.Object[]; title=CandidateRanking}",
+                                       "CodingFetchObject":  "@{properties=; type=object; required=System.Object[]; title=CodingFetchObject}",
+                                       "CodingQuetsionObject":  "@{properties=; type=object; required=System.Object[]; title=CodingQuetsionObject}",
+                                       "CompanyDetailsRequest":  "@{properties=; type=object; required=System.Object[]; title=CompanyDetailsRequest}",
+                                       "CompanyInterviewFetchRequest":  "@{properties=; type=object; required=System.Object[]; title=CompanyInterviewFetchRequest}",
+                                       "Conversation":  "@{properties=; type=object; required=System.Object[]; title=Conversation}",
+                                       "ConversationItem":  "@{properties=; type=object; required=System.Object[]; title=ConversationItem}",
+                                       "FinalScoreRequest":  "@{properties=; type=object; required=System.Object[]; title=FinalScoreRequest}",
+                                       "GenerateQuestionRequest":  "@{properties=; type=object; required=System.Object[]; title=GenerateQuestionRequest}",
+                                       "HTTPValidationError":  "@{properties=; type=object; title=HTTPValidationError}",
+                                       "InterviewCandidateFetchRequest":  "@{properties=; type=object; required=System.Object[]; title=InterviewCandidateFetchRequest}",
+                                       "InterviewDetailsRequest":  "@{properties=; type=object; required=System.Object[]; title=InterviewDetailsRequest}",
+                                       "InterviewDetailsRequest1":  "@{properties=; type=object; required=System.Object[]; title=InterviewDetailsRequest1}",
+                                       "InterviewFetchRequest":  "@{properties=; type=object; required=System.Object[]; title=InterviewFetchRequest}",
+                                       "ObjectiveDatabase":  "@{properties=; type=object; required=System.Object[]; title=ObjectiveDatabase}",
+                                       "TechScoreOutput":  "@{properties=; type=object; required=System.Object[]; title=TechScoreOutput}",
+                                       "ValidationError":  "@{properties=; type=object; required=System.Object[]; title=ValidationError}",
+                                       "aptitude_score_object":  "@{properties=; type=object; required=System.Object[]; title=aptitude_score_object}",
+                                       "coding_score_object":  "@{properties=; type=object; required=System.Object[]; title=coding_score_object}",
+                                       "company_signin_class":  "@{properties=; type=object; required=System.Object[]; title=company_signin_class}"
+                                   }
+                   }
+}

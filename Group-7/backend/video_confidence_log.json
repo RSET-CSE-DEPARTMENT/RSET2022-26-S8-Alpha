@@ -1,0 +1,38 @@
+[
+  {
+    "timestamp": "2026-03-05 18:25:09",
+    "interview_id": "1db56462-154a-11f1-b948-c9692e84c1a5",
+    "cade_id": "matt_652354331",
+    "eye_contact_score": 0.4,
+    "blink_score": 0.5,
+    "movement_score": 0.3,
+    "final_confidence_score": 0.4
+  },
+  {
+    "timestamp": "2026-03-05 18:25:11",
+    "interview_id": "1db56462-154a-11f1-b948-c9692e84c1a5",
+    "cade_id": "matt_652354331",
+    "eye_contact_score": 0.4,
+    "blink_score": 0.5,
+    "movement_score": 0.3,
+    "final_confidence_score": 0.4
+  },
+  {
+    "timestamp": "2026-03-05 18:25:12",
+    "interview_id": "1db56462-154a-11f1-b948-c9692e84c1a5",
+    "cade_id": "matt_652354331",
+    "eye_contact_score": 0.4,
+    "blink_score": 0.5,
+    "movement_score": 0.3,
+    "final_confidence_score": 0.4
+  },
+  {
+    "timestamp": "2026-03-05 18:25:13",
+    "interview_id": "1db56462-154a-11f1-b948-c9692e84c1a5",
+    "cade_id": "matt_652354331",
+    "eye_contact_score": 0.766,
+    "blink_score": 0.796,
+    "movement_score": 0.996,
+    "final_confidence_score": 0.841
+  }
+]
