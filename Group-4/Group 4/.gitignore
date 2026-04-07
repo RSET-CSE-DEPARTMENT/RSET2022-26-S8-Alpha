@@ -1,0 +1,84 @@
+.env
+venv/
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+test_debug.log
+test_output.log
+unique_results.log
+final_test.log
+final_test_v2.log
+
+# Temporary and Test Files
+tmp_test_*
+test_*.py
+debug_storage_fix.py
+diag_embed.py
+inspect_func.py
+test_kb.py
+test_raw_sim.py
+test_sweetcrumbs_kb.py
+test_unique.py
+
+# Dependency directories
+node_modules/
+venv/
+ENV/
+env/
+.venv/
+
+# Python cache and byte-code
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.python-version
+.mypy_cache/
+.ruff_cache/
+
+# Build and dist
+dist/
+dist-ssr/
+build/
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# IDEs and Editors
+.vscode/
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.venv
+.env
+test.py
+__pycache__/
+__pycache__
+env/
+.env
+*.pyc
+token.json
+credentials.json
+secrets/credentials.json
+secrets/token.json
+
+# Keep secrets dir structure in git but not contents
+!secrets/.gitkeep
+!secrets/README.md
+
+tmp_test_*.txt
+
+frontend_monolith_analysis.md.resolved

@@ -1,0 +1,33 @@
+/* LoginInput.css - Styles for the input component */
+
+.form-field {
+  margin-bottom: 14px;
+}
+
+.form-label {
+  color: #ffffff;
+  margin-bottom: 6px;
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  background-color: #2a2a2a;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.form-input::placeholder {
+  color: #666666;
+}
+
+.form-input:focus {
+  outline: none;
+  background-color: #333333;
+}

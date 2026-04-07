@@ -1,0 +1,131 @@
+services:
+  kb-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: cifai-kb-service
+    command: python app-service.py
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - ./secrets:/app/secrets
+    networks:
+      - cifai-network
+    restart: unless-stopped
+
+  agent-core:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: cifai-agent-core
+    command: python -m agent_core.service
+    ports:
+      - "8002:8002"
+    env_file:
+      - .env
+    environment:
+      - MCP_SERVER_URL=http://mcp-server:8004/sse
+      - EMAIL_SERVICE_URL=http://email-service:8003/api/v1/send
+    volumes:
+      - .:/app
+    networks:
+      - cifai-network
+    depends_on:
+      - mcp-server
+    restart: unless-stopped
+
+  email-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: cifai-email-service
+    command: python -m communication.email_service
+    ports:
+      - "8003:8003"
+    env_file:
+      - .env
+    environment:
+      - AGENT_CORE_URL=http://agent-core:8002/api/v1/process_message
+      - GMAIL_TOKEN_PATH=token.json
+      - GMAIL_CREDENTIALS_PATH=credentials.json
+    volumes:
+      - .:/app
+      - ./secrets:/app/secrets
+    networks:
+      - cifai-network
+    depends_on:
+      - agent-core
+    restart: unless-stopped
+
+  mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: cifai-mcp-server
+    command: python run_mcp.py
+    ports:
+      - "8004:8004"
+    env_file:
+      - .env
+    environment:
+      - EMAIL_SERVICE_URL=http://email-service:8003/api/v1/send
+    volumes:
+      - .:/app
+    networks:
+      - cifai-network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: cifai-frontend
+    ports:
+      - "8080:8080"
+    networks:
+      - cifai-network
+    volumes:
+      - .:/app
+      - /app/node_modules # Prevents local node_modules from overwriting container's
+    environment:
+      - NODE_ENV=development
+    restart: unless-stopped
+
+  telegram-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: cifai-telegram-bot
+    command: python run_telegram_bot.py
+    env_file:
+      - .env
+    environment:
+      - AGENT_CORE_URL=http://agent-core:8002/api/v1/process_message
+    networks:
+      - cifai-network
+    depends_on:
+      - agent-core
+    restart: unless-stopped
+
+  core-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: cifai-core-api
+    command: python main.py
+    ports:
+      - "8001:8001"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    networks:
+      - cifai-network
+    restart: unless-stopped
+
+networks:
+  cifai-network:
+    driver: bridge

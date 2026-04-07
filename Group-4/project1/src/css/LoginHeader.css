@@ -1,0 +1,43 @@
+/* LoginHeader.css - Styles for the login header component */
+
+.login-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.login-logo {
+  width: 64px;
+  height: 64px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  font-size: 32px;
+}
+
+.login-logo img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.login-title {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.login-subtitle {
+  color: #a0a0a0;
+  font-size: 18px;
+  margin: 0 0 8px 0;
+}
+
+.login-description {
+  color: #808080;
+  font-size: 14px;
+  margin: 0;
+}
